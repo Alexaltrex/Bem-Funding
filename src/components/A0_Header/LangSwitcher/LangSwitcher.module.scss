@@ -1,0 +1,57 @@
+@import "../../../assets/styles/app";
+
+.langSwitcher {
+  @include button;
+  flex-shrink: 0;
+  margin-left: 8px;
+  border: 1px solid #5D96FF;
+  overflow: hidden;
+  border-radius: 10px;
+  width: 70px;
+  height: 28px;
+
+  @include tablet {
+    margin-left: 12px;
+    width: 80px;
+    height: 32px;
+  }
+
+  .inner {
+    transition: 0.3s;
+
+    &_tur {
+      transform: translateY(-50%);
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 28px;
+
+      @include tablet {
+        height: 32px;
+      }
+
+
+      svg {
+        width: 17px;
+      }
+
+      span {
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 140%;
+        color: #FFF;
+        margin-left: 4px;
+
+        @include tablet {
+          font-size: 14px;
+        }
+      }
+    }
+
+  }
+
+
+}

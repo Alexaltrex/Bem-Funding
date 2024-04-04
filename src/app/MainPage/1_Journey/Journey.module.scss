@@ -1,0 +1,151 @@
+@import "../../../assets/styles/app";
+
+.journey {
+
+  .titleWrapper {
+    @include container;
+
+    .inner {
+      @include inner;
+
+      .title {
+        @include h2;
+        width: 288px;
+
+        @include tablet {
+          width: 660px;
+        }
+
+        span {
+          @include text-gradient
+        }
+      }
+    }
+  }
+
+  .swiper {
+    @include onlyMobile();
+    margin-top: 20px;
+
+    .slide {
+      width: 77vw !important;
+      position: relative;
+
+      &:not(:last-child) {
+        &::after {
+          content: "";
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 1px;
+          height: 157px;
+          background: rgba(255, 255, 255, 0.1);
+
+        }
+      }
+    }
+  }
+
+  .navigator {
+    @include onlyMobile();
+    position: relative;
+    margin-top: 20px;
+    height: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    margin-left: 15vw;
+    margin-right: 15vw;
+
+    .runner {
+      height: 100%;
+      width: calc(100% / 3);
+      background: $color_purple;
+      border-radius: 999px;
+      position: absolute;
+      top: 0;
+      transition: 0.3s;
+    }
+  }
+
+  .cards {
+    @include container;
+    @include onlyTabletAndMore(grid);
+
+    .inner {
+      @include inner;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 32px;
+
+      @include desktop {
+        margin-top: 72px;
+      }
+    }
+  }
+
+
+  .card {
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    @include desktop {
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+
+    &:not(:last-child) {
+      &::after {
+
+        @include tablet {
+          content: "";
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 1px;
+          height: 157px;
+          background: rgba(255, 255, 255, 0.1);
+        }
+
+        @include desktop {
+          height: 202px;
+        }
+      }
+    }
+
+    svg {
+      width: 50px;
+      height: 50px;
+
+
+      @include desktop {
+        width: 80px;
+        height: 80px;
+      }
+
+    }
+
+    .text {
+      margin-top: 14px;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 140%;
+      color: $color_white;
+
+      @include desktop {
+        margin-top: 20px;
+      }
+    }
+
+    .btn {
+      width: 100%;
+      margin-top: 24px;
+    }
+
+  }
+
+}
+

@@ -1,0 +1,83 @@
+@import "../../assets/styles/app";
+
+.header {
+  @include container;
+  position: absolute;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  right: 0;
+  background: linear-gradient(180deg, #000 0%, rgba(0,0,0,0) 100%);
+
+  .inner {
+    @include inner;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 6px;
+
+
+    @include tablet {
+      padding-top: 15px;
+    }
+
+    @include desktop {
+      padding-top: 24px;
+    }
+
+    .logo {
+      text-decoration: none;
+
+      svg {
+        width: 70px;
+        height: 36px;
+
+        @include tablet {
+          width: 108px;
+          height: 56px;
+        }
+      }
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+
+      .tradingBtn {
+        padding: 6px 10px;
+
+        @include tablet {
+          padding: 8px 13px;
+        }
+
+        span {
+          font-size: 10px;
+
+          @include tablet {
+            font-size: 14px;
+          }
+        }
+      }
+
+      .burgerBtn {
+        @include button;
+        @include onlyTabletAndLess(flex);
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        border-radius: 7px;
+        border: 1px solid #5D96FF;
+        width: 26px;
+        height: 26px;
+        margin-left: 10px;
+
+        svg path {
+          stroke: #FFF;
+        }
+
+      }
+
+    }
+
+  }
+}
