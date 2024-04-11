@@ -11,14 +11,12 @@ import {cards, ICard} from "./cards";
 import {clsx} from "clsx";
 import {montserrat} from "../../../assets/fonts/fonts";
 import {ButtonCustom} from "../../../components/_common/ButtonCustom/ButtonCustom";
-import {svgIcons} from "../../../assets/svgIcons";
 
 const titles = [
     "Your Journey To",
     "Trading Excellence",
     "Starts Here",
 ]
-
 
 export const Journey = observer(() => {
     const {appStore: {lang}} = useStore();
@@ -28,12 +26,12 @@ export const Journey = observer(() => {
     return (
         <div className={style.journey}>
 
-            {/*{svgIcons.journey_0}*/}
-
             <div className={style.titleWrapper}>
                 <div className={style.inner}>
                     <h2 className={style.title}>
-                        {translate(titles[0], lang)} <span>{translate(titles[1], lang)}</span> {translate(titles[2], lang)}
+                        <span className={montserrat.className}>{translate(titles[0], lang)}</span>
+                        <span className={montserrat.className}> {translate(titles[1], lang)} </span>
+                        <span className={montserrat.className}>{translate(titles[2], lang)}</span>
                     </h2>
                 </div>
             </div>
@@ -44,7 +42,6 @@ export const Journey = observer(() => {
                     onSlideChange={swiper => setCurrentIndex(swiper.realIndex)}
                     slidesPerView='auto'
                     centeredSlides={true}
-
             >
                 {
                     cards.map((card, key) => (
@@ -93,14 +90,16 @@ const Card: FC<ICardComponent> = ({
                                       button,
                                       lang
                                   }) => {
+    const {label, ...rest} = button;
     return (
         <div className={style.card}>
-            {icon}
+            <img src={icon} alt=""/>
             <div className={clsx(style.text, montserrat.className)}>
                 <p>{translate(text[0], lang)}</p>
                 <p>{translate(text[1], lang)}</p>
             </div>
-            <ButtonCustom {...button}
+            <ButtonCustom {...rest}
+                          label={translate(label, lang)}
                           className={style.btn}
             />
         </div>

@@ -17,7 +17,9 @@
         }
 
         span {
-          @include text-gradient
+          &:nth-child(2) {
+            @include text-gradient;
+          }
         }
       }
     }
@@ -116,13 +118,12 @@
       }
     }
 
-    svg {
-      width: 50px;
+    img {
+      display: block;
       height: 50px;
-
+      width: auto;
 
       @include desktop {
-        width: 80px;
         height: 80px;
       }
 

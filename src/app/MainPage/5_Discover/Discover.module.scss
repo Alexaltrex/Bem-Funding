@@ -1,0 +1,228 @@
+@import "../../../assets/styles/app";
+
+.discover {
+  @include container;
+  position: relative;
+  overflow: hidden;
+  padding-top: 27px;
+
+  @include tablet {
+    padding-top: 23px;
+  }
+
+  @include desktop {
+    padding-top: 80px;
+  }
+
+  .inner {
+    @include inner;
+    position: relative;
+
+    @include desktop {
+      display: flex;
+    }
+
+    .imgWrapper {
+      position: relative;
+      z-index: 1;
+      height: 277px;
+
+      @include tablet {
+        height: 443px;
+      }
+
+      @include desktop {
+        flex-grow: 1;
+      }
+
+      .mobile {
+        position: relative;
+        z-index: 2;
+        display: block;
+        height: 100%;
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+
+        @include desktop {
+          position: absolute;
+          z-index: 1;
+          top: -57px;
+          right: 0;
+          height: 618px;
+        }
+      }
+
+      .cloud {
+        position: absolute;
+        display: block;
+        width: 472px;
+        height: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 20px;
+
+        @include tablet {
+          width: 756px;
+          top: 30px;
+        }
+
+        @include desktop {
+          left: auto;
+          transform: none;
+          top: -14px;
+          width: 1054px;
+          right: -60px;
+        }
+      }
+    }
+
+    .content {
+      position: relative;
+      z-index: 3;
+
+      @include desktop {
+        width: 640px;
+      }
+
+      .pre {
+        @include pre;
+
+        @include desktop {
+          text-align: left;
+        }
+      }
+
+      .title {
+        @include h2;
+        margin-top: 11px;
+
+        @include tablet {
+          width: 436px;
+          margin-top: 15px;
+        }
+
+        @include desktop {
+          margin-top: 11px;
+          text-align: left;
+          margin-left: 0;
+          margin-right: 0;
+          width: auto;
+        }
+
+      }
+
+      .texts {
+        margin-top: 27px;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 140%;
+        text-align: center;
+        color: $color_white;
+
+        @include tablet {
+          font-size: 14px;
+        }
+
+        @include desktop {
+          margin-top: 27px;
+          text-align: left;
+        }
+      }
+
+      .label {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 140%;
+        color: $color_white;
+        text-align: center;
+        margin-top: 27px;
+
+        @include desktop {
+          text-align: left;
+        }
+
+      }
+
+      .buttonsWrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+
+        @include tablet {
+          flex-direction: row;
+          justify-content: center;
+        }
+
+        @include desktop {
+          justify-content: normal;
+        }
+
+        .links {
+          display: flex;
+          justify-content: center;
+
+          @include tablet {
+            justify-content: normal;
+          }
+
+          a {
+            @include centerRow;
+            width: 132px;
+            height: 38px;
+            border: 1px solid #A6A6A6;
+            border-radius: 5px;
+
+            @include tablet {
+              width: 145px;
+              height: 42px;
+            }
+
+            &:nth-child(1) {
+              svg {
+                width: 107px;
+                height: 28px;
+
+                @include tablet {
+                  width: 118px;
+                  height: 30px;
+                }
+              }
+            }
+
+            &:nth-child(2) {
+              margin-left: 10px;
+
+              @include tablet {
+                margin-left: 18px;
+              }
+
+              svg {
+                width: 114px;
+                height: 26px;
+
+                @include tablet {
+                  width: 124px;
+                  height: 28px;
+                }
+              }
+            }
+          }
+        }
+
+        .btn {
+          margin-top: 10px;
+
+          @include tablet {
+            margin-top: 0;
+            margin-left: 18px;
+          }
+        }
+
+      }
+
+
+    }
+  }
+}

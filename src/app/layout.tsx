@@ -5,6 +5,7 @@ import {inter} from "../assets/fonts/fonts";
 import {clsx} from "clsx";
 import {StoreProvider} from "../store/StoreProvider";
 import {Header} from "../components/A0_Header/Header";
+import {BurgerMenu} from "../components/A1_BurgerMenu/BurgerMenu";
 
 export const metadata: Metadata = {
     title: "Meta Funding",
@@ -23,6 +24,7 @@ export default function RootLayout({
         <StoreProvider>
             <>
                 <Header/>
+                <BurgerMenu/>
 
                 <main>
                     {children}

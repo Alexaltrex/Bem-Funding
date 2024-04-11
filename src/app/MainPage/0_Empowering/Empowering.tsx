@@ -17,11 +17,7 @@ const titles = [
 const description = 'Your Journey To Trading Excellence Fueled by BEM Funding: Trade up to $400k on a Funded Star Account, Get Instant Rewards, and Earn up to 100% of the Profits.'
 
 export const Empowering = observer(() => {
-    const {
-        appStore: {
-            lang
-        }
-    } = useStore();
+    const {appStore: {lang}} = useStore();
 
     return (
         <div className={style.empowering}>

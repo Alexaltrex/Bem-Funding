@@ -1,0 +1,151 @@
+@import "../../../assets/styles/app";
+
+.aboutUs {
+  @include container;
+  padding-top: 54px;
+
+  @include tablet {
+    padding-top: 90px;
+  }
+
+  @include desktop {
+    padding-top: 120px;
+  }
+
+  .inner {
+    @include inner;
+
+    .title {
+      @include h2;
+    }
+
+    .items {
+      margin-top: 15px;
+
+      @include tablet {
+        margin-top: 32px;
+      }
+
+      @include desktop {
+        margin-top: 40px;
+      }
+
+      .item {
+
+        @include desktop {
+          display: flex;
+        }
+
+        &:nth-child(1), &:nth-child(3) {
+          flex-direction: row-reverse;
+        }
+
+        &:not(:first-child) {
+          margin-top: 24px;
+
+          @include tablet {
+            margin-top: 32px;
+          }
+
+          @include desktop {
+            margin-top: 60px;
+          }
+        }
+
+        &:nth-child(1) .imgWrapper .img {
+          width: 163px;
+          height: auto;
+
+          @include tablet {
+            width: 320px;
+          }
+
+          @include desktop {
+            left: 155px;
+          }
+        }
+
+        &:nth-child(2) .imgWrapper .img {
+          width: 216px;
+          height: auto;
+
+          @include tablet {
+            width: 424px;
+          }
+
+          @include desktop {
+            right: 110px;
+          }
+        }
+
+        &:nth-child(3) .imgWrapper .img {
+          width: 148px;
+          height: auto;
+
+          @include tablet {
+            width: 291px;
+          }
+
+          @include desktop {
+            left: 170px;
+          }
+        }
+
+
+        .imgWrapper {
+          position: relative;
+
+          .img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+
+            @include desktop {
+              margin-left: 0;
+              margin-right: 0;
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+            }
+          }
+
+          @include desktop {
+            flex-grow: 1;
+          }
+        }
+
+        .content {
+
+          @include desktop {
+            width: 544px;
+            flex-shrink: 0;
+          }
+
+          .label {
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 140%;
+            color: $color_white;
+
+            @include desktop {
+              font-size: 30px;
+            }
+          }
+
+          .texts {
+            margin-top: 16px;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 140%;
+            color: $color_white;
+          }
+
+
+        }
+
+
+      }
+    }
+
+  }
+}

@@ -2,7 +2,7 @@ import {svgIcons} from "../../../assets/svgIcons";
 import {ButtonVariant} from "../../../components/_common/ButtonCustom/ButtonCustom";
 
 export interface ICard {
-    icon: React.JSX.Element,
+    icon: string,
     text: string[]
     button: {
         label: string
@@ -13,7 +13,7 @@ export interface ICard {
 
 export const cards: ICard[] = [
     {
-        icon: svgIcons.journey_0,
+        icon: "/png/main_page/journey0.png",
         text: [
             "Launch Into",
             "Trader Success"
@@ -24,7 +24,7 @@ export const cards: ICard[] = [
         }
     },
     {
-        icon: svgIcons.journey_1,
+        icon: "/png/main_page/journey1.png",
         text: [
             "Your Triumph ",
             "Is Our Mission"
@@ -35,7 +35,7 @@ export const cards: ICard[] = [
         }
     },
     {
-        icon: svgIcons.journey_2,
+        icon: "/png/main_page/journey2.png",
         text: [
             "Experienced Board ",
             "of Advisors",
