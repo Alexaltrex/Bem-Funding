@@ -17,6 +17,7 @@ import {CheckboxCustom} from "../../../components/_common/CheckboxCustom/Checkbo
 import {useState} from "react";
 import {svgIcons} from "../../../assets/svgIcons";
 
+// @ts-ignore
 import {getNames} from 'country-list';
 
 const title = "Sign In";
