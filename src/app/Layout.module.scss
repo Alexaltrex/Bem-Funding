@@ -3,4 +3,32 @@
 .layout {
   position: relative;
   background: #000;
+  overflow: hidden;
+
+  .header_blur {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    width: 1920px;
+    height: auto;
+  }
+
+  .footer_blur {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 1920px;
+    height: auto;
+  }
+
+
+
+  main {
+    position: relative;
+    z-index: 10;
+  }
 }

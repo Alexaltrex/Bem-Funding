@@ -1,3 +1,6 @@
+import {SignIn} from "../app/signIn/SignIn/SignIn";
+import {PrivacyPolicy} from "../app/privacyPolicy/PrivacyPolicy/PrivacyPolicy";
+
 export interface ISubLink {
     label: string
     href: string
@@ -25,6 +28,28 @@ export const links = [
                 label: "Contacts",
                 href: "/contacts",
             },
+            {
+                label: "Leaderboard",
+                href: "/leaderboard",
+            },
+            {
+                label: "Sign In",
+                href: "/signIn",
+            },
+            {
+                label: "Sign Up",
+                href: "/signUp",
+            },
+            {
+                label: "Trading Updates",
+                href: "/tradingUpdates",
+            },
+            {
+                label: "Privacy Policy",
+                href: "/privacyPolicy",
+            },
+
+
         ]
     },
 ]

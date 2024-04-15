@@ -6,6 +6,7 @@ import {HowTo} from "./MainPage/2_HowTo/HowTo";
 import {Destination} from "./MainPage/3_Destination/Destination";
 import {NewEra} from "./MainPage/4_NewEra/NewEra";
 import {Discover} from "./MainPage/5_Discover/Discover";
+import {Chance} from "./MainPage/6_Chance/Chance";
 
 export const metadata: Metadata = {
     title: "Meta Funding - Main page",
@@ -20,6 +21,7 @@ const MainPage = () => {
         <Destination/>
         <NewEra/>
         <Discover/>
+        <Chance/>
     </div>
   )
 }

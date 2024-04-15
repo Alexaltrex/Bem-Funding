@@ -25,3 +25,8 @@ export const socialLinks = [
         href: "#"
     },
 ]
+
+export const outerLinkOptions = {
+    target: "_blank",
+    rel: "noopener noreferrer nofollow",
+}

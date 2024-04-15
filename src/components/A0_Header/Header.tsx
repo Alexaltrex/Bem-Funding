@@ -15,7 +15,6 @@ import {montserrat} from "../../assets/fonts/fonts";
 import gsap from "gsap";
 import {useGSAP} from "@gsap/react";
 
-
 export const Header = observer(() => {
     const {
         appStore: {
@@ -24,49 +23,49 @@ export const Header = observer(() => {
     } = useStore();
 
     return (
-        <header className={style.header}>
-            <header className={style.inner}>
+            <header className={style.header}>
+                <div className={style.inner}>
 
-                <Link href="/" className={style.logo}>
-                    {svgIcons.logo}
-                </Link>
+                    <Link href="/" className={style.logo}>
+                        {svgIcons.logo}
+                    </Link>
 
-                <div className={style.links}>
-                    {
-                        links.map(({title, href, subLinks}, key) => (
-                            <Fragment key={key}>
-                                {
-                                    href ? (
-                                       <Link href={href}
-                                             className={clsx(style.link, montserrat.className)}
-                                       >
-                                           {title}
-                                       </Link>
-                                    ) : (
-                                        <DropDown title={title} subLinks={subLinks as ISubLink[]}/>
-                                    )
-                                }
-                            </Fragment>
-                        ))
-                    }
-                </div>
+                    <div className={style.links}>
+                        {
+                            links.map(({title, href, subLinks}, key) => (
+                                <Fragment key={key}>
+                                    {
+                                        href ? (
+                                            <Link href={href}
+                                                  className={clsx(style.link, montserrat.className)}
+                                            >
+                                                {title}
+                                            </Link>
+                                        ) : (
+                                            <DropDown title={title} subLinks={subLinks as ISubLink[]}/>
+                                        )
+                                    }
+                                </Fragment>
+                            ))
+                        }
+                    </div>
 
-                <div className={style.right}>
+                    <div className={style.right}>
 
-                    <ButtonCustom label={translate('Trading Space', lang)}
-                                  className={style.tradingBtn}
-                    />
+                        <ButtonCustom label={translate('Trading Space', lang)}
+                                      className={style.tradingBtn}
+                        />
 
-                    <LangSwitcher/>
+                        <LangSwitcher/>
 
-                    <button className={style.burgerBtn}
-                            onClick={() => setBurgerMenu(!burgerMenu)}
-                    >
-                        {burgerMenu ? svgIcons.close : svgIcons.burger}
-                    </button>
+                        <button className={style.burgerBtn}
+                                onClick={() => setBurgerMenu(!burgerMenu)}
+                        >
+                            {burgerMenu ? svgIcons.close : svgIcons.burger}
+                        </button>
+                    </div>
                 </div>
             </header>
-        </header>
     )
 })
 
@@ -79,7 +78,7 @@ interface IDropDown {
 const DropDown: FC<IDropDown> = ({
                                      title,
                                      subLinks
-}) => {
+                                 }) => {
     const [open, setOpen] = useState(false);
 
     const onMouseEnter = () => setOpen(true)

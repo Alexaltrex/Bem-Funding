@@ -3,7 +3,7 @@
 .discover {
   @include container;
   position: relative;
-  overflow: hidden;
+  //overflow: hidden;
   padding-top: 27px;
 
   @include tablet {

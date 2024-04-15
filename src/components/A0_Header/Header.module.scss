@@ -7,9 +7,21 @@
   left: 0;
   top: 0;
   right: 0;
-  background: linear-gradient(180deg, #000 0%, rgba(0,0,0,0) 100%);
+  background: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0) 100%);
+
+  .blur {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    width: 1920px;
+    height: auto;
+  }
 
   .inner {
+    position: relative;
+    z-index: 101;
     @include inner;
     display: flex;
     align-items: center;
@@ -92,13 +104,11 @@
         svg path {
           stroke: #FFF;
         }
-
       }
-
     }
-
   }
 }
+
 
 .dropDown {
   position: relative;

@@ -6,6 +6,8 @@ import {clsx} from "clsx";
 import {StoreProvider} from "../store/StoreProvider";
 import {Header} from "../components/A0_Header/Header";
 import {BurgerMenu} from "../components/A1_BurgerMenu/BurgerMenu";
+import {Footer} from "../components/A2_Footer/Footer";
+import {RecoveryForm} from "../components/A3_RecoveryForm/RecoveryForm";
 
 export const metadata: Metadata = {
     title: "Meta Funding",
@@ -19,17 +21,24 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-        <body className={clsx(style.layout, inter.className)}>
+        <body>
 
         <StoreProvider>
-            <>
+            <div className={clsx(style.layout, inter.className)}>
+
+                <img src="/png/header_blur.png" alt="" className={style.header_blur}/>
+                <img src="/png/footer_blur.png" alt="" className={style.footer_blur}/>
+
                 <Header/>
                 <BurgerMenu/>
+                <RecoveryForm/>
 
                 <main>
                     {children}
                 </main>
-            </>
+
+                <Footer/>
+            </div>
         </StoreProvider>
 
 

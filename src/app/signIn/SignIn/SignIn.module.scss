@@ -1,0 +1,271 @@
+@import "../../../assets/styles/app";
+
+.signIn {
+  position: relative;
+  @include container;
+  padding-top: 54px;
+  padding-bottom: 32px;
+
+
+  @include tablet {
+    padding-top: 90px;
+    padding-bottom: 42px;
+  }
+
+  @include desktop {
+    padding-top: 120px;
+    padding-bottom: 20px;
+  }
+
+  .inner {
+    position: relative;
+    z-index: 1;
+    @include inner;
+
+    .title {
+      @include h2;
+    }
+
+    .content {
+      margin-top: 21px;
+      display: flex;
+      flex-direction: column;
+
+      @include tablet {
+        margin-top: 41px;
+      }
+
+      @include desktop {
+        margin-top: 32px;
+        flex-direction: row-reverse;
+      }
+
+      .top {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @include tablet {
+          flex-direction: row;
+          //justify-content: space-between;
+        }
+
+        @include desktop {
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: normal;
+          width: 50%;
+        }
+
+        .top_texts {
+
+          @include tablet {
+            width: 50%;
+          }
+
+          @include desktop {
+            width: auto;
+          }
+
+          .secondTitle {
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 140%;
+            text-align: center;
+            color: $color_white;
+
+            @include tablet {
+              font-size: 30px;
+              text-align: left;
+              width: 274px;
+            }
+
+            @include desktop {
+              width: auto;
+            }
+          }
+
+          .text {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 140%;
+            text-align: center;
+            color: $color_white;
+            margin-top: 12px;
+
+            @include tablet {
+              width: 274px;
+              margin-top: 26px;
+              text-align: left;
+            }
+
+            @include desktop {
+              margin-top: 8px;
+            }
+          }
+
+        }
+
+        .tube {
+          display: block;
+          width: 198px;
+          height: auto;
+          margin-top: 64px;
+
+          @include tablet {
+            width: 327px;
+          }
+
+          @include desktop {
+            width: 431px;
+            margin-top: 20px;
+          }
+        }
+
+      }
+
+      .bottom {
+        margin-top: 36px;
+
+        @include tablet {
+          margin-top: 70px;
+        }
+
+        @include desktop {
+          width: 50%;
+          margin-top: 0;
+        }
+
+        .bottom_inner {
+
+          @include tablet {
+            width: 352px;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          .buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-column-gap: 10px;
+
+            .btn {
+              @include button;
+              @include centerRow;
+              border-radius: 10px;
+              height: 32px;
+              border: 1px solid $color_purple;
+
+              svg {
+                width: 16px;
+                height: 16px;
+              }
+            }
+
+          }
+
+          .or {
+            margin-top: 12px;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 140%;
+            text-align: center;
+            color: $color_white;
+
+            @include tablet {
+              margin-top: 20px;
+            }
+          }
+
+
+          .form {
+            margin-top: 12px;
+
+            @include tablet {
+              margin-top: 20px;
+            }
+
+            .fieldWrapper {
+
+              &:not(:first-child) {
+                margin-top: 12px;
+
+                @include tablet {
+                  margin-top: 20px;
+                }
+              }
+
+              .label {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 140%;
+                color: $color_white;
+              }
+
+              .field {
+                margin-top: 6px;
+              }
+
+            }
+
+            .submitBtn {
+              margin-top: 12px;
+              width: 100%;
+
+              @include tablet {
+                margin-top: 20px;
+              }
+            }
+
+          }
+
+          .forgotBtn {
+            @include button;
+            display: block;
+            margin: 12px auto 0;
+
+            @include tablet {
+              margin: 20px auto 0;
+            }
+
+            span {
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 140%;
+              color: $color_purple;
+            }
+
+          }
+
+          .registerWrapper {
+            margin-top: 12px;
+            text-align: center;
+
+            @include desktop {
+              margin-top: 20px;
+            }
+
+            span, .link {
+              text-decoration: none;
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 140%;
+              color: $color_white;
+            }
+
+            .link {
+              color: $color_purple;
+            }
+          }
+
+
+        }
+
+      }
+
+
+    }
+
+  }
+
+}

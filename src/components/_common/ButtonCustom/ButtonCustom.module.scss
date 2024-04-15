@@ -50,6 +50,7 @@
     font-size: 14px;
     line-height: 140%;
     color: #FFF;
+    white-space: nowrap;
 
     @include tablet {
       font-size: 16px;
