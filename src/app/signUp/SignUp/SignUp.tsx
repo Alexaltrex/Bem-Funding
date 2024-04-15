@@ -18,7 +18,7 @@ import {useState} from "react";
 import {svgIcons} from "../../../assets/svgIcons";
 
 // @ts-ignore
-import {getNames} from 'country-list';
+// import {getNames} from 'country-list';
 
 const title = "Sign In";
 const description = "Already have an account?";
@@ -97,7 +97,7 @@ export const SignUp = observer(() => {
     const [termsAndConditions, setTermsAndConditions] = useState(false);
     const [privacyPolicy, setPrivacyPolicy] = useState(false);
 
-    console.log(getNames())
+    //console.log(getNames())
 
 
     return (
