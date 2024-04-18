@@ -93,6 +93,7 @@ const DropDown: FC<IDropDown> = ({
             display: open ? "block" : "none",
             duration: 0.3,
         });
+
     }, {dependencies: [open], scope: appRef});
 
     return (

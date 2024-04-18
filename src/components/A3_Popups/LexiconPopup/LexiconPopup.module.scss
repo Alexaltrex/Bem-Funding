@@ -1,0 +1,63 @@
+@import "../../../assets/styles/app";
+
+.lexiconPopup {
+  @include onlyMobile(flex);
+  @include centerColumn;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(20px);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 36px 16px 0;
+
+  .card {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    backdrop-filter: blur(34px);
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
+    padding: 52px 24px 20px;
+    background: rgb(45, 40, 90);
+
+    .closeBtn {
+      @include button;
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      width: 12px;
+      height: 12px;
+
+      svg {
+        width: 12px;
+        height: 12px;
+
+        path {
+          stroke: #FFF;
+        }
+      }
+
+    }
+
+    .subtitle {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 140%;
+      color: $color_white;
+    }
+
+    .content {
+      margin-top: 20px;
+      font-family: var(--font-family);
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 140%;
+      color: $color_white;
+    }
+
+
+
+  }
+}

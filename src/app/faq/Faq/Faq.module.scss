@@ -4,124 +4,17 @@
   @include container;
   position: relative;
   padding-top: 54px;
+  padding-bottom: 12px;
 
   @include tablet {
     padding-top: 90px;
+    padding-bottom: 18px;
   }
 
   @include desktop {
     padding-top: 120px;
+    padding-bottom: 32px;
   }
-
-  .popup {
-    position: fixed;
-    z-index: 999;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    backdrop-filter: blur(20px);
-    background: rgba(0, 0, 0, 0.2);
-    padding-top: 36px;
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-bottom: 20px;
-
-    @include tablet {
-      padding-top: 36px;
-      padding-left: 40px;
-      padding-right: 40px;
-      padding-bottom: 50px;
-    }
-
-    @include desktop {
-      padding-top: 80px;
-      padding-left: 0;
-      padding-right: 0;
-      padding-bottom: 80px;
-    }
-
-    .card {
-      position: relative;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 15px;
-      backdrop-filter: blur(34px);
-      box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
-      padding: 52px 24px 20px;
-      background: rgb(45, 40, 90);
-
-      @include desktop {
-        width: 1068px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .closeBtn {
-        @include button;
-        position: absolute;
-        top: 20px;
-        right: 24px;
-        width: 12px;
-        height: 12px;
-
-        svg {
-          width: 12px;
-          height: 12px;
-
-          path {
-            stroke: #FFF;
-          }
-        }
-
-      }
-
-      .cardTitle {
-        font-weight: 700;
-        font-size: 20px;
-        line-height: 140%;
-        color: $color_white;
-
-        @include tablet {
-          font-size: 24px;
-        }
-      }
-
-      .cardTexts {
-        margin-top: 20px;
-
-        p {
-          font-weight: 400;
-          font-size: 14px;
-          line-height: 140%;
-          color: $color_white;
-
-          @include tablet {
-            font-size: 16px;
-          }
-
-          &:not(:first-child) {
-            margin-top: 1.4 * 14px;
-
-            @include tablet {
-              margin-top: 1.4 * 16px;
-            }
-          }
-        }
-      }
-
-      .backBtn {
-        margin-top: 30px;
-
-        @include tablet {
-          width: 320px;
-          margin-left: auto;
-          margin-right: auto;
-        }
-      }
-
-    }
-  }
-
 
   .inner {
     @include inner;
@@ -134,59 +27,6 @@
           @include text-gradient;
         }
       }
-    }
-
-    .form {
-      margin-top: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 10px;
-      //backdrop-filter: blur(34px);
-      box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
-      //background: radial-gradient(7324.86% 141.42% at 100% 0%, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 100%);
-      display: flex;
-      align-items: center;
-      padding-top: 8px;
-      padding-bottom: 8px;
-      padding-left: 18px;
-      padding-right: 11px;
-
-      @include tablet {
-        margin-top: 16px;
-      }
-
-      @include desktop {
-        margin-top: 24px;
-      }
-
-      input {
-        flex-grow: 1;
-        border: none;
-        background: none;
-        outline: none;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 140%;
-        color: $color_white;
-
-
-        &::placeholder {
-          color: $color_light_gray;
-          opacity: 0.5;
-        }
-      }
-
-      button {
-        @include button;
-        width: 24px;
-        height: 24px;
-
-        svg {
-          width: 24px;
-          height: 24px;
-        }
-      }
-
-
     }
 
     .content {

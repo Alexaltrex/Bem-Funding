@@ -120,6 +120,21 @@
   }
 }
 
+@mixin pagePaddings {
+  padding-top: 54px;
+  padding-bottom: 24px;
+
+  @include tablet {
+    padding-top: 90px;
+    padding-bottom: 24px;
+  }
+
+  @include desktop {
+    padding-top: 120px;
+    padding-bottom: 48px;
+  }
+}
+
 //========= OTHER =========//
 @mixin button() {
   cursor: pointer;

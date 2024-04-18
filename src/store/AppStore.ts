@@ -1,11 +1,15 @@
 import {action, makeObservable, observable} from "mobx";
 import {LangEnum} from "../const/lang";
+import {FaqPopup} from "../components/A3_Popups/FaqPopup/FaqPopup";
+import {IFaqItem} from "../app/faq/Faq/faqs";
+import {ISubtitle} from "../app/lexicon/Lexicon/helpers";
 
 export class AppStore {
     burgerMenu: boolean = false
     lang = LangEnum.ENG
     showRecoveryForm = false
-    //recoveryFormSuccess = false
+    faqItem = null as null | IFaqItem
+    lexiconSubtitle = null as null | ISubtitle
 
     constructor() {
         makeObservable(this,
@@ -13,12 +17,14 @@ export class AppStore {
                 burgerMenu: observable,
                 lang: observable,
                 showRecoveryForm: observable,
-                //recoveryFormSuccess: observable,
+                faqItem: observable,
+                lexiconSubtitle: observable,
 
                 setBurgerMenu: action.bound,
                 setLang: action.bound,
                 setShowRecoveryForm: action.bound,
-                //setRecoveryFormSuccess: action.bound,
+                setFaqItem: action.bound,
+                setLexiconSubtitle: action.bound,
             }
         )
     }
@@ -35,8 +41,12 @@ export class AppStore {
         this.showRecoveryForm = showRecoveryForm
     }
 
-    // setRecoveryFormSuccess(recoveryFormSuccess: boolean) {
-    //     this.recoveryFormSuccess = recoveryFormSuccess
-    // }
+    setFaqItem(faqItem: null | IFaqItem) {
+        this.faqItem = faqItem
+    }
+
+    setLexiconSubtitle(lexiconSubtitle: null | ISubtitle) {
+        this.lexiconSubtitle = lexiconSubtitle
+    }
 
 }

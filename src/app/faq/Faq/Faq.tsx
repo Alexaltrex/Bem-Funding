@@ -8,10 +8,11 @@ import {translate} from "../../../const/lang";
 import {useFormik} from "formik";
 import {FormikHelpers} from "formik/dist/types";
 import {svgIcons} from "../../../assets/svgIcons";
-import {faqs, IItem} from "./faqs";
+import {faqs, IFaqItem} from "./faqs";
 import {clsx} from "clsx";
 import {useState} from "react";
 import {ButtonCustom, ButtonVariant} from "../../../components/_common/ButtonCustom/ButtonCustom";
+import {SearchForm} from "../../../components/_common/SearchForm/SearchForm";
 
 const titles = [
     "Frequently",
@@ -19,63 +20,19 @@ const titles = [
     "Questions",
 ]
 
-const buttonLabel = "Go back";
-
-interface IValues {
-    value: string
-}
-
-const initialValues = {value: ""}
-
 export const Faq = observer(() => {
-    const {appStore: {lang}} = useStore();
+    const {appStore: {lang, setFaqItem}} = useStore();
 
-    const onSubmit = (values: IValues, formikHelpers: FormikHelpers<IValues>) => {
-        console.log(values)
+    const [result, setResult] = useState<null | string>(null)
+
+    const onSearch = async () => {
+        setResult("Result")
     }
 
-    const formik = useFormik({
-        initialValues,
-        onSubmit
-    })
-
-    const [item, setItem] = useState<IItem | null>(null)
+    const onClear = () => setResult(null);
 
     return (
         <div className={style.faq}>
-
-            {
-                item && (
-                    <div className={style.popup}>
-                       <div className={style.card}>
-                            <button className={style.closeBtn}
-                                    onClick={() => setItem(null)}
-                            >
-                                {svgIcons.close}
-                            </button>
-                           <p className={clsx(style.cardTitle, montserrat.className)}>
-                               {translate(item.question, lang)}
-                           </p>
-
-                           <div className={style.cardTexts}>
-                               {
-                                   item.answer.map((text, key) => (
-                                       <p key={key}>
-                                           {translate(text, lang)}
-                                       </p>
-                                   ))
-                               }
-                           </div>
-
-                            <ButtonCustom label={translate(buttonLabel, lang)}
-                                          variant={ButtonVariant.blue}
-                                          className={style.backBtn}
-                                          onClick={() => setItem(null)}
-                            />
-                       </div>
-                    </div>
-                )
-            }
 
             <div className={style.inner}>
 
@@ -85,50 +42,15 @@ export const Faq = observer(() => {
                     <span className={montserrat.className}>{translate(titles[2], lang)}</span>
                 </h2>
 
-                <form onSubmit={formik.handleSubmit}
-                      className={style.form}
-                >
-
-                    <input name="value"
-                           placeholder="Write here..."
-                           value={formik.values.value}
-                           onBlur={formik.handleBlur}
-                           onChange={(e) => {
-                               formik.handleChange(e);
-                               setTimeout(() => {
-                                   formik.submitForm();
-                               }, 0)
-                           }}
-
-
-                    />
-
-                    <button onClick={() => {
-                        if (formik.values.value) {
-                            formik.resetForm();
-                        }
-                    }}
-                    >
-                        {
-                            formik.values.value ? svgIcons.close_gradient : svgIcons.search
-                        }
-                    </button>
-
-                    {
-                        formik.touched.value && formik.errors.value && (
-                            <div>
-                                {formik.errors.value}
-                            </div>
-                        )
-                    }
-
-                </form>
+                <SearchForm onSearch={onSearch}
+                            onClear={onClear}
+                />
 
                 <div className={style.content}>
                     {
-                        formik.values.value ? (
+                        result ? (
                             <>
-                                Result
+                                {result}
                             </>
                         ) : (
                             <div className={style.sections}>
@@ -145,7 +67,7 @@ export const Faq = observer(() => {
                                                     items.map((item, key) => (
                                                         <button key={key}
                                                                 className={style.item}
-                                                                onClick={() => setItem(item)}
+                                                                onClick={() => setFaqItem(item)}
                                                         >
                                                             <p>{translate(item.question, lang)}</p>
                                                             {svgIcons.li_dot}

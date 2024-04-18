@@ -1,6 +1,3 @@
-import {SignIn} from "../app/signIn/SignIn/SignIn";
-import {PrivacyPolicy} from "../app/privacyPolicy/PrivacyPolicy/PrivacyPolicy";
-
 export interface ISubLink {
     label: string
     href: string
@@ -14,6 +11,19 @@ export interface ILink {
 
 export const links = [
     {
+        title: "How to Participate",
+        subLinks: [
+            {
+                label: "The evoluation",
+                href: "/evoluation",
+            },
+            {
+                label: "Trading objectives",
+                href: "/tradingObjectives",
+            },
+        ],
+    },
+    {
         title: "Faq",
         href: "/faq",
     },
@@ -25,8 +35,38 @@ export const links = [
                 href: "/aboutUs",
             },
             {
+                label: "Careers",
+                href: "/careers",
+            },
+            {
                 label: "Contacts",
                 href: "/contacts",
+            },
+
+        ]
+    },
+    {
+        title: "Affiliate Program",
+        href: "/affiliateProgram",
+    },
+    {
+        title: "Library",
+        subLinks: [
+            {
+                label: "Blog",
+                href: "/blog",
+            },
+            {
+                label: "Lexicon",
+                href: "/lexicon",
+            },
+            {
+                label: "Trading Updates",
+                href: "/tradingUpdates",
+            },
+            {
+                label: "Economic Calendar",
+                href: "/economicCalendar",
             },
             {
                 label: "Leaderboard",
@@ -40,16 +80,11 @@ export const links = [
                 label: "Sign Up",
                 href: "/signUp",
             },
-            {
-                label: "Trading Updates",
-                href: "/tradingUpdates",
-            },
+
             {
                 label: "Privacy Policy",
                 href: "/privacyPolicy",
             },
-
-
         ]
     },
 ]

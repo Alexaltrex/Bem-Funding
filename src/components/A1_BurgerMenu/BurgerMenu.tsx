@@ -33,11 +33,15 @@ export const BurgerMenu = observer(() => {
                             href ? (
                                 <Link href={href}
                                       className={clsx(style.link, montserrat.className)}
+                                      onClick={() => setBurgerMenu(false)}
                                 >
                                     {title}
                                 </Link>
                             ) : (
-                                <DropDown title={title} subLinks={subLinks as ISubLink[]}/>
+                                <DropDown title={title}
+                                          subLinks={subLinks as ISubLink[]}
+                                          onLinkClick={() => setBurgerMenu(false)}
+                                />
                             )
                         }
                     </div>
@@ -51,11 +55,13 @@ export const BurgerMenu = observer(() => {
 interface IDropDown {
     title: string
     subLinks: ISubLink[]
+    onLinkClick
 }
 
 const DropDown: FC<IDropDown> = ({
                                      title,
-                                     subLinks
+                                     subLinks,
+                                     onLinkClick
                                  }) => {
     const [open, setOpen] = useState(false);
 
@@ -92,6 +98,7 @@ const DropDown: FC<IDropDown> = ({
                         <Link key={key}
                               href={href}
                               className={style.sublink}
+                              onClick={() => onLinkClick()}
                         >
                             {label}
                         </Link>

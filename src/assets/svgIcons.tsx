@@ -818,7 +818,7 @@ export const svgIcons = {
         <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M2.625 2.625L18.375 18.375M9.26099 9.2636C8.93262 9.59174 8.74805 10.0369 8.74789 10.5011C8.74773 10.9653 8.93198 11.4106 9.26012 11.739C9.58826 12.0673 10.0334 12.2519 10.4976 12.2521C10.9618 12.2522 11.4071 12.068 11.7355 11.7399M8.19262 4.69437C8.94287 4.47976 9.71967 4.37223 10.5 4.375C14 4.375 16.9164 6.41637 19.25 10.5C18.5693 11.6909 17.8395 12.7085 17.0599 13.552M15.1874 15.1804C13.7603 16.1429 12.1993 16.625 10.5 16.625C7 16.625 4.08363 14.5836 1.75 10.5C2.94787 8.40437 4.29887 6.84687 5.803 5.82662"
-                stroke="#FFF" strokeWidth="1.3" strokeLinecap="round" stroke-linejoin="round"/>
+                stroke="#FFF" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
     ),
     check_circle_broken: (
@@ -841,6 +841,12 @@ export const svgIcons = {
         <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3.35107 6L5.85107 8.5L10.8511 3.5" stroke="white" strokeWidth="2" strokeLinecap="round"
                   strokeLinejoin="round"/>
+        </svg>
+    ),
+    arrow_down_select: (
+        <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.74978 6.75L9.20692 11.25L13.6641 6.75" stroke="white" strokeWidth="1.33333"
+                  strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
     )
 }

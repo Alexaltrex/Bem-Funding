@@ -1,9 +1,9 @@
 export interface IFaq {
     titleOfSection: string
-    items: IItem[]
+    items: IFaqItem[]
 }
 
-export interface IItem {
+export interface IFaqItem {
     question: string
     answer: string[]
 }

@@ -16,9 +16,8 @@ import {ButtonCustom, ButtonVariant} from "../../../components/_common/ButtonCus
 import {CheckboxCustom} from "../../../components/_common/CheckboxCustom/CheckboxCustom";
 import {useState} from "react";
 import {svgIcons} from "../../../assets/svgIcons";
+import {FieldCountry} from "../../../components/_common/FieldCountry/FieldCountry";
 
-// @ts-ignore
-// import {getNames} from 'country-list';
 
 const title = "Sign In";
 const description = "Already have an account?";
@@ -66,6 +65,9 @@ const validate = ({
     if (!email) {
         errors.email = "Required"
     }
+    if (!country) {
+        errors.country = "Required"
+    }
     if (!password) {
         errors.password = "Required"
     }
@@ -79,14 +81,16 @@ const validate = ({
     return errors
 }
 
-
+//========= SIGN-UP =========//
 export const SignUp = observer(() => {
     const {appStore: {lang}} = useStore();
 
     const onSubmit = async (values: IValues, formikHelpers: FormikHelpers<IValues>) => {
         try {
-            console.log(values);
-
+            if (termsAndConditions && privacyPolicy) {
+                console.log(values);
+            }
+            
         } catch (e) {
             console.log(e)
         } finally {
@@ -96,9 +100,6 @@ export const SignUp = observer(() => {
 
     const [termsAndConditions, setTermsAndConditions] = useState(false);
     const [privacyPolicy, setPrivacyPolicy] = useState(false);
-
-    //console.log(getNames())
-
 
     return (
         <div className={style.signUp}>
@@ -155,12 +156,9 @@ export const SignUp = observer(() => {
                                 </div>
                                 <div className={style.fieldWrapper}>
                                     <p className={style.label}>
-                                        {translate("Email", lang)}
+                                        {translate("Country", lang)}
                                     </p>
-                                    <FieldText name="email"
-                                               background={false}
-                                               className={style.field}
-                                    />
+                                    <FieldCountry className={style.field}/>
                                 </div>
                             </div>
 
