@@ -55,7 +55,7 @@ export const BurgerMenu = observer(() => {
 interface IDropDown {
     title: string
     subLinks: ISubLink[]
-    onLinkClick
+    onLinkClick: () => void
 }
 
 const DropDown: FC<IDropDown> = ({
