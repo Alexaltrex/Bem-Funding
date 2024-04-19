@@ -46,6 +46,11 @@
       font-size: 20px;
       line-height: 140%;
       color: $color_white;
+
+      span {
+        background: orange;
+        color: #000;
+      }
     }
 
     .content {
@@ -55,6 +60,11 @@
       font-size: 14px;
       line-height: 140%;
       color: $color_white;
+
+      span {
+        background: orange;
+        color: #000;
+      }
     }
 
 

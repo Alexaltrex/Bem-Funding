@@ -2,7 +2,7 @@ import {action, makeObservable, observable} from "mobx";
 import {LangEnum} from "../const/lang";
 import {FaqPopup} from "../components/A3_Popups/FaqPopup/FaqPopup";
 import {IFaqItem} from "../app/faq/Faq/faqs";
-import {ISubtitle} from "../app/lexicon/Lexicon/helpers";
+import {ISubtitle, ISubtitleElement} from "../app/lexicon/Lexicon/helpers";
 import {ICarreer} from "../app/careers/Careers/data";
 
 export class AppStore {
@@ -10,7 +10,7 @@ export class AppStore {
     lang = LangEnum.ENG
     showRecoveryForm = false
     faqItem = null as null | IFaqItem
-    lexiconSubtitle = null as null | ISubtitle
+    lexiconSubtitle = null as null | ISubtitleElement
     career = null as null | ICarreer
 
     constructor() {
@@ -49,7 +49,7 @@ export class AppStore {
         this.faqItem = faqItem
     }
 
-    setLexiconSubtitle(lexiconSubtitle: null | ISubtitle) {
+    setLexiconSubtitle(lexiconSubtitle: null | ISubtitleElement) {
         this.lexiconSubtitle = lexiconSubtitle
     }
 

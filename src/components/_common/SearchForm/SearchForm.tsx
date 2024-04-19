@@ -7,7 +7,7 @@ import {useFormik} from "formik";
 import {FC} from "react";
 import {clsx} from "clsx";
 
-interface IValues {
+export interface IValues {
     value: string
 }
 

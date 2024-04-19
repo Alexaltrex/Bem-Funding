@@ -6,11 +6,17 @@ import {montserrat} from "../../../assets/fonts/fonts";
 import {translate} from "../../../const/lang";
 import {observer} from "mobx-react-lite";
 import {useStore} from "../../../store/useStore";
-import {SearchForm} from "../../../components/_common/SearchForm/SearchForm";
+import {IValues, SearchForm} from "../../../components/_common/SearchForm/SearchForm";
 import json from "../../../../public/json/lexicon.json"
-import {getAlphabet, getByLetter, ILexiconItem} from "./helpers";
+import {
+    getAlphabet,
+    getByLetter,
+    getSearchResult,
+    getSelectedString,
+    ILexiconItem,
+    ILexiconItemElement
+} from "./helpers";
 import {FC, useState} from "react";
-import {log} from "node:util";
 
 const title = "Lexicon";
 
@@ -18,9 +24,19 @@ const title = "Lexicon";
 export const Lexicon = observer(() => {
     const {appStore: {lang}} = useStore();
 
-    const onSearch = async () => {
+    const onSearch = async ({value}: IValues) => {
+         if (value) {
+             setContent(getSearchResult(json as ILexiconItem[], value));
+             setLetter("");
+         } else {
+             setContent(getByLetter(json as ILexiconItem[], "1"))
+             setLetter("1")
+         }
     }
+
     const onClear = () => {
+        setContent(getByLetter(json as ILexiconItem[], "1"))
+        setLetter("1")
     }
 
     //console.log(json)
@@ -29,22 +45,18 @@ export const Lexicon = observer(() => {
     // )
 
     const [letter, setLetter] = useState("1");
-    const [content, setContent] = useState(
-        getByLetter(json as ILexiconItem[], letter)
-    )
 
-    //console.log(content)
+    const [
+        content,
+        setContent
+    ] = useState(getByLetter(json as ILexiconItem[], letter))
+
+    // console.log(getSelectedString("absd", "d"))
 
     const onLetter = (letter: string) => {
         setLetter(letter);
         setContent(getByLetter(json as ILexiconItem[], letter))
     }
-
-    // json.forEach(item => {
-    //     console.log(Object.keys(item))
-    //
-    // })
-
 
     return (
         <div className={style.lexicon}>
@@ -74,14 +86,26 @@ export const Lexicon = observer(() => {
                     }
                 </div>
 
+
                 <div className={style.content}>
-                    {
-                        content.map((group, key) => (
-                            <Group key={group.title + key}
-                                   group={group}
-                            />
-                        ))
-                    }
+
+                        {
+                            Boolean(content.length) ? (
+                                <>
+                                    {
+                                        content.map((group, key) => (
+                                            <Group key={String(group.title) + key}
+                                                   group={group}
+                                            />
+                                        ))
+                                    }
+                                </>
+                            ) : (
+                                <p className={style.noResult}>No search result</p>
+                            )
+                        }
+
+
                 </div>
 
             </div>
@@ -91,16 +115,16 @@ export const Lexicon = observer(() => {
 
 //========= GROUP =========//
 interface IGroup {
-    group: ILexiconItem
+    group: ILexiconItemElement
 }
 
 const Group: FC<IGroup> = observer(({
-                               group: {
-                                   title,
-                                   content,
-                                   subtitles
-                               }
-                           }) => {
+                                        group: {
+                                            title,
+                                            content,
+                                            subtitles
+                                        }
+                                    }) => {
     const {appStore: {setLexiconSubtitle}} = useStore();
 
     const [index, setIndex] = useState(0);
@@ -126,11 +150,11 @@ const Group: FC<IGroup> = observer(({
                     {
                         subtitles?.map(({subtitle}, key) => (
                             <p key={key}
-                                    className={clsx({
-                                        [style.subtitle]: true,
-                                        [style.subtitle_selected]: key === index,
-                                    })}
-                                    onClick={() => onSubtitle(key)}
+                               className={clsx({
+                                   [style.subtitle]: true,
+                                   [style.subtitle_selected]: key === index,
+                               })}
+                               onClick={() => onSubtitle(key)}
                             >
                                 {subtitle}
                             </p>

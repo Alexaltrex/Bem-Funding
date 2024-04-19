@@ -62,6 +62,18 @@
         margin-top: 22px;
       }
 
+      .noResult {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 140%;
+        text-align: center;
+        color: $color_white;
+
+        @include desktop {
+          font-size: 16px;
+        }
+      }
+
       .group {
         border-radius: 15px;
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -88,6 +100,11 @@
             @include desktop {
               font-size: 16px;
             }
+
+            span {
+              background: orange;
+              color: #000;
+            }
           }
 
           .groupContent {
@@ -100,6 +117,11 @@
             @include desktop {
               margin-top: 12px;
               font-size: 14px;
+            }
+
+            span {
+              background: orange;
+              color: #000;
             }
           }
 
@@ -127,6 +149,11 @@
               color: $color_light_gray;
               text-align: left;
               user-select: none;
+
+              span {
+                background: orange;
+                color: #000;
+              }
 
               @include tablet {
                 font-size: 16px;
@@ -166,6 +193,11 @@
               line-height: 140%;
               color: $color_white;
 
+              span {
+                background: orange;
+                color: #000;
+              }
+
               @include tablet {
                 font-size: 24px;
               }
@@ -181,6 +213,11 @@
               font-size: 14px;
               line-height: 140%;
               color: $color_white;
+
+              span {
+                background: orange;
+                color: #000;
+              }
 
               @include desktop {
                 margin-top: 18px;
