@@ -130,15 +130,8 @@
                 margin-bottom: 32px;
               }
             }
-
-
-
           }
         }
-
-
-
-
       }
 
       .wrapperBottom {
@@ -196,6 +189,61 @@
 
           }
         }
+
+        .mostRead {
+          margin-top: 16px;
+
+          @include tablet {
+            margin-top: 32px;
+          }
+
+          @include desktop {
+            margin-top: 42px;
+          }
+
+          .cards {
+            margin-top: 16px;
+
+            @include desktop {
+              margin-top: 36px;
+            }
+
+            .cardItem {
+              display: flex;
+
+              &:not(:first-child) {
+                margin-top: 16px;
+              }
+
+              .link {
+                display: block;
+
+                img {
+                  display: block;
+                  width: 70px;
+                  height: 70px;
+                  border-radius: 5px;
+                }
+
+              }
+
+              .cardItemTitle {
+                font-weight: 700;
+                font-size: 12px;
+                line-height: 100%;
+                color: $color_white;
+                margin-left: 12px;
+
+                @include desktop {
+                  font-size: 14px;
+                  margin-left: 24px;
+                }
+              }
+            }
+          }
+
+        }
+
 
       }
 

@@ -1,0 +1,149 @@
+@import "../../../assets/styles/app";
+
+.careers {
+  @include container;
+  @include pagePaddings;
+
+  .inner {
+    @include inner;
+
+    .title {
+      @include h2;
+
+      span:nth-child(1) {
+        color: $color_purple;
+      }
+    }
+
+    .cardsMobile {
+      @include onlyMobile();
+      margin-top: 16px;
+    }
+
+    .cardsTablet {
+      @include onlyTablet(grid);
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 16px;
+      margin-top: 20px;
+    }
+
+    .cardsDesktop {
+      @include onlyDesktop(grid);
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 32px;
+      margin-top: 32px;
+    }
+
+
+  }
+}
+
+.card {
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  &:not(:first-child) {
+    margin-top: 16px;
+
+    @include tablet {
+      margin-top: 0;
+    }
+  }
+
+  .top {
+    background: linear-gradient(-90deg, rgba(117, 97, 255, 0.65) 21.463996172%, rgba(0, 102, 255, 0.2) 84.1167390347%, rgba(0, 0, 0, 0) 100%);
+    padding: 10px;
+    //background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(34px);
+
+    @include desktop {
+      padding-left: 18px;
+    }
+
+    p {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 140%;
+      color: $color_white;
+    }
+  }
+
+  .bottom {
+    padding: 16px 12px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+
+    .bottomTop {
+
+      .info {
+        display: flex;
+
+        .infoRow {
+          display: flex;
+          align-items: center;
+
+          &:not(:first-child) {
+            margin-left: 14px;
+          }
+
+          svg {
+            width: 16px;
+            height: 16px;
+          }
+
+          p {
+            display: inline-block;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 140%;
+            color: $color_light_gray;
+            margin-left: 4px;
+          }
+        }
+      }
+
+      .description {
+        margin-top: 14px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 140%;
+        color: $color_white;
+      }
+
+    }
+
+    .bottomBottom {
+      margin-top: 16px;
+
+      .tags {
+        display: flex;
+
+        p {
+          padding: 3px 10px;
+          border: 1px solid $color_light_gray;
+          border-radius: 999px;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 140%;
+          text-align: center;
+          color: $color_light_gray;
+
+          &:not(:first-child) {
+            margin-left: 6px;
+          }
+        }
+      }
+
+      .btn {
+        width: 100%;
+        margin-top: 14px;
+      }
+    }
+  }
+
+}

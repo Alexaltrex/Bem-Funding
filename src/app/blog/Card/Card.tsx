@@ -15,7 +15,7 @@ export const Card: FC<ICardComponent> = ({
                                              className
                                          }) => {
     return (
-        <Link href="/"
+        <Link href={`/blog/${card.id}`}
               className={clsx(style.card, Boolean(className) && className)}
               style={{
                   backgroundImage: `url(${card.img})`

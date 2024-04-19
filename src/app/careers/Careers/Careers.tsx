@@ -1,0 +1,130 @@
+'use client'
+
+import style from "./Careers.module.scss"
+import {clsx} from "clsx";
+import {montserrat} from "../../../assets/fonts/fonts";
+import {translate} from "../../../const/lang";
+import {observer} from "mobx-react-lite";
+import {useStore} from "../../../store/useStore";
+import {data, ICarreer} from "./data";
+import {FC} from "react";
+import {svgIcons} from "../../../assets/svgIcons";
+import {ButtonCustom, ButtonVariant} from "../../../components/_common/ButtonCustom/ButtonCustom";
+
+const titles = [
+    "Jobs",
+    "Available Now",
+]
+
+export const Careers = observer(() => {
+    const {appStore: {lang, setCareer}} = useStore();
+
+    const count = 22;
+
+    return (
+        <div className={style.careers}>
+            <div className={style.inner}>
+
+                <h2 className={clsx(style.title, montserrat.className)}>
+                    <span>{count} {translate(titles[0], lang)}</span><span> {translate(titles[1], lang)}</span>
+                </h2>
+
+                <div className={style.cardsMobile}>
+                    {
+                        data.map((card, key) => (
+                            <Card key={key} card={card} onClick={() => setCareer(card)}/>
+                        ))
+                    }
+                </div>
+
+                <div className={style.cardsTablet}
+                     style={{
+                         gridTemplateRows: `repeat(${Math.floor(data.length / 2) + 1}, 1fr)`
+                     }}
+                >
+                    {
+                        data.map((card, key) => (
+                            <Card key={key} card={card} onClick={() => setCareer(card)}/>
+                        ))
+                    }
+                </div>
+
+                <div className={style.cardsDesktop}
+                     style={{
+                         gridTemplateRows: `repeat(${Math.floor(data.length / 3) + 1}, 1fr)`
+                     }}
+                >
+                    {
+                        data.map((card, key) => (
+                            <Card key={key} card={card} onClick={() => setCareer(card)}/>
+                        ))
+                    }
+                </div>
+
+            </div>
+        </div>
+    )
+})
+
+//========= CARD =========//
+interface ICard {
+    card: ICarreer
+    onClick: () => void
+}
+
+const Card: FC<ICard> = ({
+                             card,
+                             onClick
+                         }) => {
+    return (
+        <div className={style.card}>
+            <div className={style.top}>
+                <p className={montserrat.className}>
+                    {card.title}
+                </p>
+            </div>
+            <div className={style.bottom}>
+
+                <div className={style.bottomTop}>
+
+                    <div className={style.info}>
+                        <div className={style.infoRow}>
+                            {svgIcons.watch_circle}
+                            <p>{card.time}</p>
+                        </div>
+
+                        <div className={style.infoRow}>
+                            {svgIcons.watch_circle}
+                            <p>Posted {card.posted}</p>
+                        </div>
+                    </div>
+
+                    <p className={style.description}>
+                        {card.description}
+                    </p>
+
+                </div>
+
+                <div className={style.bottomBottom}>
+                    <div className={style.tags}>
+                        {
+                            card.tags.map((tag, key) => (
+                                <p key={key}>
+                                    {tag}
+                                </p>
+                            ))
+                        }
+                    </div>
+
+                    <ButtonCustom label="Apply Now"
+                                  className={style.btn}
+                                  variant={ButtonVariant.blue}
+                                  onClick={() => onClick()}
+                    />
+                </div>
+
+
+            </div>
+        </div>
+    )
+}

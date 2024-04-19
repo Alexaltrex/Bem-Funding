@@ -5,8 +5,6 @@ export const metadata: Metadata = {
     title: "Meta Funding - Blog",
 };
 
-
-
 const BlogPage = () => {
 
     return (

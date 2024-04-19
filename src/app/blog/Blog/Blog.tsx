@@ -15,7 +15,7 @@ import {Card} from "../Card/Card";
 const title = "Blog";
 const recentTitle = "Recent Post"
 const featuredTitle = "Featured post"
-
+const mostTitle = "Most read"
 
 export const Blog = observer(() => {
     const {appStore: {lang}} = useStore();
@@ -26,7 +26,6 @@ export const Blog = observer(() => {
     }
 
     const [category, setCategory] = useState("All")
-
 
     return (
         <div className={style.blog}>
@@ -148,6 +147,31 @@ export const Blog = observer(() => {
                                     </div>
                                 ))
                             }
+                        </div>
+
+                        <div className={style.mostRead}>
+                            <p className={clsx(style.subTitle, montserrat.className)}>
+                                {translate(mostTitle, lang)}
+                            </p>
+
+                            <div className={style.cards}>
+                                {
+                                    cards.slice(0,6).map(({id, title, img}, key) => (
+                                        <div key={key}
+                                             className={style.cardItem}
+                                        >
+                                            <Link className={style.link}
+                                                  href={`/blog/${id}`}
+                                            >
+                                                <img src={img} alt=""/>
+                                            </Link>
+                                            <p className={clsx(style.cardItemTitle, montserrat.className)}>
+                                                {title}
+                                            </p>
+                                        </div>
+                                    ))
+                                }
+                            </div>
                         </div>
 
                     </div>
