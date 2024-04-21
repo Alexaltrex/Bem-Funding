@@ -1,3 +1,5 @@
+import {MarketHours} from "../app/marketHours/MarketHours/MarketHours";
+
 export interface ISubLink {
     label: string
     href: string
@@ -80,10 +82,13 @@ export const links = [
                 label: "Sign Up",
                 href: "/signUp",
             },
-
             {
                 label: "Privacy Policy",
                 href: "/privacyPolicy",
+            },
+            {
+                label: "Market Hours",
+                href: "/marketHours",
             },
         ]
     },

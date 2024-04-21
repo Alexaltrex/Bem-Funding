@@ -5,7 +5,6 @@ export const metadata: Metadata = {
     title: "Meta Funding - FAQ",
 };
 
-
 const FaqPage = () => {
     return (
         <>

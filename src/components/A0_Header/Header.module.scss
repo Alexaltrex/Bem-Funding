@@ -40,6 +40,16 @@
     .logo {
       text-decoration: none;
 
+      img {
+        display: block;
+        width: 78px;
+        height: auto;
+
+        @include tablet {
+          width: 123px;
+        }
+      }
+
       svg {
         width: 70px;
         height: 36px;

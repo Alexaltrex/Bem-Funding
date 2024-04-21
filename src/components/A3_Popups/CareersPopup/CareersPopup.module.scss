@@ -1,0 +1,209 @@
+@import "../../../assets/styles/app";
+
+.careersPopup {
+  @include centerRow;
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(20px);
+  background: rgba(0, 0, 0, 0.2);
+
+  .card {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    backdrop-filter: blur(34px);
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
+    padding: 52px 24px 20px;
+    background: rgba(0, 0, 0, 0.2);
+    width: calc(100% - 32px);
+
+    @include tablet {
+      width: 430px;
+    }
+
+    .closeBtn {
+      @include button;
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      width: 12px;
+      height: 12px;
+
+      svg {
+        width: 12px;
+        height: 12px;
+
+        path {
+          stroke: #FFF;
+        }
+      }
+    }
+
+    .cardTitle {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 140%;
+      color: $color_white;
+      text-align: center;
+
+      @include tablet {
+        font-size: 24px;
+      }
+    }
+
+    .subTitle {
+      margin-top: 6px;
+      font-family: var(--font-family);
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 140%;
+      text-align: center;
+      color: $color_white;
+    }
+
+    .rows {
+      margin-top: 20px;
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+
+        &:not(:first-child) {
+          margin-top: 12px;
+        }
+
+        .rowLabel {
+          margin-top: 11px;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 140%;
+          color: $color_white;
+
+          span {
+            color: $color_cyan;
+          }
+        }
+
+        .field {
+          flex-shrink: 0;
+          width: 60%;
+          margin-left: 8px;
+
+          @include tablet {
+            width: 241px;
+            margin-left: 0;
+          }
+
+        }
+      }
+    }
+
+    .uploadWrapper {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .label {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 140%;
+        color: $color_white;
+      }
+
+      .right {
+        display: flex;
+        align-items: center;
+        width: 60%;
+
+
+        @include tablet {
+          width: 241px;
+        }
+
+        .inputWrapper {
+          cursor: pointer;
+          position: relative;
+          width: 24px;
+          height: 24px;
+
+          input {
+            position: absolute;
+            z-index: -1;
+            display: block;
+            opacity: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+          }
+
+          svg {
+            position: relative;
+            cursor: pointer;
+            z-index: 1;
+            width: 24px;
+            height: 24px;
+            opacity: 0.5;
+            transition: 0.3s;
+            user-select: none;
+          }
+
+          &:hover {
+            svg {
+              opacity: 0.75;
+            }
+          }
+
+          &_file, &_file:hover {
+            svg {
+              opacity: 1;
+            }
+          }
+
+
+        }
+
+        .uploadDescription {
+          font-weight: 400;
+          font-size: 10px;
+          line-height: 140%;
+          color: $color_white;
+          margin-left: 6px;
+
+          span {
+            color: $color_cyan;
+          }
+        }
+
+      }
+
+    }
+
+    .submitBtn {
+      margin-top: 20px;
+      width: 100% ;
+    }
+
+    .needSupport {
+      margin-top: 20px;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 140%;
+      text-align: center;
+      color: $color_white;
+
+      a {
+        text-decoration: none;
+        color: $color_cyan;
+      }
+    }
+
+  }
+
+}

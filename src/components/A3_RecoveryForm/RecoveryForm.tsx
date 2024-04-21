@@ -66,6 +66,7 @@ export const RecoveryForm = observer(() => {
     useOutsideClick(ref, () => setShowRecoveryForm(false));
 
     const [success, setSuccess] = useState(false);
+
     const onClose = () => {
         setShowRecoveryForm(false);
         setSuccess(false);

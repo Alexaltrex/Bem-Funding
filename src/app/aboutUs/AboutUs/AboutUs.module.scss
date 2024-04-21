@@ -2,15 +2,7 @@
 
 .aboutUs {
   @include container;
-  padding-top: 54px;
-
-  @include tablet {
-    padding-top: 90px;
-  }
-
-  @include desktop {
-    padding-top: 120px;
-  }
+  @include pagePaddings;
 
   .inner {
     @include inner;

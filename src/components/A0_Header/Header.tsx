@@ -27,7 +27,7 @@ export const Header = observer(() => {
                 <div className={style.inner}>
 
                     <Link href="/" className={style.logo}>
-                        {svgIcons.logo}
+                        <img src="/png/header_logo.png" alt=""/>
                     </Link>
 
                     <div className={style.links}>
