@@ -59,8 +59,8 @@ export const EconomicCalendar = observer(() => {
                             <button key={key}
                                     onClick={() => setDay(_day)}
                                     className={clsx({
-                                        [style.datBtn]: true,
-                                        [style.datBtn_selected]: _day === day,
+                                        [style.dataBtn]: true,
+                                        [style.dataBtn_selected]: _day === day,
                                     })}
                             >
                                 <span>{translate(_day, lang)}</span>

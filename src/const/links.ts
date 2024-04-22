@@ -63,6 +63,10 @@ export const links = [
                 href: "/lexicon",
             },
             {
+                label: "Symbols",
+                href: "/symbols",
+            },
+            {
                 label: "Trading Updates",
                 href: "/tradingUpdates",
             },
