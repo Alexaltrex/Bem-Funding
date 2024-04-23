@@ -11,6 +11,7 @@ import {RecoveryForm} from "../components/A3_RecoveryForm/RecoveryForm";
 import {FaqPopup} from "../components/A3_Popups/FaqPopup/FaqPopup";
 import {LexiconPopup} from "../components/A3_Popups/LexiconPopup/LexiconPopup";
 import {CareersPopup} from "../components/A3_Popups/CareersPopup/CareersPopup";
+import {TimezoneConverter} from "../components/A3_Popups/TimezoneConverter/TimezoneConverter";
 
 export const metadata: Metadata = {
     title: "Meta Funding",
@@ -37,6 +38,7 @@ export default function RootLayout({
                 <FaqPopup/>
                 <LexiconPopup/>
                 <CareersPopup/>
+                <TimezoneConverter/>
 
                 <main>
                     {children}

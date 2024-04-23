@@ -12,6 +12,7 @@ export class AppStore {
     faqItem = null as null | IFaqItem
     lexiconSubtitle = null as null | ISubtitleElement
     career = null as null | ICarreer
+    converter = false
 
     constructor() {
         makeObservable(this,
@@ -22,6 +23,7 @@ export class AppStore {
                 faqItem: observable,
                 lexiconSubtitle: observable,
                 career: observable,
+                converter: observable,
 
                 setBurgerMenu: action.bound,
                 setLang: action.bound,
@@ -29,6 +31,7 @@ export class AppStore {
                 setFaqItem: action.bound,
                 setLexiconSubtitle: action.bound,
                 setCareer: action.bound,
+                setConverter: action.bound,
             }
         )
     }
@@ -55,6 +58,10 @@ export class AppStore {
 
     setCareer(career: null | ICarreer) {
         this.career = career
+    }
+
+    setConverter(converter: boolean) {
+        this.converter = converter
     }
 
 }

@@ -48,11 +48,11 @@ export const getAlphabet = (data: ILexiconItem[]): string[] => {
 //========= TRANSFORM TO ELEMENT =========//
 export const transformToElement = (data: ILexiconItem[], subString?: string): ILexiconItemElement[] => {
     return data.map(({title, content, subtitles}) => ({
-        title: subString ? getSelectedString(title, subString) : <>{title}</>,
-        content: subString ? getSelectedString(content, subString) : <>{content}</>,
+        title: <>{title}</>, //subString ? getSelectedString(title, subString) : <>{title}</>,
+        content: <>{content}</>, //subString ? getSelectedString(content, subString) : <>{content}</>,
         subtitles: subtitles.map(({subtitle, content}) => ({
             subtitle: subString ? getSelectedString(subtitle, subString) : <>{subtitle}</>,
-            content: subString ? getSelectedString(content, subString) : <>{content}</>,
+            content: <>{content}</>, //subString ? getSelectedString(content, subString) : <>{content}</>,
         }))
     }))
 }
@@ -75,32 +75,47 @@ export const getSearchResult = (data: ILexiconItem[], subString: string) => {
 
     const searchResult = [] as ILexiconItem[]
 
-    for (let i = 0; i < filteredJson.length; i ++) {
+    for (let i = 0; i < filteredJson.length; i++) {
         const {title, content, subtitles} = filteredJson[i]
 
-        // если совпадение в заголовке или контенте группы - добавляем в результат поиска всю группу
-        if ( getRegExp(subString).test(title) ||  getRegExp(subString).test(content)) {
-            //match = true;
-            searchResult.push(filteredJson[i])
-            continue;
-        // если нет - добавляет часть группы
-        } else {
-            const matchedSubtitles = [] as ISubtitle[];
-            for (let j = 0; j < subtitles.length; j ++) {
-                if (
-                    getRegExp(subString).test(subtitles[j].subtitle) ||
-                    getRegExp(subString).test(subtitles[j].content)
-                ) {
-                    matchedSubtitles.push(subtitles[j])
-                }
-            }
-            // если есть совпадение по subtitles - добавляем часть группы
-            if (matchedSubtitles.length) {
-                searchResult.push({
-                    title, content, subtitles: matchedSubtitles
-                })
+        const matchedSubtitles = [] as ISubtitle[];
+        for (let j = 0; j < subtitles.length; j++) {
+            if (
+                getRegExp(subString).test(subtitles[j].subtitle)
+            ) {
+                matchedSubtitles.push(subtitles[j])
             }
         }
+        // если есть совпадение по subtitles - добавляем часть группы
+        if (matchedSubtitles.length) {
+            searchResult.push({
+                title, content, subtitles: matchedSubtitles
+            })
+        }
+
+        // // если совпадение в заголовке или контенте группы - добавляем в результат поиска всю группу
+        // if ( getRegExp(subString).test(title) ||  getRegExp(subString).test(content)) {
+        //     //match = true;
+        //     searchResult.push(filteredJson[i])
+        //     continue;
+        // // если нет - добавляет часть группы
+        // } else {
+        //     const matchedSubtitles = [] as ISubtitle[];
+        //     for (let j = 0; j < subtitles.length; j ++) {
+        //         if (
+        //             getRegExp(subString).test(subtitles[j].subtitle) ||
+        //             getRegExp(subString).test(subtitles[j].content)
+        //         ) {
+        //             matchedSubtitles.push(subtitles[j])
+        //         }
+        //     }
+        //     // если есть совпадение по subtitles - добавляем часть группы
+        //     if (matchedSubtitles.length) {
+        //         searchResult.push({
+        //             title, content, subtitles: matchedSubtitles
+        //         })
+        //     }
+        // }
 
     }
 

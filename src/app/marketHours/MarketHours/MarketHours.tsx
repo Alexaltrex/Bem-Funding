@@ -7,14 +7,18 @@ import {observer} from "mobx-react-lite";
 import {useStore} from "../../../store/useStore";
 import {clsx} from "clsx";
 import {useState} from "react";
+import {FieldTimezone} from "../../../components/_common/FieldTimezone/FieldTimezone";
+import {svgIcons} from "../../../assets/svgIcons";
 
 const title = "Market Hours";
 const description = "When does the forex market open? Use the Forex Market Time Zone Converte tool below to view the open and close times of the main forex trading sessions in your own local time zone.";
 
 export const MarketHours = observer(() => {
-    const {appStore: {lang}} = useStore();
+    const {appStore: {lang, setConverter}} = useStore();
 
     const [hourTime, setHourTime] = useState(true);
+
+    const [timeZoneIndex, setTimeZoneIndex] = useState(0);
 
     return (
         <div className={style.marketHours}>
@@ -28,7 +32,9 @@ export const MarketHours = observer(() => {
                     {translate(description, lang)}
                 </p>
 
-                <div className={style.card}>
+                <div className={style.card}
+                     onClick={() => setConverter(true)}
+                >
 
                     <div className={style.top}>
 
@@ -53,6 +59,48 @@ export const MarketHours = observer(() => {
 
                         </div>
                     </div>
+
+                    <div className={style.timezoneAndItemWrapper}>
+
+                        <div className={style.timezoneWrapper}>
+
+                            <div className={style.timezoneWrapperTop}>
+                                <p className={style.timezoneWrapperTopLabel}>
+                                    Time Zone
+                                </p>
+
+                                <button className={style.refreshButton}>
+                                    {svgIcons.refresh}
+                                </button>
+                            </div>
+
+                            <FieldTimezone timeZoneIndex={timeZoneIndex}
+                                           onSelectHandler={(index) => setTimeZoneIndex(index)}
+                                           className={style.fieldTimezone}
+                            />
+                        </div>
+
+                    </div>
+
+
+                    <div className={style.graphAndItems}>
+
+                        <div className={style.graphAndItems_items}>
+
+                            <div className={style.item}>
+                                <p>High</p>
+                            </div>
+
+                        </div>
+
+                        <div className={style.graphWrapper}>
+
+                        </div>
+
+
+                    </div>
+
+
                 </div>
 
                 <div className={style.info}>
@@ -124,8 +172,8 @@ export const MarketHours = observer(() => {
                         <p className={style.text}>
                             {
                                 `You usually want to avoid trading when only one trading session is open and instead, wait for trading sessions to overlap.
-When two major financial centers are open, the number of traders actively buying and selling a given currency greatly increases.
-The highest trading volume occurs during the overlap of the London and New York trading sessions. More than 50% of trading volume occurs at these two financial centers.`
+                                When two major financial centers are open, the number of traders actively buying and selling a given currency greatly increases.
+                                The highest trading volume occurs during the overlap of the London and New York trading sessions. More than 50% of trading volume occurs at these two financial centers.`
                             }
                         </p>
                     </div>

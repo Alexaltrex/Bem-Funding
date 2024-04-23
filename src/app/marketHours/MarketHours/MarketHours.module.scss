@@ -64,10 +64,11 @@
           cursor: pointer;
           display: flex;
           flex-direction: column;
-          align-items: center;
+          align-items: flex-end;
 
           @include tablet {
             flex-direction: row;
+            align-items: normal;
           }
 
           .switcherWrapperLabel {
@@ -136,9 +137,138 @@
 
         }
 
+      }
+
+      .timezoneAndItemWrapper {
+        margin-top: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: normal;
+        align-items: flex-start;
+
+        @include desktop {
+          margin-top: 12px;
+        }
+
+        .timezoneWrapper {
+          width: 100%;
+          max-width: 262px;
+
+          @include tablet {
+            width: 262px;
+          }
+
+          .timezoneWrapperTop {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .timezoneWrapperTopLabel {
+              font-weight: 400;
+              font-size: 10px;
+              line-height: 140%;
+              text-align: center;
+              color: $color_white;
+
+              @include desktop {
+                font-size: 16px;
+              }
+            }
+
+            .refreshButton {
+              @include button;
+              width: 10px;
+              height: 10px;
+
+              @include desktop {
+                width: 16px;
+                height: 16px;
+              }
+
+              svg {
+                width: 10px;
+                height: 10px;
+
+                @include desktop {
+                  width: 16px;
+                  height: 16px;
+                }
+              }
+
+            }
+
+          }
+
+          .fieldTimezone {
+            margin-top: 5px;
+          }
+        }
+
+      }
+
+      .graphAndItems {
+
+        .graphAndItems_items {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+
+
+          .item {
+            margin-top: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 999px;
+            backdrop-filter: blur(22.100000381469727px);
+            box-shadow: 0 3px 13px 0 rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 3px 8px 3px 14px;
+
+            @include desktop {
+              margin-top: 24px;
+              padding: 4px 11px 4px 22px;
+            }
+
+            p {
+              position: relative;
+              font-weight: 400;
+              font-size: 7px;
+              line-height: 140%;
+              text-align: center;
+              color: $color_white;
+
+              @include desktop {
+                font-size: 12px;
+              }
+
+              &::before {
+                content: "";
+                display: block;
+                position: absolute;
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                background: $color_green;
+                top: 50%;
+                transform: translateY(-50%);
+                left: -8px;
+
+                @include desktop {
+                  width: 8px;
+                  height: 8px;
+                  left: -14px;
+                }
+              }
+            }
+          }
+        }
+
+        .graphWrapper {
+
+        }
 
 
       }
+
 
 
     }

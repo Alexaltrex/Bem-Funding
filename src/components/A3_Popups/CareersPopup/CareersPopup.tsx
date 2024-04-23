@@ -206,7 +206,7 @@ export const CareersPopup = observer(() => {
                                     />
 
                                     <p className={style.needSupport}>
-                                        {translate("Need support?", lang)} <Link href="/contact"
+                                        {translate("Need support?", lang)} <Link href="/contacts"
                                                                                  onClick={() => onClose()}
                                     >
                                         {translate("Contact Us?", lang)}

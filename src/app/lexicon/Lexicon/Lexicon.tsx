@@ -39,19 +39,12 @@ export const Lexicon = observer(() => {
         setLetter("1")
     }
 
-    //console.log(json)
-    // console.log(
-    //     getAlphabet(json as ILexiconItem[])
-    // )
-
     const [letter, setLetter] = useState("1");
 
     const [
         content,
         setContent
     ] = useState(getByLetter(json as ILexiconItem[], letter))
-
-    // console.log(getSelectedString("absd", "d"))
 
     const onLetter = (letter: string) => {
         setLetter(letter);
