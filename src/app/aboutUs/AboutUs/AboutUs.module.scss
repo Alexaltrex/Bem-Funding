@@ -3,6 +3,7 @@
 .aboutUs {
   @include container;
   @include pagePaddings;
+  overflow: hidden;
 
   .inner {
     @include inner;
@@ -44,65 +45,66 @@
           }
         }
 
-        &:nth-child(1) .imgWrapper .img {
-          width: 163px;
-          height: auto;
-
-          @include tablet {
-            width: 320px;
-          }
-
-          @include desktop {
-            left: 155px;
-          }
-        }
-
-        &:nth-child(2) .imgWrapper .img {
-          width: 216px;
-          height: auto;
-
-          @include tablet {
-            width: 424px;
-          }
-
-          @include desktop {
-            right: 110px;
-          }
-        }
-
-        &:nth-child(3) .imgWrapper .img {
-          width: 148px;
-          height: auto;
-
-          @include tablet {
-            width: 291px;
-          }
-
-          @include desktop {
-            left: 170px;
-          }
-        }
-
-
         .imgWrapper {
           position: relative;
+          //border: 1px solid #FFF;
+          height: 300px;
+          width: 100%;
+
+          @include tablet {
+            height: 400px;
+          }
+
+          .cloudWrapper {
+            position: absolute;
+            height: 300px;
+            width: 900px;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+
+           @include tablet {
+             height: 400px;
+             width: 1200px;
+           }
+
+           @include desktop {
+             transform: none;
+           }
+          }
 
           .img {
             display: block;
-            margin-left: auto;
-            margin-right: auto;
+            position: absolute;
+            top: 0;
+            height: 100%;
+            left: 50%;
+            transform: translateX(-50%);
 
             @include desktop {
-              margin-left: 0;
-              margin-right: 0;
-              position: absolute;
-              top: 50%;
-              transform: translateY(-50%);
+              //transform: none;
             }
           }
 
           @include desktop {
             flex-grow: 1;
+          }
+        }
+
+        &:nth-child(1), &:nth-child(3) {
+          .imgWrapper {
+            .cloudWrapper {
+              left: -25%;
+            }
+          }
+        }
+
+        &:nth-child(2) {
+          .imgWrapper {
+            .cloudWrapper {
+              right: -25%;
+              left: auto;
+            }
           }
         }
 

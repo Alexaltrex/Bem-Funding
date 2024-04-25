@@ -7,6 +7,7 @@ import {observer} from "mobx-react-lite";
 import {useStore} from "../../../store/useStore";
 import {montserrat} from "../../../assets/fonts/fonts";
 import {translate} from "../../../const/lang";
+import {CloudComponent} from "../../../components/_common/Cloud/Cloud";
 
 const title = "About Us";
 
@@ -31,7 +32,11 @@ export const AboutUs = observer(() => {
                             >
 
                                 <div className={style.imgWrapper}>
+                                    <div className={style.cloudWrapper}>
+                                        <CloudComponent/>
+                                    </div>
                                     <img src={src} alt="" className={style.img}/>
+
                                 </div>
 
                                 <div className={style.content}>
