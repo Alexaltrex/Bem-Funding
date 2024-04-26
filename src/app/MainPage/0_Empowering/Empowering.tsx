@@ -8,6 +8,7 @@ import {clsx} from "clsx";
 import {montserrat} from "../../../assets/fonts/fonts";
 import {ButtonCustom, ButtonVariant} from "../../../components/_common/ButtonCustom/ButtonCustom";
 import {socialLinks} from "../../../const/socialLinks";
+import {CloudComponent} from "../../../components/_common/Cloud/Cloud";
 
 const pre = 'OUR RISK, YOUR PROFIT'
 const titles = [
@@ -21,9 +22,21 @@ export const Empowering = observer(() => {
 
     return (
         <div className={style.empowering}>
+
+            <div className={style.cloudMainWrapper}>
+                {
+                    [0,1,2].map((key) => (
+                        <div key={key} className={style.cloudWrapper}>
+                            <CloudComponent seed={key} speed={0.5}/>
+                        </div>
+                    ))
+                }
+
+            </div>
+
             <div className={style.inner}>
 
-                <p className={style.pre}>
+            <p className={style.pre}>
                     {translate(pre, lang)}
                 </p>
 

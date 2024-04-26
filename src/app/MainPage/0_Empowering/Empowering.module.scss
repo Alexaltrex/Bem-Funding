@@ -2,12 +2,14 @@
 
 .empowering {
   @include container;
+  position: relative;
   padding-top: 68px;
   padding-bottom: 300px;
-  background: url(../../../../public/png/main_page/empowering.png);
+  background-image: url(../../../../public/png/main_page/empowering.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
+  overflow: hidden;
 
   @include tablet {
     padding-top: 126px;
@@ -19,8 +21,40 @@
     padding-bottom: 360px;
   }
 
+  .cloudMainWrapper {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-40%);
+
+    .cloudWrapper {
+      height: 150px;
+      width: 300px;
+
+      @include tablet {
+        height: 200px;
+        width: 400px;
+      }
+
+      @include desktop {
+        height: 300px;
+        width: 2.0 * 300px;
+      }
+
+      &:not(:first-child) {
+        margin-left: -10%;
+      }
+    }
+
+  }
+
+
   .inner {
     @include inner;
+    position: relative;
+    z-index: 2;
 
     .pre {
       font-weight: 400;

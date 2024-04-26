@@ -33,7 +33,7 @@ export const AboutUs = observer(() => {
 
                                 <div className={style.imgWrapper}>
                                     <div className={style.cloudWrapper}>
-                                        <CloudComponent/>
+                                        <CloudComponent seed={key}/>
                                     </div>
                                     <img src={src} alt="" className={style.img}/>
 
