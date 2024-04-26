@@ -13,6 +13,10 @@
     top: 0;
     width: 1920px;
     height: auto;
+
+    @media all and (min-width: 1920px) {
+      width: 100%;
+    }
   }
 
   .footer_blur {
@@ -23,6 +27,10 @@
     bottom: 0;
     width: 1920px;
     height: auto;
+
+    @media all and (min-width: 1920px) {
+      width: 100%;
+    }
   }
 
 

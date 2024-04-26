@@ -1,5 +1,32 @@
 @import "../assets/styles/app";
 
 .mainPage {
+  .howToWrapper {
+    position: relative;
 
+    .back {
+      position: absolute;
+      z-index: -1;
+      height: 400px;
+      width: auto;
+      bottom: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      @include tablet {
+        height: 800px;
+        bottom: -150px;
+      }
+
+      @include desktop {
+        height: 1000px;
+        bottom: -500px;
+      }
+
+      @media all and (min-width: 1920px) {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
 }

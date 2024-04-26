@@ -17,7 +17,11 @@ const MainPage = () => {
     <div className={style.mainPage}>
         <Empowering/>
         <Journey/>
-        <HowTo/>
+        <div className={style.howToWrapper}>
+            <HowTo/>
+            <img src="/png/main_page/howTo_back.png" alt="" className={style.back}/>
+        </div>
+
         <Destination/>
         <NewEra/>
         <Discover/>

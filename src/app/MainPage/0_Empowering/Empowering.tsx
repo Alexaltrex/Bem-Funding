@@ -25,7 +25,7 @@ export const Empowering = observer(() => {
 
             <div className={style.cloudMainWrapper}>
                 {
-                    [0,1,2].map((key) => (
+                    [0,1,2,3,4].map((key) => (
                         <div key={key} className={style.cloudWrapper}>
                             <CloudComponent seed={key} speed={0.5}/>
                         </div>
