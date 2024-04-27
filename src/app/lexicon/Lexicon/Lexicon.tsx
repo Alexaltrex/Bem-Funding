@@ -6,7 +6,6 @@ import {montserrat} from "../../../assets/fonts/fonts";
 import {translate} from "../../../const/lang";
 import {observer} from "mobx-react-lite";
 import {useStore} from "../../../store/useStore";
-import {IValues, SearchForm} from "../../../components/_common/SearchForm/SearchForm";
 import json from "../../../../public/json/lexicon.json"
 import {
     getAlphabet,
@@ -20,7 +19,6 @@ import {FC, useRef, useState} from "react";
 import {svgIcons} from "../../../assets/svgIcons";
 import {FormikHelpers} from "formik/dist/types";
 import {useFormik} from "formik";
-import {buttonBaseClasses} from "@mui/material";
 import {useOutsideClick} from "../../../hooks/useOutsideClick";
 
 const title = "Lexicon";
