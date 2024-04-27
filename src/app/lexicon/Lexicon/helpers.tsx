@@ -122,6 +122,29 @@ export const getSearchResult = (data: ILexiconItem[], subString: string) => {
     return transformToElement(searchResult, subString)
 }
 
+//========= GET WORDS =========//
+export const getWords = (data: ILexiconItem[], subString: string): string[] => {
+    const words = [] as string[];
+    const filteredJson = filterJson(data);
+
+    for (let i = 0; i < filteredJson.length; i++) {
+        const {title, content, subtitles} = filteredJson[i]
+
+        for (let j = 0; j < subtitles.length; j++) {
+            const subtitleWords = subtitles[j].subtitle.split(" ");
+
+            for (let k = 0; k < subtitleWords.length; k++) {
+                if (getRegExp(subString).test(subtitleWords[k]) && !words.includes(subtitleWords[k])) {
+                    words.push(subtitleWords[k])
+                }
+            }
+        }
+
+    }
+
+    return [...words].sort()
+}
+
 
 //========= GET SELECTED STRING =========//
 export const getSelectedString = (str: string, subString: string): React.JSX.Element => {

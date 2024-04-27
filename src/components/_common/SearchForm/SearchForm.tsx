@@ -19,7 +19,6 @@ export interface ISearchForm {
     className?: string
     onSearch: (values: IValues) => Promise<void>
     onClear: () => void
-
 }
 
 //========= SEARCH FORM =========//

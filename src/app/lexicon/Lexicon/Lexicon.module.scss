@@ -12,6 +12,101 @@
       @include h2;
     }
 
+    .formWrapper {
+      position: relative;
+      margin-top: 10px;
+
+      @include tablet {
+        margin-top: 16px;
+        width: 640px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      @include desktop {
+        margin-top: 24px;
+        width: 930px;
+      }
+
+      .searchForm {
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 10px;
+        box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        padding-left: 18px;
+        padding-right: 11px;
+
+        input {
+          flex-grow: 1;
+          border: none;
+          background: none;
+          outline: none;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 140%;
+          color: $color_white;
+
+
+          &::placeholder {
+            color: $color_light_gray;
+            opacity: 0.5;
+          }
+        }
+
+        button {
+          @include button;
+          width: 24px;
+          height: 24px;
+          margin-left: 8px;
+
+          svg {
+            width: 24px;
+            height: 24px;
+          }
+        }
+
+
+      }
+
+
+
+      .dropdownWrapper {
+        position: absolute;
+        z-index: 9999;
+        top: calc(100% + 4px);
+        left: 0;
+        right: 0;
+        max-height: 200px;
+        background: rgb(184, 174, 255);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+
+        button {
+          @include button;
+          display: block;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 140%;
+          color: $color_black;
+          padding: 6px 12px;
+          transition: 0.3s;
+          text-align: left;
+
+          &:hover {
+            background: rgb(135, 119, 255);
+          }
+        }
+
+      }
+
+    }
+
+
     .alphabet {
       margin-top: 16px;
       display: flex;
