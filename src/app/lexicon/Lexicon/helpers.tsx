@@ -32,17 +32,27 @@ export const filterJson = (data: ILexiconItem[]) => {
 export const getAlphabet = (data: ILexiconItem[]): string[] => {
     const _alphabet = [] as string[]
 
-    filterJson(data)
-        .forEach(({title}) => {
+    // filterJson(data)
+    //     .forEach(({title}) => {
+    //
+    //         if (title && !_alphabet.includes(title[0])) {
+    //             _alphabet.push(title[0])
+    //         }
+    //     })
 
-            if (title && !_alphabet.includes(title[0])) {
-                _alphabet.push(title[0])
-            }
+    filterJson(data).forEach(({subtitles}, i) => {
+        subtitles.forEach(({subtitle}) => {
+                    if (subtitle) {
+                        const _letter = isAlphabetSymbol(subtitle[0]) ? subtitle[0] : subtitle[1];
+                        if (!_alphabet.includes(_letter)) {
+                            _alphabet.push(_letter)
+                        }
+
+                    }
         })
+    })
 
-    return _alphabet
-
-
+    return _alphabet.sort()
 }
 
 //========= TRANSFORM TO ELEMENT =========//
@@ -57,7 +67,7 @@ export const transformToElement = (data: ILexiconItem[], subString?: string): IL
     }))
 }
 
-//========= GET BY LETTER =========//
+//========= GET BY LETTER /DEPRECATED/ =========//
 export const getByLetter = (
     data: ILexiconItem[],
     letter: string
@@ -65,8 +75,47 @@ export const getByLetter = (
     return transformToElement(filterJson(data).filter(({title}) => title && title[0] === letter))
 }
 
+//========= GET SUBTITLES BY LETTER /NEW/ =========//
+export const getSubtitlesByLetter = (
+    data: ILexiconItem[],
+    letter: string
+): ISubtitleElement[] => {
+    const result = [] as ISubtitleElement[];
+    filterJson(data).forEach(({subtitles}) => {
+        subtitles.forEach(({subtitle, content}) => {
+            const _letter = isAlphabetSymbol(subtitle[0]) ? subtitle[0] : subtitle[1];
+
+            if (_letter === letter) {
+                result.push({
+                    subtitle: <>{subtitle}</>,
+                    content: <>{content}</>
+                })
+            }
+        })
+    })
+    return result
+}
+
 //========= GET REGEXP =========//
 export const getRegExp = (str: string): RegExp => new RegExp(str, 'gi')
+
+//========= SEARCH SUBTITLES =========//
+export const searchSubtitles = (data: ILexiconItem[], subString: string): ISubtitleElement[] => {
+    const _subtitles = [] as ISubtitleElement[]
+
+    filterJson(data).forEach(({subtitles}) => {
+        subtitles.forEach(({subtitle, content}) => {
+            if (getRegExp(subString).test(subtitle)) {
+                _subtitles.push({
+                    subtitle: getSelectedString(subtitle, subString),
+                    content: <>{content}</>
+                })
+            }
+        })
+    })
+
+    return _subtitles
+}
 
 
 //========= GET SEARCH RESULT =========//
@@ -145,7 +194,6 @@ export const getWords = (data: ILexiconItem[], subString: string): string[] => {
     return [...words].sort()
 }
 
-
 //========= GET SELECTED STRING =========//
 export const getSelectedString = (str: string, subString: string): React.JSX.Element => {
     const regexp = new RegExp(subString, 'gi');
@@ -172,4 +220,9 @@ export const getSelectedString = (str: string, subString: string): React.JSX.Ele
             }
         </>
     )
+}
+
+//========= IS ALPHABET SYMBOL =========//
+export const isAlphabetSymbol = (sybmol: string) => {
+    return getRegExp(sybmol[0]).test("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
 }

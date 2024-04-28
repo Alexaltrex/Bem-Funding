@@ -1,16 +1,17 @@
 import {action, makeObservable, observable} from "mobx";
 import {LangEnum} from "../const/lang";
-import {FaqPopup} from "../components/A3_Popups/FaqPopup/FaqPopup";
+
 import {IFaqItem} from "../app/faq/Faq/faqs";
-import {ISubtitle, ISubtitleElement} from "../app/lexicon/Lexicon/helpers";
+import {getSubtitlesByLetter, ILexiconItem, ISubtitleElement} from "../app/lexicon/Lexicon/helpers";
 import {ICarreer} from "../app/careers/Careers/data";
+import json from "../../public/json/lexicon.json"
 
 export class AppStore {
     burgerMenu: boolean = false
     lang = LangEnum.ENG
     showRecoveryForm = false
     faqItem = null as null | IFaqItem
-    lexiconSubtitle = null as null | ISubtitleElement
+    lexiconSubtitle = getSubtitlesByLetter(json as ILexiconItem[], "A")[0] as null | ISubtitleElement
     career = null as null | ICarreer
     converter = false
 
