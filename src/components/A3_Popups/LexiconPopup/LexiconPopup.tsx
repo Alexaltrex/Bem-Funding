@@ -29,7 +29,7 @@ export const LexiconPopup = observer(() => {
                              ref={ref}
                         >
                             <button className={style.closeBtn}
-                                    onClick={() => setLexiconPopup(null)}
+                                    onClick={() => setLexiconPopup(false)}
                             >
                                 {svgIcons.close}
                             </button>
