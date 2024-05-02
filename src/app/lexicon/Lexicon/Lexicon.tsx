@@ -9,11 +9,10 @@ import {useStore} from "../../../store/useStore";
 import json from "../../../../public/json/lexicon.json"
 import {
     getAlphabet,
-    getByLetter, getSubtitlesByLetter,
-    getSearchResult,
+    getSubtitlesByLetter,
     getWords,
     ILexiconItem,
-    ILexiconItemElement, ISubtitleElement, searchSubtitles
+    getGroupsByLetter, ILexiconGroupElement, searchGroups
 } from "./helpers";
 import {FC, useRef, useState} from "react";
 import {svgIcons} from "../../../assets/svgIcons";
@@ -33,21 +32,25 @@ const initialValues = {
 
 //========= LEXICON =========//
 export const Lexicon = observer(() => {
-    const {appStore: {lang, setLexiconSubtitle, lexiconSubtitle}} = useStore();
+    const {appStore: {
+        lang,
+        lexiconGroup, setLexiconGroup,
+        setLexiconPopup,
+    }} = useStore();
 
     //form
     const onSubmit = ({value}: IValues, formikHelpers: FormikHelpers<IValues>) => {
         if (value) {
-            const _subtitles = searchSubtitles(json as ILexiconItem[], value)
-            setRenderedSubtitles(_subtitles);
-            if (_subtitles.length > 0) {
-                setLexiconSubtitle(_subtitles[0])
+            const groups = searchGroups(json as ILexiconItem[], value);
+            setGroups(groups);
+            if (groups.length > 0) {
+                setLexiconGroup(groups[0])
             }
             setLetter("");
         } else {
-            setSubtitleIndex(0);
-            setRenderedSubtitles(getSubtitlesByLetter(json as ILexiconItem[], "A"));
-            setLexiconSubtitle(getSubtitlesByLetter(json as ILexiconItem[], letter)[0]);
+            setGroupIndex(0);
+            setGroups(getGroupsByLetter(json as ILexiconItem[], "1"));
+            setLexiconGroup(getGroupsByLetter(json as ILexiconItem[], letter)[0]);
         }
     }
 
@@ -57,30 +60,26 @@ export const Lexicon = observer(() => {
     })
 
     const onClear = () => {
-        setLetter("A");
+        setLetter("1");
         formik.resetForm();
-        setSubtitleIndex(0);
-        setRenderedSubtitles(getSubtitlesByLetter(json as ILexiconItem[], "A"));
-        setLexiconSubtitle(getSubtitlesByLetter(json as ILexiconItem[], letter)[0]);
+        setGroupIndex(0);
+        setGroups(getGroupsByLetter(json as ILexiconItem[], "1"));
+        setLexiconGroup(getGroupsByLetter(json as ILexiconItem[], "1")[0]);
     }
 
-    const [letter, setLetter] = useState("A");
-
-    //const [content, setContent] = useState(getByLetter(json as ILexiconItem[], letter));
-    const [renderedSubtitles, setRenderedSubtitles] = useState(getSubtitlesByLetter(json as ILexiconItem[], letter));
+    const [letter, setLetter] = useState("1");
+    const [groups, setGroups] = useState(getGroupsByLetter(json as ILexiconItem[], letter))
 
     const onLetter = (letter: string) => {
         formik.resetForm();
         setLetter(letter);
-        setSubtitleIndex(0);
-        setRenderedSubtitles(getSubtitlesByLetter(json as ILexiconItem[], letter));
-        setLexiconSubtitle(getSubtitlesByLetter(json as ILexiconItem[], letter)[0]);
+        setGroupIndex(0);
+        setGroups(getGroupsByLetter(json as ILexiconItem[], letter));
+        setLexiconGroup(getGroupsByLetter(json as ILexiconItem[], letter)[0]);
     }
 
     // dropdown
-    const [showDropDown, setShowDropDown] = useState(false);
     const [words, setWords] = useState<string[]>([]);
-
     const onWord = (word: string) => {
         formik.setFieldValue("value", word);
         setWords([]);
@@ -90,7 +89,17 @@ export const Lexicon = observer(() => {
     const ref = useRef<HTMLDivElement>(null!);
     useOutsideClick(ref, () => setWords([]));
 
-    const [subtitleIndex, setSubtitleIndex] = useState(0);
+    const [groupIndex, setGroupIndex] = useState(0);
+    const onGroupTitleClick = (key: number, group: ILexiconGroupElement) => {
+        setGroupIndex(key);
+        setLexiconGroup(group);
+        setLexiconPopup(true);
+        if (typeof window === 'undefined') {
+            return
+        } else {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    }
 
     return (
         <div className={style.lexicon}>
@@ -117,7 +126,6 @@ export const Lexicon = observer(() => {
                                        setWords(getWords(json as ILexiconItem[], e.target.value));
                                    }
                                }}
-
                         />
 
                         {
@@ -177,37 +185,28 @@ export const Lexicon = observer(() => {
                 <div className={style.contentWrapper}>
 
                     {
-                        Boolean(renderedSubtitles.length) ? (
+                        Boolean(groups.length) ? (
                             <div className={style.content}>
 
                                 <div className={style.contentCard}>
 
                                     <div className={style.top}>
                                         <p className={clsx(style.topTitle, montserrat.className)}>
-                                            { letter ? `${letter} segment of the dictionary` : `Search result for "${formik.values.value}"`}
-
+                                            {letter ? `"${Number.isNaN(Number(letter)) ? "" : "#"}${letter}" segment of the dictionary` : `Search result for "${formik.values.value}"`}
                                         </p>
                                     </div>
 
                                     <div className={style.bottom}>
                                         {
-                                            renderedSubtitles.map((subtitle, key) => (
+                                            groups.map((group, key) => (
                                                 <p key={key}
                                                    className={clsx({
-                                                       [style.subtitle]: true,
-                                                       [style.subtitle_selected]: key === subtitleIndex,
+                                                       [style.title]: true,
+                                                       [style.title_selected]: key === groupIndex,
                                                    })}
-                                                   onClick={() => {
-                                                       setSubtitleIndex(key);
-                                                       setLexiconSubtitle(subtitle);
-                                                       if (typeof window === 'undefined') {
-                                                           return
-                                                       } else {
-                                                           window.scrollTo({ top: 0, behavior: 'smooth' });
-                                                       }
-                                                   }}
+                                                   onClick={() => onGroupTitleClick(key, group)}
                                                 >
-                                                    {subtitle.subtitle}
+                                                    {group.title}
                                                 </p>
                                             ))
                                         }
@@ -215,26 +214,33 @@ export const Lexicon = observer(() => {
 
                                 </div>
 
-                                <div className={style.subtitleInfo}>
-                                    <p className={clsx(style.subtitleInfo_title, montserrat.className)}>
-                                        {lexiconSubtitle?.subtitle}
-                                    </p>
-                                    <p className={style.subtitleInfo_content}>
-                                        {lexiconSubtitle?.content}
-                                    </p>
-                                </div>
+                                {
+                                    lexiconGroup && (
+                                        <div className={style.groupInfo}>
+                                            <p className={clsx(style.groupInfo_title, montserrat.className)}>
+                                                {lexiconGroup.title}
+                                            </p>
+                                            <p className={style.groupInfo_content}>
+                                                {lexiconGroup.content}
+                                            </p>
+
+                                            <div className={style.groupSubtitles}>
+                                                {
+                                                    lexiconGroup.subtitles.map(({subtitle, content}, key) => (
+                                                        <div key={key}
+                                                             className={style.groupSubtitle}
+                                                        >
+                                                            <p className={clsx(style.groupSubtitle_subtitle, montserrat.className)}>{subtitle}</p>
+                                                            <p className={style.groupSubtitle_content}>{content}</p>
+                                                        </div>
+                                                    ))
+                                                }
+                                            </div>
+                                        </div>
+                                    )
+                                }
+
                             </div>
-
-
-                            // <>
-                            //     {
-                            //         content.map((group, key) => (
-                            //             <Group key={String(group.title) + key}
-                            //                    group={group}
-                            //             />
-                            //         ))
-                            //     }
-                            // </>
                         ) : (
                             <p className={style.noResult}>No search result</p>
                         )
@@ -248,68 +254,3 @@ export const Lexicon = observer(() => {
     )
 })
 
-//========= GROUP =========//
-interface IGroup {
-    group: ILexiconItemElement
-}
-
-const Group: FC<IGroup> = observer(({
-                                        group: {
-                                            title,
-                                            content,
-                                            subtitles
-                                        }
-                                    }) => {
-    const {appStore: {setLexiconSubtitle}} = useStore();
-
-    const [index, setIndex] = useState(0);
-    const onSubtitle = (index: number) => {
-        setIndex(index);
-        subtitles && setLexiconSubtitle(subtitles[index])
-    }
-
-    return (
-        <div className={style.group}
-        >
-            <div className={style.top}>
-                <p className={clsx(style.groupTitle, montserrat.className)}>
-                    {title}
-                </p>
-                <p className={style.groupContent}>
-                    {content}
-                </p>
-            </div>
-
-            <div className={style.bottom}>
-                <div className={style.subtitles}>
-                    {
-                        subtitles?.map(({subtitle}, key) => (
-                            <p key={key}
-                               className={clsx({
-                                   [style.subtitle]: true,
-                                   [style.subtitle_selected]: key === index,
-                               })}
-                               onClick={() => onSubtitle(key)}
-                            >
-                                {subtitle}
-                            </p>
-                        ))
-                    }
-                </div>
-                {
-                    subtitles && (
-                        <div className={style.subtitleContent}>
-                            <p className={clsx(style.subtitleContent_title, montserrat.className)}>
-                                {subtitles[index]?.subtitle}
-                            </p>
-                            <p className={style.subtitleContent_content}>
-                                {subtitles[index]?.content}
-                            </p>
-                        </div>
-                    )
-                }
-            </div>
-
-        </div>
-    )
-})

@@ -191,7 +191,7 @@
           .bottom {
             padding: 16px;
 
-            .subtitle {
+            .title {
               cursor: pointer;
               font-weight: 400;
               font-size: 14px;
@@ -226,7 +226,7 @@
           }
         }
 
-        .subtitleInfo {
+        .groupInfo {
           @include onlyTabletAndMore();
           margin-left: 16px;
 
@@ -234,7 +234,7 @@
             margin-left: 32px;
           }
 
-          .subtitleInfo_title {
+          .groupInfo_title {
             font-weight: 700;
             font-size: 20px;
             line-height: 140%;
@@ -254,23 +254,56 @@
             }
           }
 
-          .subtitleInfo_content {
+          .groupInfo_content {
             margin-top: 9px;
             font-weight: 400;
             font-size: 14px;
             line-height: 140%;
             color: $color_white;
 
-            span {
-              background: orange;
-              color: #000;
-            }
-
             @include desktop {
               margin-top: 18px;
               font-size: 16px;
             }
           }
+
+          .groupSubtitles {
+            margin-top: 24px;
+
+            .groupSubtitle {
+
+              &:not(:first-child) {
+                margin-top: 16px;
+              }
+
+              &_subtitle {
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 140%;
+                color: $color_white;
+
+                @include tablet {
+                  font-size: 20px;
+                }
+              }
+
+              &_content {
+                margin-top: 4px;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 140%;
+                color: $color_white;
+
+                @include desktop {
+                  font-size: 16px;
+                }
+              }
+            }
+          }
+
+
+
+
         }
       }
 

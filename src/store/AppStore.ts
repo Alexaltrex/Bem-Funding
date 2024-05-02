@@ -2,7 +2,13 @@ import {action, makeObservable, observable} from "mobx";
 import {LangEnum} from "../const/lang";
 
 import {IFaqItem} from "../app/faq/Faq/faqs";
-import {getSubtitlesByLetter, ILexiconItem, ISubtitleElement} from "../app/lexicon/Lexicon/helpers";
+import {
+    getGroupsByLetter,
+    getSubtitlesByLetter,
+    ILexiconGroupElement,
+    ILexiconItem,
+    ISubtitleElement
+} from "../app/lexicon/Lexicon/helpers";
 import {ICarreer} from "../app/careers/Careers/data";
 import json from "../../public/json/lexicon.json"
 
@@ -11,9 +17,11 @@ export class AppStore {
     lang = LangEnum.ENG
     showRecoveryForm = false
     faqItem = null as null | IFaqItem
-    lexiconSubtitle = getSubtitlesByLetter(json as ILexiconItem[], "A")[0] as null | ISubtitleElement
+    lexiconGroup = getGroupsByLetter(json as ILexiconItem[], "1")[0] as null | ILexiconGroupElement
+    lexiconPopup = false
     career = null as null | ICarreer
     converter = false
+
 
     constructor() {
         makeObservable(this,
@@ -22,17 +30,22 @@ export class AppStore {
                 lang: observable,
                 showRecoveryForm: observable,
                 faqItem: observable,
-                lexiconSubtitle: observable,
+                lexiconGroup: observable,
+                lexiconPopup: observable,
                 career: observable,
                 converter: observable,
+
+
 
                 setBurgerMenu: action.bound,
                 setLang: action.bound,
                 setShowRecoveryForm: action.bound,
                 setFaqItem: action.bound,
-                setLexiconSubtitle: action.bound,
+                setLexiconGroup: action.bound,
+                setLexiconPopup: action.bound,
                 setCareer: action.bound,
                 setConverter: action.bound,
+
             }
         )
     }
@@ -53,8 +66,12 @@ export class AppStore {
         this.faqItem = faqItem
     }
 
-    setLexiconSubtitle(lexiconSubtitle: null | ISubtitleElement) {
-        this.lexiconSubtitle = lexiconSubtitle
+    setLexiconGroup(lexiconGroup: ILexiconGroupElement) {
+        this.lexiconGroup = lexiconGroup
+    }
+
+    setLexiconPopup(lexiconPopup: boolean) {
+        this.lexiconPopup = lexiconPopup
     }
 
     setCareer(career: null | ICarreer) {

@@ -21,6 +21,8 @@
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
     padding: 52px 24px 20px;
     background: rgb(45, 40, 90);
+    max-height: calc(100vh - 72px);
+    overflow: auto;
 
     .closeBtn {
       @include button;
@@ -41,7 +43,7 @@
 
     }
 
-    .subtitle {
+    .groupInfo_title {
       font-weight: 700;
       font-size: 20px;
       line-height: 140%;
@@ -51,11 +53,18 @@
         background: orange;
         color: #000;
       }
+
+      @include tablet {
+        font-size: 24px;
+      }
+
+      @include desktop {
+        font-size: 30px;
+      }
     }
 
-    .content {
-      margin-top: 20px;
-      font-family: var(--font-family);
+    .groupInfo_content {
+      margin-top: 9px;
       font-weight: 400;
       font-size: 14px;
       line-height: 140%;
@@ -65,8 +74,50 @@
         background: orange;
         color: #000;
       }
+
+      @include desktop {
+        margin-top: 18px;
+        font-size: 16px;
+      }
     }
 
+    .groupSubtitles {
+      margin-top: 24px;
+
+      .groupSubtitle {
+        &:not(:first-child) {
+          margin-top: 16px;
+        }
+
+        .groupSubtitle_subtitle {
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 140%;
+          color: $color_white;
+
+          span {
+            background: orange;
+            color: #000;
+          }
+
+          @include tablet {
+            font-size: 20px;
+          }
+        }
+
+        .groupSubtitle_content {
+          margin-top: 4px;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 140%;
+          color: $color_white;
+
+          @include desktop {
+            font-size: 16px;
+          }
+        }
+      }
+    }
 
 
   }

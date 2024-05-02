@@ -5,10 +5,19 @@ export interface ISubtitle {
     content: string
 }
 
+export interface ILexiconGroupElement {
+    title: React.JSX.Element
+    content: string
+    subtitles: ISubtitle[]
+}
+
 export interface ILexiconItem {
     title: string
     content: string
-    subtitles: ISubtitle[]
+    subtitles: {
+        subtitle: string
+        content: string
+    }[]
 }
 
 export interface ISubtitleElement {
@@ -40,18 +49,15 @@ export const getAlphabet = (data: ILexiconItem[]): string[] => {
     //         }
     //     })
 
-    filterJson(data).forEach(({subtitles}, i) => {
-        subtitles.forEach(({subtitle}) => {
-                    if (subtitle) {
-                        const _letter = isAlphabetSymbol(subtitle[0]) ? subtitle[0] : subtitle[1];
-                        if (!_alphabet.includes(_letter)) {
-                            _alphabet.push(_letter)
-                        }
+    filterJson(data).forEach(({title}, i) => {
+        if (title) {
+            const _letter = title[0];
+            if (!_alphabet.includes(_letter)) {
+                _alphabet.push(_letter)
+            }
 
-                    }
-        })
+        }
     })
-
     return _alphabet.sort()
 }
 
@@ -96,6 +102,26 @@ export const getSubtitlesByLetter = (
     return result
 }
 
+//========= GET GROUPS BY LETTER =========//
+export const getGroupsByLetter = (
+    data: ILexiconItem[],
+    letter: string
+): ILexiconGroupElement[] => {
+    const _groups = [] as ILexiconGroupElement[]
+
+    filterJson(data).forEach(({title, subtitles, content}) => {
+        if (title[0] === letter) {
+            _groups.push({
+                title: <>{title}</>,
+                content,
+                subtitles,
+            })
+        }
+    })
+
+    return _groups
+}
+
 //========= GET REGEXP =========//
 export const getRegExp = (str: string): RegExp => new RegExp(str, 'gi')
 
@@ -117,6 +143,22 @@ export const searchSubtitles = (data: ILexiconItem[], subString: string): ISubti
     return _subtitles
 }
 
+//========= SEARCH GROUPS =========//
+export const searchGroups = (data: ILexiconItem[], subString: string): ILexiconGroupElement[] => {
+    const _groups = [] as ILexiconGroupElement[];
+
+    filterJson(data).forEach(({title, content, subtitles}) => {
+        if (getRegExp(subString).test(title)) {
+            _groups.push({
+                title: getSelectedString(title, subString),
+                content,
+                subtitles
+            })
+        }
+    })
+
+    return _groups
+}
 
 //========= GET SEARCH RESULT =========//
 export const getSearchResult = (data: ILexiconItem[], subString: string) => {
@@ -178,19 +220,13 @@ export const getWords = (data: ILexiconItem[], subString: string): string[] => {
 
     for (let i = 0; i < filteredJson.length; i++) {
         const {title, content, subtitles} = filteredJson[i]
-
-        for (let j = 0; j < subtitles.length; j++) {
-            const subtitleWords = subtitles[j].subtitle.split(" ");
-
-            for (let k = 0; k < subtitleWords.length; k++) {
-                if (getRegExp(subString).test(subtitleWords[k]) && !words.includes(subtitleWords[k])) {
-                    words.push(subtitleWords[k])
-                }
+        const titleWords = title.split(" ");
+        for (let k = 0; k < titleWords.length; k++) {
+            if (getRegExp(subString).test(titleWords[k]) && !words.includes(titleWords[k])) {
+                words.push(titleWords[k])
             }
         }
-
     }
-
     return [...words].sort()
 }
 
