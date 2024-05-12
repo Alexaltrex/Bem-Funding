@@ -1,0 +1,121 @@
+@import "../../../assets/styles/app";
+
+.faq {
+  @include container;
+  position: relative;
+  padding-top: 54px;
+  padding-bottom: 12px;
+
+  @include tablet {
+    padding-top: 90px;
+    padding-bottom: 18px;
+  }
+
+  @include desktop {
+    padding-top: 120px;
+    padding-bottom: 32px;
+  }
+
+  .inner {
+    @include inner;
+
+    .title {
+      @include h2;
+
+      span {
+        &:nth-child(2) {
+          @include text-gradient;
+        }
+      }
+    }
+
+    .content {
+      margin-top: 16px;
+
+      @include tablet {
+        margin-top: 20px;
+      }
+
+      @include desktop {
+        margin-top: 30px;
+      }
+
+      .sections {
+
+        @include tablet {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          grid-template-rows: repeat(5, 1fr);
+          grid-gap: 16px;
+        }
+
+        @include desktop {
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: repeat(3, 1fr);
+          grid-gap: 32px;
+        }
+
+        .section {
+          border-radius: 15px;
+          box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
+          border: 1px solid rgba(255, 255, 255, 0.07);
+          overflow: hidden;
+
+          .titleOfSection {
+            padding: 10px 20px;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 140%;
+            text-align: center;
+            color: $color_white;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+            background: linear-gradient(-90deg, rgba(117, 97, 255, 0.65) 21.463996171951294%, rgba(0, 102, 255, 0.2) 84.11673903465271%, rgba(0, 0, 0, 0) 100%);
+          }
+
+          .items {
+            padding: 15px 15px 30px 25px;
+
+            .item {
+              @include button;
+              position: relative;
+
+              p {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 140%;
+                color: $color_light_gray;
+                transition: 0.3s;
+                text-align: left;
+              }
+
+              svg {
+                position: absolute;
+                top: 8px;
+                left: -12px;
+              }
+
+              &:not(:first-child) {
+                margin-top: 14px;
+              }
+
+              &:hover {
+                @include desktop {
+                  p {
+                    color: $color_white;
+                  }
+
+                }
+              }
+
+
+            }
+          }
+        }
+
+      }
+
+
+    }
+
+  }
+}

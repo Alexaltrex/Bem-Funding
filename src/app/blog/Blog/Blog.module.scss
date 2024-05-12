@@ -1,0 +1,258 @@
+@import "../../../assets/styles/app";
+
+.blog {
+  @include container;
+  @include pagePaddings;
+
+  .inner {
+    @include inner;
+
+    .title {
+      @include h2;
+    }
+
+    .subTitle {
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 140%;
+      color: $color_white;
+
+      @include desktop {
+        font-size: 30px;
+      }
+    }
+
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 16px;
+
+      @include tablet {
+        width: 640px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      @include desktop {
+        width: 930px;
+      }
+
+      .categoryItem {
+        @include button;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        padding: 2px 10px;
+        border: 1px solid rgba(146, 148, 165, 0.5);
+        transition: 0.2s;
+        margin-bottom: 10px;
+        margin-right: 10px;
+
+        span {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 140%;
+          text-align: center;
+          color: $color_light_gray;
+          transition: 0.2s;
+        }
+
+        &_selected {
+          border-color: $color_cyan;
+
+          span {
+            color: $color_white;
+          }
+        }
+      }
+    }
+
+    .wrapper {
+      margin-top: 10px;
+
+      @include tablet {
+        margin-top: 12px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      @include desktop {
+        margin-top: 24px;
+      }
+
+      .wrapperTop {
+
+        @include tablet {
+          width: 62%;
+        }
+
+        @include desktop {
+          width: 736px;
+        }
+
+        .cardsWrapper {
+
+          &:not(:first-child) {
+            margin-top: 10px;
+
+            @include tablet {
+              margin-top: 20px;
+            }
+
+            @include desktop {
+              margin-top: 40px;
+            }
+          }
+
+          .cards {
+            margin-top: 16px;
+
+            @include tablet {
+              display: flex;
+              justify-content: space-between;
+              flex-wrap: wrap;
+            }
+
+            @include desktop {
+              margin-top: 24px;
+            }
+
+            .card {
+              height: 155px;
+              margin-bottom: 16px;
+
+              @include tablet {
+                width: calc((100% - 16px) / 2);
+              }
+
+              @include desktop {
+                width: calc((100% - 32px) / 2);
+                height: 236px;
+                margin-bottom: 32px;
+              }
+            }
+          }
+        }
+      }
+
+      .wrapperBottom {
+        margin-top: 16px;
+
+        @include tablet {
+          margin-top: 0;
+          width: 30%;
+        }
+
+        @include desktop {
+          width: 350px;
+        }
+
+        .categoriesCount {
+          .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid $color_light_gray;
+            padding-bottom: 8px;
+
+            @include desktop {
+              padding-bottom: 12px;
+              margin-bottom: 12px;
+            }
+
+            &:not(:last-child) {
+              margin-bottom: 8px;
+
+              @include desktop {
+                margin-bottom: 12px;
+              }
+            }
+
+
+            .label {
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 140%;
+              color: $color_white;
+            }
+
+            .count {
+              border-radius: 5px;
+              padding: 1px 12px;
+              font-weight: 400;
+              font-size: 20px;
+              line-height: 140%;
+              text-align: right;
+              color: $color_white;
+
+            }
+
+
+          }
+        }
+
+        .mostRead {
+          margin-top: 16px;
+
+          @include tablet {
+            margin-top: 32px;
+          }
+
+          @include desktop {
+            margin-top: 42px;
+          }
+
+          .cards {
+            margin-top: 16px;
+
+            @include desktop {
+              margin-top: 36px;
+            }
+
+            .cardItem {
+              display: flex;
+
+              &:not(:first-child) {
+                margin-top: 16px;
+              }
+
+              .link {
+                display: block;
+
+                img {
+                  display: block;
+                  width: 70px;
+                  height: 70px;
+                  border-radius: 5px;
+                }
+
+              }
+
+              .cardItemTitle {
+                font-weight: 700;
+                font-size: 12px;
+                line-height: 100%;
+                color: $color_white;
+                margin-left: 12px;
+
+                @include desktop {
+                  font-size: 14px;
+                  margin-left: 24px;
+                }
+              }
+            }
+          }
+
+        }
+
+
+      }
+
+
+
+
+    }
+
+
+
+  }
+}

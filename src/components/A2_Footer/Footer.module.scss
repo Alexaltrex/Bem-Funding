@@ -1,0 +1,308 @@
+@import "../../assets/styles/app";
+
+.footer {
+  position: relative;
+  z-index: 2;
+  @include container;
+  padding-bottom: 20px;
+
+  @include tablet {
+    padding-bottom: 36px;
+  }
+
+  @include desktop {
+    padding-bottom: 14px;
+  }
+
+  .inner {
+    @include inner;
+
+
+    .top {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 12px;
+      padding-bottom: 12px;
+
+      @include tablet {
+        display: flex;
+        padding-top: 16px;
+        padding-bottom: 16px;
+      }
+
+      @include desktop {
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+
+      .topFirst {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @include tablet {
+          align-items: flex-start;
+        }
+
+        .logo, .logo svg {
+          width: 95px;
+          height: 41px;
+
+          @include tablet {
+            width: 107px;
+            height: 47px;
+          }
+
+          @include desktop {
+            width: 131px;
+            height: 57px;
+          }
+        }
+
+
+        .socialsLinksTabletAndMore {
+          @include onlyTabletAndMore(grid);
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: repeat(2, 1fr);
+          grid-gap: 4px;
+          margin-top: 18px;
+
+          @include desktop {
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(1, 1fr);
+            margin-top: 48px;
+            grid-gap: 7px;
+          }
+
+          .socialsLinks_link, .socialsLinks_link svg {
+            width: 24px;
+            height: 24px;
+          }
+
+          .socialsLinks_link {
+            transition: 0.3s;
+
+            &:hover {
+              @include tablet {
+                opacity: 0.5;
+              }
+            }
+          }
+
+        }
+
+      }
+
+      .topSecond {
+        margin-top: 16px;
+
+        @include tablet {
+          flex-grow: 1;
+          margin-left: 90px;
+          margin-top: 0;
+        }
+
+        @include desktop {
+          margin-left: 76px;
+        }
+
+        .linksMobile {
+          @include onlyMobile(flex);
+          justify-content: space-between;
+
+          .column {
+            display: flex;
+            flex-direction: column;
+
+            .link {
+              text-decoration: none;
+              font-weight: 700;
+              font-size: 14px;
+              line-height: 140%;
+              color: $color_light_gray;
+
+              &:not(:first-child) {
+                margin-top: 8px;
+              }
+            }
+          }
+
+        }
+
+        .linksTabletAndMore {
+          @include onlyTabletAndMore(flex);
+          justify-content: space-between;
+
+          .column {
+            display: flex;
+            flex-direction: column;
+
+            .link {
+              text-decoration: none;
+              font-weight: 700;
+              font-size: 14px;
+              line-height: 140%;
+              color: $color_light_gray;
+              transition: 0.3s;
+
+              &:not(:first-child) {
+                margin-top: 12px;
+
+                @include desktop {
+                  margin-top: 16px;
+                }
+              }
+
+              &:hover {
+                color: $color_white;
+              }
+            }
+          }
+        }
+
+        .socialsLinksMobile {
+          @include onlyMobile(flex);
+          justify-content: center;
+          margin-top: 20px;
+
+          .socialsLinks_link, .socialsLinks_link svg {
+            width: 24px;
+            height: 24px;
+          }
+
+          .socialsLinks_link {
+            transition: 0.3s;
+
+            &:not(:first-child) {
+              margin-left: 16px;
+            }
+
+            &:hover {
+              @include tablet {
+                opacity: 0.5;
+              }
+            }
+          }
+
+        }
+
+        .rightsMobile {
+          @include onlyMobile;
+          margin-top: 12px;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 140%;
+          text-align: center;
+          color: $color_white;
+        }
+      }
+
+
+      .links {
+        margin-top: 24px;
+
+        @include tablet {
+          margin-top: 0;
+          flex-grow: 1;
+          display: flex;
+          justify-content: space-between;
+          margin-left: 100px;
+        }
+
+        @include desktop {
+          margin-left: 180px;
+        }
+
+        .title {
+          text-decoration: none;
+          font-weight: 700;
+          font-size: 14px;
+          line-height: 140%;
+          color: $color_white;
+
+          @include desktop {
+            font-size: 16px;
+          }
+        }
+
+        .group {
+
+          .subLinks {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+
+            .subLink {
+              text-decoration: none;
+              font-weight: 400;
+              font-size: 12px;
+              line-height: 140%;
+              color: $color_white;
+              opacity: 0.5;
+              transition: 0.3s;
+
+              &:not(:first-child) {
+                margin-top: 6px;
+              }
+
+              &:hover {
+                @include desktop {
+                  opacity: 1;
+                }
+              }
+            }
+          }
+        }
+      }
+
+
+    }
+
+    .bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 12px;
+
+      @include tablet {
+        display: flex;
+        padding-top: 14px;
+      }
+
+      .rights {
+        @include onlyTabletAndMore();
+        white-space: nowrap;
+        flex-shrink: 0;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 140%;
+        color: $color_white;
+      }
+
+      .descriptionWrapper {
+        display: flex;
+
+        @include tablet {
+          margin-left: 54px;
+        }
+
+        .description {
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 140%;
+          color: $color_light_gray;
+        }
+
+        .btn {
+          @include button;
+          @include centerRow;
+          width: 14px;
+          height: 14px;
+          margin-left: 12px;
+
+
+        }
+      }
+
+
+    }
+
+  }
+}

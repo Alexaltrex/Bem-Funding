@@ -1,0 +1,196 @@
+@import "../../../assets/styles/app";
+
+.tradingUpdates {
+  @include container;
+  padding-top: 54px;
+  padding-bottom: 32px;
+
+
+  @include tablet {
+    padding-top: 90px;
+    padding-bottom: 42px;
+  }
+
+  @include desktop {
+    padding-top: 120px;
+    padding-bottom: 20px;
+  }
+
+  .inner {
+    @include inner;
+
+    .title {
+      @include h2;
+    }
+
+    .items {
+      margin-top: 16px;
+
+      @include tablet {
+        margin-top: 24px;
+      }
+
+
+    }
+
+    .btn {
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 200px;
+
+      @include desktop {
+        margin-top: 30px;
+      }
+    }
+  }
+
+}
+
+.item {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  backdrop-filter: blur(34px);
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
+  padding: 12px 18px;
+
+  @include tablet {
+    padding: 24px 16px;
+    display: flex;
+  }
+
+  @include desktop {
+    padding: 24px;
+  }
+
+  &:not(:first-child) {
+    margin-top: 12px;
+
+    @include tablet {
+      margin-top: 16px;
+    }
+
+    @include desktop {
+      margin-top: 24px;
+    }
+  }
+
+  .imgWrapper {
+    padding-bottom: 12px;
+
+    @include tablet {
+      padding-bottom: 0;
+      padding-right: 24px;
+    }
+
+    img {
+      flex-shrink: 0;
+      display: block;
+      border-radius: 10px;
+      width: 253px;
+      height: 189px;
+      object-fit: cover;
+
+      @include tablet {
+        width: 196px;
+        height: 187px;
+      }
+
+      @include desktop {
+        width: 278px;
+        height: 187px;
+      }
+    }
+
+  }
+
+
+  .content {
+
+    @include tablet {
+      flex-grow: 1;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+
+      .itemTitle {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 140%;
+        color: #FFF;
+
+        @include tablet {
+          font-size: 20px;
+        }
+      }
+
+      .topBtn {
+        @include button;
+        @include centerRow;
+        width: 22px;
+        height: 22px;
+
+        @include tablet {
+          width: 28px;
+          height: 28px;
+        }
+
+        &_open {
+          svg {
+            transform: rotate(-180deg);
+          }
+        }
+
+        svg {
+          width: 22px;
+          height: 22px;
+          transition: 0.3s;
+
+          @include tablet {
+            width: 28px;
+            height: 28px;
+          }
+        }
+      }
+
+    }
+
+    .date {
+      font-weight: 400;
+      font-size: 10px;
+      line-height: 140%;
+      color: $color_light_gray;
+
+      @include tablet {
+        font-size: 12px;
+      }
+    }
+
+    .editor {
+      font-weight: 400;
+      font-size: 10px;
+      line-height: 140%;
+      color: $color_white;
+
+      @include tablet {
+        font-size: 12px;
+      }
+    }
+
+    .text {
+      padding-top: 12px;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 140%;
+      color: $color_white;
+
+      @include desktop {
+        font-size: 14px;
+      }
+    }
+
+  }
+}

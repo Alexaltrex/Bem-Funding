@@ -1,0 +1,157 @@
+//========= BREAK POINTS =========//
+@mixin tablet {
+  @media all and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media all and (min-width: 1140px) {
+    @content;
+  }
+}
+
+@mixin onlyTabletAndLess($displayType: block) {
+  display: $displayType;
+  @content;
+
+  @include desktop {
+    display: none;
+  }
+}
+
+@mixin onlyTabletAndMore($displayType: block) {
+  display: none;
+
+  @include tablet {
+    display: $displayType;
+    @content;
+  }
+}
+
+@mixin onlyMobile($displayType: block) {
+  display: $displayType;
+  @content;
+
+  @include tablet {
+    display: none;
+  }
+}
+
+@mixin onlyTablet($displayType: block) {
+  display: none;
+
+  @include tablet {
+    display: $displayType;
+    @content;
+  }
+
+  @include desktop {
+    display: none;
+  }
+}
+
+@mixin onlyDesktop($displayType: block) {
+  display: none;
+
+  @include desktop {
+    display: $displayType;
+    @content;
+  }
+}
+
+//========= TEXTS =========//
+@mixin text-gradient {
+  background: radial-gradient(85.44% 85.44% at 0.00% 0.00%, rgb(255, 255, 255) 0%, rgb(117, 97, 255) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin pre {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+  text-align: center;
+  color: $color_light_gray;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin h2 {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 140%;
+  color: $color_white;
+  text-align: center;
+
+  @include tablet {
+    font-size: 30px;
+  }
+
+  @include desktop {
+    font-size: 40px;
+  }
+}
+
+//========= CONTAINERS ===========//
+@mixin container {
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @include tablet {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @include desktop {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@mixin inner() {
+  @include desktop() {
+    width: 1120px;
+    margin: 0 auto;
+  }
+}
+
+@mixin pagePaddings {
+  padding-top: 54px;
+  padding-bottom: 24px;
+
+  @include tablet {
+    padding-top: 90px;
+    padding-bottom: 24px;
+  }
+
+  @include desktop {
+    padding-top: 120px;
+    padding-bottom: 48px;
+  }
+}
+
+//========= OTHER =========//
+@mixin button() {
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+@mixin centerRow() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin centerColumn() {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

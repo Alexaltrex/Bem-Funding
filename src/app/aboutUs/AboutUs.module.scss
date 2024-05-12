@@ -1,0 +1,23 @@
+@import "../../assets/styles/app";
+
+.aboutUs {
+  @include container;
+  padding-top: 12px;
+
+  @include tablet {
+    padding-top: 18px;
+  }
+
+  @include desktop {
+    padding-top: 40px;
+  }
+
+  .inner {
+    @include inner;
+
+    .title {
+      @include h2;
+    }
+
+  }
+}

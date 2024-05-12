@@ -1,0 +1,195 @@
+@import "../../assets/styles/app";
+
+.header {
+  @include container;
+  position: absolute;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  right: 0;
+  background: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0) 100%);
+
+  .blur {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    width: 1920px;
+    height: auto;
+  }
+
+  .inner {
+    position: relative;
+    z-index: 101;
+    @include inner;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 6px;
+
+
+    @include tablet {
+      padding-top: 15px;
+    }
+
+    @include desktop {
+      padding-top: 24px;
+    }
+
+    .logo {
+      text-decoration: none;
+
+      svg {
+        width: 75px;
+        height: 33px;
+
+        @include tablet {
+          width: 125px;
+          height: 55px;
+        }
+
+        @include desktop {
+          width: 129px;
+          height: 56px;
+        }
+      }
+    }
+
+    .links {
+      @include onlyDesktop(flex);
+
+      .link {
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 140%;
+        color: $color_light_gray;
+        transition: 0.3s;
+        margin-left: 50px;
+
+        &:hover {
+          color: $color_white;
+        }
+      }
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+
+      .tradingBtn {
+        padding: 6px 10px;
+
+        @include tablet {
+          padding: 8px 13px;
+        }
+
+        span {
+          font-size: 10px;
+
+          @include tablet {
+            font-size: 14px;
+          }
+        }
+      }
+
+      .burgerBtn {
+        @include button;
+        @include onlyTabletAndLess(flex);
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        border-radius: 7px;
+        border: 1px solid #5D96FF;
+        width: 26px;
+        height: 26px;
+        margin-left: 10px;
+
+        svg path {
+          stroke: #FFF;
+        }
+      }
+    }
+  }
+}
+
+
+.dropDown {
+  position: relative;
+  margin-left: 50px;
+
+  .titleWrapper {
+    display: flex;
+    align-items: center;
+
+    .title {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 140%;
+      color: $color_light_gray;
+      transition: 0.3s;
+    }
+
+    svg {
+      width: 8px;
+      height: 8px;
+      margin-left: 4px;
+      transition: 0.3s;
+    }
+  }
+
+  .dropDownModal {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: auto;
+    padding-top: 8px;
+    transform-origin: left top;
+    display: none;
+
+    .dropDownModal_inner {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.8);
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(34px);
+
+      .sublink {
+        text-decoration: none;
+        white-space: nowrap;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 140%;
+        color: $color_light_gray;
+        transition: 0.3s;
+
+        &:not(:first-child) {
+          margin-top: 6px;
+        }
+
+        &:hover {
+          color: $color_white;
+        }
+      }
+    }
+  }
+
+  &_open {
+    .titleWrapper {
+      .title {
+        color: $color_white
+      }
+
+      svg {
+        transform: rotate(-180deg);
+      }
+    }
+  }
+
+
+}

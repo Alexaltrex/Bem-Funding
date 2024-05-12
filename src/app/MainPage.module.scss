@@ -1,0 +1,57 @@
+@import "../assets/styles/app";
+
+.mainPage {
+  position: relative;
+  z-index: 1;
+
+  .howToWrapper {
+    position: relative;
+
+    .back {
+      position: absolute;
+      z-index: -1;
+      height: 400px;
+      width: auto;
+      bottom: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      @include tablet {
+        height: 800px;
+        bottom: -150px;
+      }
+
+      @include desktop {
+        height: 1000px;
+        bottom: -500px;
+      }
+
+      @media all and (min-width: 1920px) {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  .mounts_bottom {
+    display: block;
+    position: absolute;
+    left: 50%;
+    bottom: 32px;
+    transform: translateX(-50%);
+    width: 1920px;
+    height: auto;
+
+    @include tablet {
+      bottom: 60px;
+    }
+
+    @include desktop {
+      bottom: 90px;
+    }
+
+    @media all and (min-width: 1920px) {
+      width: 100%;
+    }
+  }
+}

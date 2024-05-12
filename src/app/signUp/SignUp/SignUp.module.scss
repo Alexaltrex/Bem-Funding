@@ -1,0 +1,213 @@
+@import "../../../assets/styles/app";
+
+.signUp {
+  position: relative;
+  @include container;
+  padding-top: 54px;
+  padding-bottom: 32px;
+  overflow: hidden;
+
+  @include tablet {
+    padding-top: 90px;
+    padding-bottom: 42px;
+  }
+
+  @include desktop {
+    padding-top: 120px;
+    padding-bottom: 20px;
+    min-height: calc(100vh - 249px);
+  }
+
+  .mounts {
+    position: absolute;
+    z-index: 1;
+    display: block;
+    width: 778px;
+    height: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 206px;
+
+    @include tablet {
+      width: 982px;
+    }
+
+    @include desktop {
+      width: 1200px;
+      top: auto;
+      bottom: -16px;
+    }
+  }
+
+  .inner {
+    position: relative;
+    z-index: 2;
+    @include inner;
+
+    .title {
+      @include h2;
+    }
+
+    .description {
+      margin-top: 20px;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 140%;
+      text-align: center;
+      color: $color_white;
+
+      @include tablet {
+        margin-top: 12px;
+      }
+
+      @include desktop {
+        margin-top: 6px;
+      }
+
+      a {
+        text-decoration: none;
+        color: $color_purple;
+      }
+    }
+
+    .form {
+      margin-top: 14px;
+
+      @include tablet {
+        margin-top: 21px;
+      }
+
+      @include desktop {
+        margin-top: 18px;
+        width: 735px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .twoFieldWrapper {
+
+        @include tablet {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          grid-column-gap: 30px;
+        }
+
+        &:not(:first-child) {
+          margin-top: 24px;
+        }
+      }
+
+      .fieldWrapper {
+
+        &:not(:first-child) {
+          margin-top: 12px;
+
+          @include tablet {
+            margin-top: 0;
+          }
+        }
+
+        .label {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 140%;
+          color: $color_white;
+        }
+
+        .field {
+          margin-top: 6px;
+          width: 100%;
+        }
+
+      }
+
+      .ckeckboxWrapper {
+        margin-top: 12px;
+
+        @include tablet {
+          margin-top: 18px;
+          display: flex;
+          justify-content: center;
+        }
+
+        .ckeckboxItem {
+          display: flex;
+          align-items: center;
+
+          &:not(:first-child) {
+            margin-top: 12px;
+
+            @include tablet {
+              margin-top: 0;
+              margin-left: 27px;
+            }
+          }
+
+          .ckeckboxLabel {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 140%;
+            color: $color_white;
+            margin-left: 10px;
+          }
+        }
+      }
+
+      .submitBtn {
+        margin-top: 12px;
+        width: 100%;
+
+        @include tablet {
+          margin-top: 24px;
+          width: 350px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+
+      .or {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 140%;
+        text-align: center;
+        color: $color_white;
+        margin-top: 12px;
+
+        @include tablet {
+          margin-top: 16px;
+        }
+      }
+
+      .buttons {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 10px;
+        margin-top: 12px;
+
+        @include tablet {
+          margin-top: 15px;
+          width: 350px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .btn {
+          @include button;
+          @include centerRow;
+          border-radius: 10px;
+          height: 32px;
+          border: 1px solid $color_purple;
+
+          svg {
+            width: 16px;
+            height: 16px;
+          }
+        }
+
+      }
+
+    }
+
+
+  }
+}

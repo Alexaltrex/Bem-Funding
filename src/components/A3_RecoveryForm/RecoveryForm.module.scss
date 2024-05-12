@@ -1,0 +1,143 @@
+@import "../../assets/styles/app";
+
+.recoveryForm {
+  @include centerRow;
+  position: fixed;
+  z-index: 9999999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  display: none;
+
+  &_show {
+    display: flex;
+  }
+
+  .card {
+    position: relative;
+    //backdrop-filter: blur(34px);
+    //box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.8);
+    width: calc(100vw - 32px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 52px 24px 20px;
+
+    @include tablet {
+      width: 430px;
+    }
+
+    .closeBtn {
+      @include button;
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      width: 12px;
+      height: 12px;
+
+      svg {
+        width: 12px;
+        height: 12px;
+
+        path {
+          stroke: #FFF;
+        }
+      }
+    }
+
+    .check {
+      width: 70px;
+      height: 70px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 20px;
+
+      svg {
+        width: 70px;
+        height: 70px;
+      }
+    }
+
+    .title {
+      font-weight: 700;
+      font-size: 30px;
+      line-height: 140%;
+      text-align: center;
+      color: $color_white;
+    }
+
+    .text {
+      margin-top: 6px;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 140%;
+      text-align: center;
+      color: $color_white;
+    }
+
+    .close {
+      margin-top: 12px;
+      width: 100%;
+
+      @include tablet {
+        margin-top: 20px;
+      }
+    }
+
+    .form {
+      margin-top: 12px;
+
+      @include tablet {
+        margin-top: 20px;
+      }
+
+      .fieldWrapper {
+
+        &:not(:first-child) {
+          margin-top: 12px;
+
+          @include tablet {
+            margin-top: 20px;
+          }
+        }
+
+        .label {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 140%;
+          color: $color_white;
+        }
+
+        .field {
+          margin-top: 6px;
+        }
+
+      }
+
+      .submitBtn {
+        margin-top: 12px;
+        width: 100%;
+
+        @include tablet {
+          margin-top: 20px;
+        }
+      }
+
+    }
+
+
+  }
+
+  .description {
+    margin-top: 20px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 140%;
+    text-align: center;
+    color: $color_white;
+  }
+
+}

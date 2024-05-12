@@ -1,0 +1,424 @@
+@import "../../../assets/styles/app";
+
+.symbols {
+  @include container;
+  @include pagePaddings;
+
+  .inner {
+    @include inner;
+
+    .title {
+      @include h2;
+    }
+
+    .description {
+      margin-top: 10px;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 140%;
+      text-align: center;
+      color: $color_white;
+
+      @include desktop {
+        margin-top: 12px;
+        font-size: 16px;
+      }
+    }
+
+    .selectBlock {
+      margin-top: 16px;
+
+      @include desktop {
+        margin-top: 24px;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .labels {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        @include desktop {
+          flex-shrink: 0;
+        }
+
+        .labelBtn {
+          @include button;
+          @include centerRow;
+          transition: 0.3s;
+          padding: 6px 14px;
+          border: 1px solid rgba(146, 148, 165, 0.5);
+          border-radius: 10px;
+          backdrop-filter: blur(4px);
+          background: rgba(0, 0, 0, 0.5);
+          margin-bottom: 10px;
+
+          &:not(:last-child) {
+            margin-right: 10px;
+
+            @include tablet {
+              margin-right: 0;
+            }
+          }
+
+          &:not(:first-child) {
+            @include tablet {
+              margin-left: 10px;
+            }
+          }
+
+          @include tablet {
+            padding: 6px 16px;
+            height: 40px;
+            margin-bottom: 0;
+          }
+
+          span {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 140%;
+            text-align: center;
+            color: $color_light_gray;
+            transition: 0.3s;
+
+            @include tablet {
+              font-size: 16px;
+            }
+
+            @include desktop {
+              font-size: 20px;
+            }
+          }
+
+          &_selected {
+            border-color: $color_cyan;
+
+            span {
+              color: $color_white;
+            }
+          }
+
+
+        }
+      }
+
+      .searchForm {
+        margin-top: 10px;
+
+        @include tablet {
+          margin-top: 10px;
+          width: 100%;
+        }
+
+        @include desktop {
+          margin-top: 0;
+          margin-left: 10px;
+          //width: 337px;
+        }
+      }
+
+    }
+
+    .rows {
+      margin-top: 16px;
+
+      @include desktop {
+        margin-top: 24px;
+      }
+    }
+
+  }
+}
+
+.rowComponent {
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(34px);
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
+
+  &:not(:first-child) {
+    margin-top: 16px;
+
+    @include tablet {
+      margin-top: 12px;
+    }
+
+    @include tablet {
+      margin-top: 16px;
+    }
+  }
+
+  .rowInner {
+    position: relative;
+    cursor: pointer;
+    padding: 9px 32px 9px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include tablet {
+      padding: 5px 38px 5px 18px;
+    }
+
+    @include tablet {
+      padding: 12px 50px 12px 18px;
+    }
+
+    .left {
+      display: flex;
+      align-items: center;
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: $color_red;
+
+        &_active {
+          background: $color_green;
+        }
+      }
+
+      .label {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 140%;
+        color: $color_white;
+        margin-left: 14px;
+
+        @include tablet {
+          font-size: 20px;
+          width: 125px;
+        }
+      }
+
+      .rowTitle {
+        @include onlyTabletAndMore();
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 140%;
+        color: $color_light_gray;
+        width: 200px;
+
+        @include desktop {
+          width: auto;
+        }
+      }
+
+
+    }
+
+    .right {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 140%;
+      text-align: right;
+      width: 95px;
+      color: $color_red;
+
+      @include tablet {
+        font-size: 16px;
+        width: 127px;
+      }
+
+      @include desktop {
+        width: auto;
+      }
+
+      &_active {
+        color: $color_green;
+      }
+    }
+
+    svg {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: 0.3s;
+
+      @include tablet {
+        right: 17px;
+      }
+    }
+
+    &_open {
+      svg {
+        transform: translateY(-50%) rotate(-180deg);
+      }
+    }
+
+  }
+
+  .dropDown {
+    position: relative;
+    //border-top: 1px solid $color_light_gray;
+    padding: 14px 12px;
+
+    &::after {
+      display: block;
+      content: "";
+      position: absolute;
+      top: 0;
+      height: 1px;
+      background: $color_light_gray;
+      left: 12px;
+      right: 12px;
+
+      @include tablet {
+        left: 17px;
+        right: 17px;
+      }
+
+      @include desktop {
+        left: 26px;
+        right: 50px;
+      }
+
+    }
+
+
+    @include tablet {
+      padding: 13px 17px 15px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    @include desktop {
+      padding: 15px 50px 24px 26px;
+    }
+
+    .dropDownTitle {
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 140%;
+      color: $color_white;
+
+      @include tablet {
+        font-size: 16px;
+      }
+
+      @include desktop {
+        font-size: 20px;
+      }
+
+
+    }
+
+    .dropDownContent {
+      margin-top: 9px;
+
+      @include tablet {
+        margin-top: 20px;
+      }
+
+      @include desktop {
+        margin-top: 14px;
+      }
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+        }
+
+
+    .dropDownLeft {
+
+      @include tablet {
+        width: 198px;
+      }
+
+      @include desktop {
+        width: 363px;
+      }
+
+      .row {
+        &:not(:first-child) {
+          margin-top: 7px;
+
+          @include tablet {
+            margin-top: 18px;
+          }
+
+          @include desktop {
+            margin-top: 9px;
+          }
+        }
+      }
+
+      .label {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 140%;
+        color: $color_light_gray;
+
+        @include desktop {
+          font-size: 20px;
+        }
+      }
+
+      .value {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 140%;
+        text-align: right;
+        color: $color_white;
+
+        @include desktop {
+          font-size: 20px;
+        }
+      }
+
+    }
+
+    .dropDownRight {
+      margin-top: 13px;
+
+      @include tablet {
+        margin-top: 0;
+        width: 277px;
+      }
+
+      .dropDownTitle {
+        text-align: right;
+      }
+
+      .row {
+        &:not(:first-child) {
+          margin-top: 6px;
+        }
+      }
+
+      .label {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 140%;
+        color: $color_light_gray;
+
+        @include tablet {
+          font-size: 14px;
+        }
+      }
+
+      .value {
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 140%;
+        text-align: right;
+        color: $color_white;
+
+        @include tablet {
+          font-size: 14px;
+        }
+      }
+
+    }
+
+  }
+
+}

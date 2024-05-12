@@ -1,0 +1,149 @@
+@import "../../../assets/styles/app";
+
+.aboutUs {
+  @include container;
+  @include pagePaddings;
+  overflow: hidden;
+
+  .inner {
+    @include inner;
+
+    .title {
+      @include h2;
+    }
+
+    .items {
+      margin-top: 15px;
+
+      @include tablet {
+        margin-top: 32px;
+      }
+
+      @include desktop {
+        margin-top: 40px;
+      }
+
+      .item {
+
+        @include desktop {
+          display: flex;
+        }
+
+        &:nth-child(1), &:nth-child(3) {
+          flex-direction: row-reverse;
+        }
+
+        &:not(:first-child) {
+          margin-top: 24px;
+
+          @include tablet {
+            margin-top: 32px;
+          }
+
+          @include desktop {
+            margin-top: 60px;
+          }
+        }
+
+        .imgWrapper {
+          position: relative;
+          //border: 1px solid #FFF;
+          height: 300px;
+          width: 100%;
+
+          @include tablet {
+            height: 400px;
+          }
+
+          .cloudWrapper {
+            position: absolute;
+            height: 300px;
+            width: 900px;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+
+           @include tablet {
+             height: 400px;
+             width: 1200px;
+           }
+
+           @include desktop {
+             transform: none;
+           }
+          }
+
+          .img {
+            display: block;
+            position: absolute;
+            top: 0;
+            height: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+
+            @include desktop {
+              //transform: none;
+            }
+          }
+
+          @include desktop {
+            flex-grow: 1;
+          }
+        }
+
+        &:nth-child(1), &:nth-child(3) {
+          .imgWrapper {
+            .cloudWrapper {
+              @include desktop {
+                left: -25%;
+              }
+            }
+          }
+        }
+
+        &:nth-child(2) {
+          .imgWrapper {
+            .cloudWrapper {
+              @include desktop {
+                right: -25%;
+                left: auto;
+              }
+            }
+          }
+        }
+
+        .content {
+
+          @include desktop {
+            width: 544px;
+            flex-shrink: 0;
+          }
+
+          .label {
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 140%;
+            color: $color_white;
+
+            @include desktop {
+              font-size: 30px;
+            }
+          }
+
+          .texts {
+            margin-top: 16px;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 140%;
+            color: $color_white;
+          }
+
+
+        }
+
+
+      }
+    }
+
+  }
+}

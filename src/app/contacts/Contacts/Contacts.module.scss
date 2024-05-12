@@ -1,0 +1,208 @@
+@import "../../../assets/styles/app";
+
+.contacts {
+  @include container;
+  padding-top: 54px;
+  padding-bottom: 18px;
+
+  @include tablet {
+    padding-top: 90px;
+    padding-bottom: 24px;
+  }
+
+  @include desktop {
+    padding-top: 120px;
+    padding-bottom: 82px;
+  }
+
+  .inner {
+    @include inner;
+    position: relative;
+
+    .h2 {
+      @include h2;
+    }
+
+    .content {
+      margin-top: 18px;
+
+      @include tablet {
+        margin-top: 36px;
+      }
+
+      @include desktop {
+        margin-top: 56px;
+      }
+
+      .top {
+
+        @include tablet {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        @include desktop {
+          align-items: flex-start;
+        }
+
+        .contactsData {
+          .row {
+            display: flex;
+            align-items: center;
+
+            &:not(:first-child) {
+              margin-top: 18px;
+
+              @include tablet {
+                margin-top: 32px;
+              }
+            }
+
+            svg {
+              width: 24px;
+              height: 24px;
+            }
+
+            .text {
+              font-weight: 700;
+              font-size: 14px;
+              line-height: 140%;
+              color: $color_white;
+              margin-left: 14px;
+
+              @include tablet {
+                font-size: 16px;
+              }
+
+            }
+          }
+        }
+
+        .mapWrapper {
+          margin-top: 20px;
+          border-radius: 10px;
+          height: 254px;
+          overflow: hidden;
+
+          @include tablet {
+            margin-top: 0;
+            width: 356px;
+            height: 220px;
+          }
+
+          @include desktop {
+            width: 544px;
+            height: 602px;
+          }
+
+          img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+
+      .formWrapper {
+        margin-top: 20px;
+
+        @include tablet {
+          margin-top: 36px;
+        }
+
+        @include desktop {
+          margin-top: 0;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 544px;
+        }
+
+        .formTitle {
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 140%;
+          text-align: center;
+          color: $color_white;
+
+          @include tablet {
+            font-size: 24px;
+          }
+
+          @include desktop {
+            text-align: left;
+          }
+        }
+
+        .form {
+          margin-top: 20px;
+
+          @include tablet {
+            margin-top: 30px;
+          }
+
+          .fieldRow {
+            display: flex;
+            //align-items: center;
+            justify-content: space-between;
+
+            &:not(:first-child) {
+              margin-top: 18px;
+            }
+
+            .fieldRowLabel {
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 140%;
+              color: $color_white;
+
+              span {
+                color: $color_cyan;
+              }
+            }
+
+            .field {
+              margin-left: 5px;
+              width: 60vw;
+
+              @include tablet {
+                width: 76vw;
+              }
+
+              @include desktop {
+                width: 400px;
+              }
+            }
+
+            .textarea {
+              height: 130px;
+            }
+
+
+          }
+
+          .submitBtn {
+            margin-top: 20px;
+
+            @include tablet {
+              width: 232px;
+              margin-left: auto;
+            }
+
+            @include desktop {
+              width: 400px;
+            }
+
+          }
+
+        }
+
+
+      }
+    }
+
+  }
+}
+

@@ -1,0 +1,124 @@
+@import "../../../assets/styles/app";
+
+.lexiconPopup {
+  @include onlyMobile(flex);
+  @include centerColumn;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(20px);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 36px 16px 0;
+
+  .card {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    backdrop-filter: blur(34px);
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
+    padding: 52px 24px 20px;
+    background: rgb(45, 40, 90);
+    max-height: calc(100vh - 72px);
+    overflow: auto;
+
+    .closeBtn {
+      @include button;
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      width: 12px;
+      height: 12px;
+
+      svg {
+        width: 12px;
+        height: 12px;
+
+        path {
+          stroke: #FFF;
+        }
+      }
+
+    }
+
+    .groupInfo_title {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 140%;
+      color: $color_white;
+
+      span {
+        background: orange;
+        color: #000;
+      }
+
+      @include tablet {
+        font-size: 24px;
+      }
+
+      @include desktop {
+        font-size: 30px;
+      }
+    }
+
+    .groupInfo_content {
+      margin-top: 9px;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 140%;
+      color: $color_white;
+
+      span {
+        background: orange;
+        color: #000;
+      }
+
+      @include desktop {
+        margin-top: 18px;
+        font-size: 16px;
+      }
+    }
+
+    .groupSubtitles {
+      margin-top: 24px;
+
+      .groupSubtitle {
+        &:not(:first-child) {
+          margin-top: 16px;
+        }
+
+        .groupSubtitle_subtitle {
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 140%;
+          color: $color_white;
+
+          span {
+            background: orange;
+            color: #000;
+          }
+
+          @include tablet {
+            font-size: 20px;
+          }
+        }
+
+        .groupSubtitle_content {
+          margin-top: 4px;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 140%;
+          color: $color_white;
+
+          @include desktop {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+
+
+  }
+}

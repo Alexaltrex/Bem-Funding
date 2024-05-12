@@ -1,0 +1,42 @@
+@import "../assets/styles/app";
+
+.layout {
+  position: relative;
+  background: #000;
+  overflow: hidden;
+
+  .header_blur {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    width: 1920px;
+    height: auto;
+
+    @media all and (min-width: 1920px) {
+      width: 100%;
+    }
+  }
+
+  .footer_blur {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 1920px;
+    height: auto;
+
+    @media all and (min-width: 1920px) {
+      width: 100%;
+    }
+  }
+
+
+
+  main {
+    position: relative;
+    z-index: 10;
+  }
+}

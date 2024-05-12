@@ -1,0 +1,189 @@
+@import "../../../assets/styles/app";
+
+.beyondThePeak {
+  @include container;
+  position: relative;
+  padding-top: 68px;
+  padding-bottom: 300px;
+  background-image: url(../../../../public/png/main_page/empowering.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  overflow: hidden;
+
+  @include tablet {
+    padding-top: 126px;
+    padding-bottom: 204px;
+  }
+
+  @include desktop {
+    padding-top: 165px;
+    padding-bottom: 360px;
+  }
+
+  .cloudMainWrapper {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-30%);
+
+    .cloudWrapper {
+      height: 150px;
+      width: 300px;
+
+      @include tablet {
+        height: 200px;
+        width: 400px;
+      }
+
+      @include desktop {
+        height: 300px;
+        width: 2.0 * 300px;
+      }
+
+      &:not(:first-child) {
+        margin-left: -10%;
+      }
+    }
+
+  }
+
+
+  .inner {
+    @include inner;
+    position: relative;
+    z-index: 2;
+
+    .pre {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 140%;
+      color: $color_light_gray;
+    }
+
+    .title {
+      margin-top: 12px;
+
+      @include tablet {
+        margin-top: 24px;
+      }
+
+      p {
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 140%;
+        color: $color_white;
+
+        @include tablet {
+          font-size: 40px;
+        }
+
+        &:nth-child(2) {
+          @include text-gradient;
+        }
+      }
+    }
+
+    .descriptions {
+      margin-top: 12px;
+
+      @include tablet {
+        margin-top: 14px;
+        width: 453px;
+      }
+
+      @include desktop {
+        margin-top: 24px;
+      }
+
+      .description {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 140%;
+        color: $color_white;
+
+        @include tablet {
+          font-size: 14px;
+        }
+
+        &:not(:first-child) {
+          margin-top: 1.4 * 12px;
+
+          @include tablet {
+            margin-top: 1.4 * 14px;
+          }
+        }
+      }
+    }
+
+
+
+    .btns {
+      display: flex;
+      margin-top: 12px;
+
+      @include tablet {
+        margin-top: 24px;
+      }
+
+      .btn {
+        width: 152px;
+
+        @include tablet {
+          width: 217px;
+        }
+      }
+    }
+
+    .join {
+      margin-top: 12px;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 140%;
+      color: $color_white;
+      text-align: center;
+
+      @include tablet {
+        margin-top: 24px;
+        text-align: left;
+      }
+    }
+
+    .socialLinks {
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+
+      @include tablet {
+        margin-top: 24px;
+        justify-content: flex-start;
+      }
+
+      a {
+        width: 24px;
+        height: 24px;
+
+        &:not(:first-child) {
+          margin-left: 26px;
+        }
+
+        svg {
+          transition: 0.3s;
+        }
+
+        &:hover {
+          @include desktop {
+            svg {
+              opacity: 0.5;
+            }
+          }
+
+        }
+      }
+    }
+
+
+  }
+}

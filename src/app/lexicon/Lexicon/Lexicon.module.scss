@@ -1,0 +1,482 @@
+@import "../../../assets/styles/app";
+
+.lexicon {
+  @include container;
+  @include pagePaddings;
+  min-height: 100vh;
+
+  .inner {
+    @include inner;
+
+    .title {
+      @include h2;
+    }
+
+    .formWrapper {
+      position: relative;
+      margin-top: 10px;
+
+      @include tablet {
+        margin-top: 16px;
+        width: 640px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      @include desktop {
+        margin-top: 24px;
+        width: 930px;
+      }
+
+      .searchForm {
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 10px;
+        box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        padding-left: 18px;
+        padding-right: 11px;
+
+        input {
+          flex-grow: 1;
+          border: none;
+          background: none;
+          outline: none;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 140%;
+          color: $color_white;
+
+
+          &::placeholder {
+            color: $color_light_gray;
+            opacity: 0.5;
+          }
+        }
+
+        button {
+          @include button;
+          width: 24px;
+          height: 24px;
+          margin-left: 8px;
+
+          svg {
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
+
+      .dropdownWrapper {
+        position: absolute;
+        z-index: 9999;
+        top: calc(100% + 4px);
+        left: 0;
+        right: 0;
+        max-height: 200px;
+        background: rgb(184, 174, 255);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+
+        button {
+          @include button;
+          display: block;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 140%;
+          color: $color_black;
+          padding: 6px 12px;
+          transition: 0.3s;
+          text-align: left;
+
+          &:hover {
+            background: rgb(135, 119, 255);
+          }
+        }
+
+      }
+
+    }
+
+
+    .alphabet {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .letterBtn {
+        @include button;
+        border: 1px solid rgba(146, 148, 165, 0.5);
+        border-radius: 10px;
+        padding: 2px 10px;
+        background: rgba(0, 0, 0, 0.5);
+        transition: 0.2s;
+        margin: 0 3px 3px 0;
+
+        @include tablet {
+          margin: 0 10px 10px 0;
+        }
+
+        span {font-family: var(--font-family);
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 140%;
+          text-align: center;
+          color: $color_light_gray;
+          transition: 0.2s;
+
+          @include tablet {
+            font-size: 14px;
+          }
+        }
+
+        &_selected {
+          border-color: $color_cyan;
+
+          span {
+            color: $color_white
+          }
+        }
+      }
+
+    }
+
+    .contentWrapper {
+      margin-top: 13px;
+
+      @include tablet {
+        margin-top: 22px;
+      }
+
+      .content {
+        display: flex;
+
+        .contentCard {
+          flex-shrink: 0;
+          border-radius: 15px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          overflow: hidden;
+          width: 100%;
+
+          @include tablet {
+            width: 30vw;
+          }
+
+          @include desktop {
+            width: 352px;
+          }
+
+          .top {
+            padding: 10px 16px;
+            background: linear-gradient(-90deg, rgba(117, 97, 255, 0.65) 21.463996172%, rgba(0, 102, 255, 0.2) 84.1167390347%, rgba(0, 0, 0, 0) 100%);
+
+            .topTitle {
+              font-weight: 700;
+              font-size: 14px;
+              line-height: 140%;
+              color: $color_white;
+
+              @include desktop {
+                font-size: 16px;
+              }
+            }
+
+          }
+
+          .bottom {
+            padding: 16px;
+
+            .title {
+              cursor: pointer;
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 140%;
+              color: $color_light_gray;
+              text-align: left;
+              user-select: none;
+
+              span {
+                background: orange;
+                color: #000;
+              }
+
+              @include tablet {
+                font-size: 16px;
+              }
+
+              &_selected {
+                color: $color_white;
+              }
+
+              &:not(:first-child) {
+                margin-top: 5px;
+
+                @include tablet {
+                  margin-top: 14px;
+                }
+              }
+
+
+            }
+          }
+        }
+
+        .groupInfo {
+          @include onlyTabletAndMore();
+          margin-left: 16px;
+
+          @include desktop {
+            margin-left: 32px;
+          }
+
+          .groupInfo_title {
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 140%;
+            color: $color_white;
+
+            span {
+              background: orange;
+              color: #000;
+            }
+
+            @include tablet {
+              font-size: 24px;
+            }
+
+            @include desktop {
+              font-size: 30px;
+            }
+          }
+
+          .groupInfo_content {
+            margin-top: 9px;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 140%;
+            color: $color_white;
+
+            @include desktop {
+              margin-top: 18px;
+              font-size: 16px;
+            }
+          }
+
+          .groupSubtitles {
+            margin-top: 24px;
+
+            .groupSubtitle {
+
+              &:not(:first-child) {
+                margin-top: 16px;
+              }
+
+              &_subtitle {
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 140%;
+                color: $color_white;
+
+                @include tablet {
+                  font-size: 20px;
+                }
+              }
+
+              &_content {
+                margin-top: 4px;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 140%;
+                color: $color_white;
+
+                @include desktop {
+                  font-size: 16px;
+                }
+              }
+            }
+          }
+
+
+
+
+        }
+      }
+
+      .noResult {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 140%;
+        text-align: center;
+        color: $color_white;
+
+        @include desktop {
+          font-size: 16px;
+        }
+      }
+
+      .group {
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        overflow: hidden;
+
+        &:not(:first-child) {
+          margin-top: 12px;
+
+          @include tablet {
+            margin-top: 24px;
+          }
+        }
+
+        .top {
+          padding: 10px 16px;
+          background: linear-gradient(-90deg, rgba(117, 97, 255, 0.65) 21.463996172%, rgba(0, 102, 255, 0.2) 84.1167390347%, rgba(0, 0, 0, 0) 100%);
+
+          .groupTitle {
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 140%;
+            color: $color_white;
+
+            @include desktop {
+              font-size: 16px;
+            }
+
+            span {
+              background: orange;
+              color: #000;
+            }
+          }
+
+          .groupContent {
+            margin-top: 8px;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 140%;
+            color: $color_white;
+
+            @include desktop {
+              margin-top: 12px;
+              font-size: 14px;
+            }
+
+            span {
+              background: orange;
+              color: #000;
+            }
+          }
+
+        }
+
+        .bottom {
+          padding: 16px 12px;
+          display: flex;
+
+          .subtitles {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            flex-grow: 1;
+
+            @include tablet {
+              border-right: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .subtitle {
+              cursor: pointer;
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 140%;
+              color: $color_light_gray;
+              text-align: left;
+              user-select: none;
+
+              span {
+                background: orange;
+                color: #000;
+              }
+
+              @include tablet {
+                font-size: 16px;
+              }
+
+              &_selected {
+                  color: $color_white;
+              }
+
+              &:not(:first-child) {
+                margin-top: 5px;
+
+                @include tablet {
+                  margin-top: 14px;
+                }
+              }
+
+
+            }
+
+          }
+
+          .subtitleContent {
+            @include onlyTabletAndMore();
+            flex-shrink: 0;
+            width: 480px;
+            margin-left: 16px;
+
+            @include desktop {
+              width: 736px;
+              margin-left: 32px;
+            }
+
+            .subtitleContent_title {
+              font-weight: 700;
+              font-size: 20px;
+              line-height: 140%;
+              color: $color_white;
+
+              span {
+                background: orange;
+                color: #000;
+              }
+
+              @include tablet {
+                font-size: 24px;
+              }
+
+              @include desktop {
+                font-size: 30px;
+              }
+            }
+
+            .subtitleContent_content {
+              margin-top: 9px;
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 140%;
+              color: $color_white;
+
+              span {
+                background: orange;
+                color: #000;
+              }
+
+              @include desktop {
+                margin-top: 18px;
+                font-size: 16px;
+              }
+            }
+          }
+
+        }
+
+
+      }
+
+    }
+
+  }
+}

@@ -1,0 +1,460 @@
+@import "../../../assets/styles/app";
+
+.chooseYourTradingStyle {
+  padding-top: 46px;
+
+  @include tablet {
+    padding-top: 86px;
+  }
+
+  @include desktop {
+    padding-top: 60px;
+  }
+
+  .topWrapper {
+    @include container;
+
+    .inner {
+      @include inner;
+
+      .title {
+        @include h2;
+        width: 288px;
+
+        @include tablet {
+          width: 464px;
+        }
+
+        @include desktop {
+          width: 538px;
+        }
+
+        span {
+          &:nth-child(2) {
+            @include text-gradient;
+          }
+        }
+      }
+
+      .panel {
+        margin-top: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 15px;
+        backdrop-filter: blur(34px);
+        box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.05);
+        padding: 24px 12px;
+
+        @include tablet {
+          padding: 24px;
+          margin-top: 20px;
+        }
+
+        @include desktop {
+          margin-top: 32px;
+        }
+
+        .stepsSection {
+
+          @include tablet {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .stepsTop {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            @include tablet {
+              align-items: flex-start;
+              margin-bottom: 16px;
+            }
+
+            .panelTitle {
+              font-weight: 700;
+              font-size: 24px;
+              line-height: 140%;
+              text-align: center;
+              color: $color_white;
+
+              @include tablet {
+                text-align: left;
+              }
+            }
+
+            .chooseLabel {
+              margin-top: 10px;
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 140%;
+              color: $color_light_gray;
+
+              @include tablet {
+                margin-top: 14px;
+              }
+            }
+
+            .tradingStyleBtns {
+              margin-top: 15px;
+              display: flex;
+              justify-content: center;
+
+              @include tablet {
+                margin-top: 20px;
+                justify-content: flex-start;
+              }
+
+              .tradingStyleBtn {
+                @include button;
+
+                span {
+                  font-weight: 700;
+                  font-size: 24px;
+                  line-height: 140%;
+                  text-align: center;
+                  color: $color_light_gray;
+                  transition: 0.3s;
+                }
+
+                &:nth-child(2) {
+                  margin-left: 50px;
+                }
+
+                &_selected {
+                  border-bottom: 2px solid $color_purple;
+
+                  span {
+                    color: $color_white;
+                  }
+                }
+              }
+            }
+
+          }
+
+          .stepsBottom {
+            margin-top: 16px;
+
+            @include tablet {
+              margin-top: 0;
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-end;
+            }
+
+            .feeLabel {
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 140%;
+              color: $color_light_gray;
+              text-align: center;
+            }
+
+            .fee {
+              @include text-gradient;
+              font-weight: 700;
+              font-size: 54px;
+              line-height: 140%;
+              text-align: center;
+
+            }
+          }
+        }
+
+        .accountSection {
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          padding: 14px 0;
+
+          @include tablet {
+            margin-top: 10px;
+            padding: 27px 0 40px;
+
+          }
+
+          .accountLabel {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 140%;
+            color: $color_light_gray;
+          }
+
+          .accountContent {
+            margin-top: 40px;
+
+            @include desktop {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            }
+
+            .sliderWrapper {
+              border: 1px solid rgba(255, 255, 255, 0.07);
+              padding: 5px 0;
+              border-radius: 2px;
+
+              @include desktop {
+                width: 680px;
+              }
+            }
+
+            .startBtn {
+              width: 264px;
+              margin: 40px auto 0;
+
+              @include tablet {
+                width: 296px;
+                margin: 48px auto 0;
+              }
+
+              @include desktop {
+                margin: 0;
+              }
+            }
+
+          }
+
+        }
+
+        .bottomSection {
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          padding-top: 14px;
+
+          @include tablet {
+            padding-top: 27px;
+          }
+
+          .bottomLabel {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 140%;
+            color: $color_light_gray;
+
+            @include tablet {
+              font-size: 16px;
+            }
+          }
+        }
+
+      }
+
+    }
+  }
+
+  .swiper {
+    @include onlyTabletAndLess();
+    margin-top: 20px;
+
+    @include tablet {
+      margin-top: 34px;
+    }
+
+    .slide {
+      width: 92vw !important;
+
+      @include tablet {
+        width: 346px !important;
+      }
+    }
+  }
+
+  .navigator {
+    @include onlyTabletAndLess();
+    position: relative;
+    margin-top: 20px;
+    height: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    margin-left: 15vw;
+    margin-right: 15vw;
+
+    @include tablet {
+      width: 222px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .runner {
+      height: 100%;
+      width: calc(100% / 3);
+      background: $color_purple;
+      border-radius: 999px;
+      position: absolute;
+      top: 0;
+      transition: 0.3s;
+    }
+  }
+
+
+  .cardsDesktop {
+    @include container;
+    margin-top: 34px;
+
+    .inner {
+      @include inner;
+      @include onlyDesktop(grid);
+      grid-template-columns: repeat(3, 1fr);
+      grid-column-gap: 32px;
+    }
+
+  }
+
+}
+
+.card {
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(34px);
+
+  .cardTop {
+    margin: -3px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 16px 16px;
+    backdrop-filter: blur(34px);
+    background: #000;
+
+    @include tablet {
+      padding: 16px 18px;
+    }
+
+    .titleWrapper {
+      display: flex;
+      justify-content: space-between;
+
+      p {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 140%;
+        color: $color_white;
+
+        @include tablet {
+          font-size: 20px;
+        }
+      }
+
+      img {
+        display: block;
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    .itemsBig {
+      margin-top: 12px;
+
+      @include tablet {
+        margin-top: 22px;
+      }
+
+      .itemBig {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &:not(:first-child) {
+          margin-top: 18px;
+        }
+
+        &:nth-child(1) .itemBigValue {
+          color: $color_green;
+        }
+
+        .itemBigLeft {
+          display: flex;
+          align-items: center;
+
+          svg {
+            width: 16px;
+            height: 16px;
+          }
+
+          .label {
+            font-family: var(--font-family);
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 140%;
+            color: $color_white;
+            margin-left: 8px;
+          }
+        }
+
+        .itemBigValue {
+          font-weight: 700;
+          font-size: 14px;
+          line-height: 140%;
+          text-align: right;
+          color: $color_white;
+        }
+      }
+    }
+
+  }
+
+  .cardBottom {
+    padding: 12px 12px 16px;
+
+    @include tablet {
+      padding: 24px 16px 16px;
+    }
+
+    .itemSmall {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &:not(:first-child) {
+        margin-top: 18px;
+      }
+
+      .itemSmallLeft {
+        display: flex;
+        align-items: center;
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+
+        .label {
+          font-family: var(--font-family);
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 140%;
+          color: $color_light_gray;
+          margin-left: 8px;
+        }
+      }
+
+      .itemSmallValue {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 140%;
+        text-align: right;
+        color: $color_light_gray;
+
+        @include tablet {
+          font-size: 16px;
+        }
+      }
+
+      &:first-child .itemSmallValue,
+      &:last-child .itemSmallValue {
+        font-size: 20px;
+      }
+
+      &:first-child .itemSmallValue {
+        color: $color_white;
+      }
+
+      &:last-child .itemSmallValue {
+        color: $color_purple;
+      }
+
+
+    }
+  }
+
+
+}
+
