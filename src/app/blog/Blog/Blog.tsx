@@ -75,6 +75,7 @@ export const Blog = observer(() => {
                                 {
                                     cards.slice(0, 4).map((card, key) => (
                                         <Card key={key}
+                                              lang={lang}
                                               card={card}
                                               className={style.card}
                                         />
@@ -174,15 +175,9 @@ export const Blog = observer(() => {
                                 }
                             </div>
                         </div>
-
                     </div>
-
                 </div>
-
-
             </div>
-
-
         </div>
     )
 })
