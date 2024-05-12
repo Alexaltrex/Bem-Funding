@@ -1,0 +1,479 @@
+@import "../../../assets/styles/app";
+
+.destination {
+  padding-top: 46px;
+
+  @include tablet {
+    padding-top: 86px;
+  }
+
+  @include desktop {
+    padding-top: 60px;
+  }
+
+  .topWrapper {
+    @include container;
+
+    .inner {
+      @include inner;
+
+      .title {
+        @include h2;
+        width: 288px;
+
+        @include tablet {
+          width: 480px;
+        }
+
+        @include desktop {
+          width: 100%;
+        }
+
+        span {
+          &:nth-child(2) {
+            @include text-gradient;
+          }
+        }
+      }
+
+      .selectWrapper {
+        margin-top: 20px;
+
+        @include tablet {
+          margin-top: 30px;
+        }
+
+        @include desktop {
+          margin-top: 40px;
+        }
+
+        @include desktop {
+          display: flex;
+          //justify-content: space-between;
+        }
+
+        .selectWrapperTop {
+          @include desktop {
+            flex-grow: 1;
+          }
+        }
+
+        .label {
+          font-weight: 700;
+          font-size: 20px;
+          line-height: 140%;
+          color: $color_white;
+          text-align: center;
+
+          @include desktop {
+            text-align: left;
+          }
+
+          &_2 {
+            margin-top: 34px;
+          }
+        }
+
+        .selectStep {
+          margin-top: 16px;
+          border: 1px solid rgba(255, 255, 255, 0.07);
+          border-radius: 15px;
+          padding: 18px 15px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .btn {
+            @include button;
+            border-radius: 15px;
+            border: 1px solid transparent;
+            transition: 0.3s;
+            padding: 10px 24px;
+
+            @include tablet {
+              padding: 12px 90px;
+            }
+
+            span {
+              font-weight: 700;
+              font-size: 20px;
+              line-height: 140%;
+              text-align: center;
+              color: $color_white;
+              opacity: 0.3;
+              transition: 0.3s;
+            }
+
+            &_selected {
+              border: 1px solid $color_purple;
+              border-radius: 15px;
+              background: linear-gradient(-90deg, rgba(137,121,255,0.23), rgba(0,0,0,0));
+
+              span {
+                opacity: 1;
+              }
+            }
+          }
+        }
+
+        .selectSize {
+          border: 1px solid rgba(255, 255, 255, 0.07);
+          border-radius: 15px;
+          margin-top: 12px;
+          padding: 6px 24px;
+          display: grid;
+          grid-template-rows: repeat(2, 1fr);
+          grid-template-columns: repeat(3, 1fr);
+
+          @include tablet {
+            margin-top: 16px;
+            padding: 18px 24px;
+            grid-template-rows: repeat(1, 1fr);
+            grid-template-columns: repeat(6, 1fr);
+          }
+
+          .btn {
+            @include button;
+            border-radius: 15px;
+            border: 1px solid transparent;
+            transition: 0.3s;
+            padding: 12px 0;
+
+            span {
+              font-weight: 700;
+              font-size: 20px;
+              line-height: 140%;
+              text-align: center;
+              color: $color_white;
+              opacity: 0.3;
+              transition: 0.3s;
+            }
+
+            &_selected {
+              border: 1px solid $color_purple;
+              background: linear-gradient(-90deg, rgba(137,121,255,0.23), rgba(0,0,0,0));
+
+              span {
+                opacity: 1;
+              }
+            }
+          }
+        }
+
+        .registrationWrapper {
+          margin-top: 30px;
+
+          @include tablet {
+            margin-top: 34px;
+          }
+
+          @include desktop {
+            margin-top: 0;
+            margin-left: 32px;
+          }
+
+          .card {
+            border-radius: 15px;
+            border: 1px solid $color_purple;
+            padding: 12px 14px 14px;
+            margin-top: 16px;
+            background: linear-gradient(-90deg, rgba(137,121,255,0.23), rgba(0,0,0,0));
+
+            @include tablet {
+              padding: 12px 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+
+            @include desktop {
+              padding: 35px 28px 28px;
+              width: 350px;
+              flex-direction: column;
+            }
+
+            .value {
+              @include text-gradient;
+              font-weight: 700;
+              font-size: 64px;
+              line-height: 140%;
+              text-align: center;
+
+              @include desktop {
+                font-size: 80px;
+              }
+            }
+
+            .btn {
+              width: 100%;
+              margin-top: 7px;
+
+              @include tablet {
+                width: auto;
+                margin-top: 0;
+                margin-left: 36px;
+              }
+
+              @include desktop {
+                width: 100%;
+                margin-top: 36px;
+                margin-left: 0;
+              }
+
+
+            }
+
+          }
+
+        }
+
+
+      }
+
+    }
+  }
+
+  .swiper {
+    @include onlyTabletAndLess();
+    margin-top: 20px;
+
+    @include tablet {
+      margin-top: 34px;
+    }
+
+    .slide {
+      width: 92vw!important;
+
+      @include tablet {
+        width: 352px!important;
+      }
+    }
+  }
+
+  .navigator {
+    @include onlyTabletAndLess();
+    position: relative;
+    margin-top: 20px;
+    height: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    margin-left: 15vw;
+    margin-right: 15vw;
+
+    @include tablet {
+      width: 222px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .runner {
+      height: 100%;
+      width: calc(100% / 3);
+      background: $color_purple;
+      border-radius: 999px;
+      position: absolute;
+      top: 0;
+      transition: 0.3s;
+    }
+  }
+
+
+  .cardsDesktop {
+    @include container;
+    margin-top: 34px;
+
+    .inner {
+      @include inner;
+      @include onlyDesktop(grid);
+      grid-template-columns: repeat(3, 1fr);
+      grid-column-gap: 32px;
+    }
+
+  }
+
+}
+
+.card {
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 15px;
+  padding: 12px 15px 18px;
+
+  @include tablet {
+    padding: 15px 18px 20px;
+  }
+
+  .titleWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 140%;
+      color: $color_white;
+
+      @include tablet {
+        font-size: 20px;
+      }
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+
+      @include tablet {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
+  .itemsBig {
+    margin-top: 18px;
+
+    @include tablet {
+      margin-top: 22px;
+    }
+
+    .itemBig {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &:not(:first-child) {
+        margin-top: 16px;
+
+        @include desktop {
+          margin-top: 19px;
+        }
+      }
+
+      .left {
+        display: flex;
+        align-items: center;
+
+        svg {
+          width: 14px;
+          height: 14px;
+
+          @include tablet {
+            width: 16px;
+            height: 16px;
+          }
+        }
+
+        p {
+          font-weight: 400;
+          font-size: 11px;
+          line-height: 140%;
+          color: $color_white;
+          margin-left: 7px;
+          max-width: 120px;
+
+          @include tablet {
+            font-size: 14px;
+            margin-left: 8px;
+            max-width: 142px;
+          }
+        }
+      }
+
+      .value {
+        font-weight: 700;
+        font-size: 11px;
+        line-height: 140%;
+        text-align: right;
+        color: $color_cyan;
+
+        @include tablet {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .description {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 11px 0;
+    margin-top: 14px;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 140%;
+    color: $color_white;
+
+    @include tablet {
+      margin-top: 16px;
+      padding: 13px 0;
+      font-size: 12px;
+    }
+  }
+
+  .itemsSmall {
+    margin-top: 13px;
+
+    @include tablet {
+      margin-top: 15px;
+    }
+
+    .itemSmall {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &:not(:first-child) {
+        margin-top: 14px;
+
+        @include desktop {
+          margin-top: 17px;
+        }
+      }
+
+      .left {
+        display: flex;
+        align-items: center;
+
+        svg {
+          width: 14px;
+          height: 14px;
+
+          @include tablet {
+            width: 16px;
+            height: 16px;
+          }
+        }
+
+        p {
+          font-weight: 400;
+          font-size: 10px;
+          line-height: 140%;
+          color: $color_white;
+          margin-left: 7px;
+          max-width: 120px;
+
+          @include tablet {
+            font-size: 12px;
+            margin-left: 8px;
+            max-width: 142px;
+          }
+        }
+      }
+
+      .value {
+        font-weight: 700;
+        font-size: 11px;
+        line-height: 140%;
+        text-align: right;
+        color: $color_cyan;
+
+        @include tablet {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+
+}
+
