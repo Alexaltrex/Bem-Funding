@@ -94,6 +94,7 @@ export const Leaderboard = observer(() => {
                                 </div>
 
                                 <div className={style.cardPrize}>
+                                    {/*@ts-ignore*/}
                                     {svgIcons[`trophy_${key}`]}
                                     <p className={style.prizeLabel}>{translate("Prize", lang)}</p>
 
