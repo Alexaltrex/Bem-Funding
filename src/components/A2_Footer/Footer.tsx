@@ -10,8 +10,10 @@ import {observer} from "mobx-react-lite";
 import {translate} from "../../const/lang";
 
 const footerLinks = [
+    // @ts-ignore
     ...links[0].subLinks,
     links[1],
+    // @ts-ignore
     ...links[2].subLinks,
     {
         label: "Privacy Policy",
