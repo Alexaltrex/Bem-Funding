@@ -30,16 +30,16 @@
     left: 50%;
     transform: translateX(-50%);
     height: 150px;
-    width: 6 * 150px;
+    width: 8 * 150px;
 
     @include tablet {
       height: 200px;
-      width: 6 * 200px;
+      width: 8 * 200px;
     }
 
     @include desktop {
       height: 300px;
-      width: 6 * 300px;
+      width: 8 * 300px;
     }
   }
 
