@@ -12,22 +12,75 @@ import {svgIcons} from "../../../assets/svgIcons";
 import {ButtonCustom, ButtonVariant} from "../../../components/_common/ButtonCustom/ButtonCustom";
 
 const titles = [
-    "Jobs",
-    "Available Now",
+    "We search for",
+    "talents",
 ]
+
+const generalCard = {
+    time: "Full time",
+    posted: "1 month ago",
+    description: "We invite a reliable and creative specialist to work. We promise interesting work and a friendly team.",
+    tags: [
+        "General",
+    ]
+}
 
 export const Careers = observer(() => {
     const {appStore: {lang, setCareer}} = useStore();
 
-    const count = 22;
 
     return (
         <div className={style.careers}>
             <div className={style.inner}>
 
                 <h2 className={clsx(style.title, montserrat.className)}>
-                    <span>{count} {translate(titles[0], lang)}</span><span> {translate(titles[1], lang)}</span>
+                    <span>{translate(titles[0], lang)}</span>
+                    <span> {translate(titles[1], lang)}</span>
                 </h2>
+
+               <div className={style.panel}>
+                   <div className={style.panelHeader}>
+                       <p className={montserrat.className}>
+                           {translate("General Purpose Application", lang)}
+                       </p>
+                   </div>
+                   <div className={style.panelBody}>
+
+                       <div className={style.info}>
+                           <div className={style.infoRow}>
+                               {svgIcons.watch_circle}
+                               <p>{generalCard.time}</p>
+                           </div>
+
+                           <div className={style.infoRow}>
+                               {svgIcons.watch_circle}
+                               <p>Posted {generalCard.posted}</p>
+                           </div>
+                       </div>
+
+                       <p className={style.description}>
+                           {generalCard.description}
+                       </p>
+
+                       <div className={style.tags}>
+                           {
+                               generalCard.tags.map((tag, key) => (
+                                   <p key={key}>
+                                       {tag}
+                                   </p>
+                               ))
+                           }
+                       </div>
+
+                       <ButtonCustom label={translate("Apply Now", lang)}
+                                     className={style.btn}
+                                     variant={ButtonVariant.blue}
+                                     //onClick={() => onClick()}
+                       />
+
+
+                   </div>
+               </div>
 
                 <div className={style.cardsMobile}>
                     {

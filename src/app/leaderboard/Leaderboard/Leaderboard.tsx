@@ -3,11 +3,10 @@
 import style from "./Leaderboard.module.scss";
 import {observer} from "mobx-react-lite";
 import {useStore} from "../../../store/useStore";
-import {LangEnum, translate} from "../../../const/lang";
-import {FC, useState} from "react";
+import {translate} from "../../../const/lang";
+import {useState} from "react";
 import {clsx} from "clsx";
 import {montserrat} from "../../../assets/fonts/fonts";
-import {Swiper as SwiperClass} from "swiper/types";
 import 'swiper/css';
 import {btns} from "./data";
 import {cardsNew} from "./data";

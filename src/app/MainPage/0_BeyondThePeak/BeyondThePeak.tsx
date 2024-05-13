@@ -27,15 +27,10 @@ export const BeyondThePeak = observer(() => {
     return (
         <div className={style.beyondThePeak}>
 
-            <div className={style.cloudMainWrapper}>
-                {
-                    [0, 1, 2, 3, 4].map((key) => (
-                        <div key={key} className={style.cloudWrapper}>
-                            <CloudComponent seed={key} speed={0.5}/>
-                        </div>
-                    ))
-                }
-
+            <div className={style.cloudWrapper}>
+                <div className={style.cloudWrapper}>
+                    <CloudComponent seed={1} speed={0.5} bound={32} segments={100}/>
+                </div>
             </div>
 
             <div className={style.inner}>
