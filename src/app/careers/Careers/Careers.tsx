@@ -16,7 +16,8 @@ const titles = [
     "talents",
 ]
 
-const generalCard = {
+const generalCard: ICarreer = {
+    title: "General Purpose Application",
     time: "Full time",
     posted: "1 month ago",
     description: "We invite a reliable and creative specialist to work. We promise interesting work and a friendly team.",
@@ -75,9 +76,8 @@ export const Careers = observer(() => {
                        <ButtonCustom label={translate("Apply Now", lang)}
                                      className={style.btn}
                                      variant={ButtonVariant.blue}
-                                     //onClick={() => onClick()}
+                                     onClick={() => setCareer(generalCard)}
                        />
-
 
                    </div>
                </div>

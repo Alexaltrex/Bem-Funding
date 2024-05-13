@@ -17,7 +17,8 @@ export const data: ICarreer[] = [
             "Figma",
             "PSD",
         ]
-    }, {
+    },
+    {
         title: "Figma Designer",
         time: "Full time",
         posted: "1 month ago",

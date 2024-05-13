@@ -26,6 +26,10 @@
       width: 430px;
     }
 
+    @include desktop {
+      width: 690px;
+    }
+
     .closeBtn {
       @include button;
       position: absolute;
@@ -95,8 +99,12 @@
           margin-left: 8px;
 
           @include tablet {
-            width: 241px;
+            width: 240px;
             margin-left: 0;
+          }
+
+          @include desktop {
+            width: 500px;
           }
 
         }

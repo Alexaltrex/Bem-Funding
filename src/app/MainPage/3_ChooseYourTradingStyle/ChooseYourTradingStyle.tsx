@@ -38,10 +38,6 @@ const marks = [
         label: '$50k',
     },
     {
-        value: 75,
-        label: '$75k',
-    },
-    {
         value: 100,
         label: '$100k',
     },

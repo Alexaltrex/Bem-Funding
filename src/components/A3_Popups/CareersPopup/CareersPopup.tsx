@@ -17,6 +17,8 @@ import {FieldText} from "../../_common/FieldText/FieldText";
 import {FieldTextarea} from "../../_common/FieldTextarea/FieldTextarea";
 import {ButtonCustom, ButtonVariant} from "../../_common/ButtonCustom/ButtonCustom";
 import Link from "next/link";
+import {useOutsideClick} from "../../../hooks/useOutsideClick";
+
 
 const title = "Start Your Career Today";
 const subTitle = "Please fill in your information and send it to the employer.";
@@ -24,6 +26,7 @@ const subTitle = "Please fill in your information and send it to the employer.";
 export interface IValues {
     fullName: string
     email: string
+    link: string
     contactNumber: string
     letter?: string
 }
@@ -31,11 +34,12 @@ export interface IValues {
 const initialValues: IValues = {
     fullName: "",
     email: "",
+    link: "",
     contactNumber: "",
     letter: "",
 }
 
-const validate = ({fullName, email, contactNumber}: IValues): FormikErrors<IValues> => {
+const validate = ({fullName, email, link, contactNumber}: IValues): FormikErrors<IValues> => {
     const errors: FormikErrors<IValues> = {};
 
     if (!fullName) {
@@ -47,6 +51,10 @@ const validate = ({fullName, email, contactNumber}: IValues): FormikErrors<IValu
     }
     if (!email) {
         errors.email = "Required"
+    }
+
+    if (!link) {
+        errors.link = "Required"
     }
 
     if (!contactNumber) {
@@ -96,6 +104,10 @@ export const CareersPopup = observer(() => {
         setFile(null);
     }
 
+    const ref = useRef<HTMLDivElement>(null!);
+
+    useOutsideClick(ref, () => setCareer(null))
+
 
     return (
         <div className={style.careersPopup}
@@ -103,7 +115,9 @@ export const CareersPopup = observer(() => {
         >
             {
                 career && (
-                    <div className={style.card}>
+                    <div className={style.card}
+                         ref={ref}
+                    >
 
                         <Formik initialValues={initialValues}
                                 onSubmit={onSubmit}
@@ -129,7 +143,7 @@ export const CareersPopup = observer(() => {
                                     <div className={style.rows}>
                                         <div className={style.row}>
                                             <p className={style.rowLabel}>
-                                                Full name<span>*</span>
+                                                {translate("Full name", lang)}<span>*</span>
                                             </p>
                                             <FieldText name="fullName"
                                                        className={style.field}
@@ -151,7 +165,19 @@ export const CareersPopup = observer(() => {
                                     <div className={style.rows}>
                                         <div className={style.row}>
                                             <p className={style.rowLabel}>
-                                                Contact number<span>*</span>
+                                                linkedin/github link<span>*</span>
+                                            </p>
+                                            <FieldText name="link"
+                                                       className={style.field}
+                                            />
+                                        </div>
+                                    </div>
+
+
+                                    <div className={style.rows}>
+                                        <div className={style.row}>
+                                            <p className={style.rowLabel}>
+                                                {translate("Contact number", lang)}<span>*</span>
                                             </p>
                                             <FieldText name="contactNumber"
                                                        className={style.field}
@@ -162,18 +188,18 @@ export const CareersPopup = observer(() => {
                                     <div className={style.rows}>
                                         <div className={style.row}>
                                             <p className={style.rowLabel}>
-                                                Cover letter<span>*</span>
+                                                {translate("Message", lang)}<span>*</span>
                                             </p>
                                             <FieldTextarea name="letter"
                                                            className={style.field}
-                                                           placeholder="Write here"
+                                                           placeholder={translate("Write here", lang)}
                                             />
                                         </div>
                                     </div>
 
                                     <div className={style.uploadWrapper}>
                                         <p className={style.label}>
-                                            Resume
+                                            {translate("Resume", lang)}
                                         </p>
 
                                         <div className={style.right}>
@@ -193,14 +219,14 @@ export const CareersPopup = observer(() => {
                                                 {svgIcons.file_attachment}
                                             </label>
                                             <p className={style.uploadDescription}>
-                                                Upload your resume file <span>.pdf .doc .docx</span> (max 2mb)
+                                                {translate("Upload your resume file", lang)} <span>.pdf .doc .docx</span> {translate("(max 2mb)", lang)}
                                             </p>
                                         </div>
                                     </div>
 
-                                    <ButtonCustom label="Submit"
+                                    <ButtonCustom label={translate("Submit", lang)}
                                                   className={style.submitBtn}
-                                        // @ts-ignore
+                                                    // @ts-ignore
                                                   type="submit"
                                                   variant={ButtonVariant.blue}
                                     />
@@ -212,13 +238,9 @@ export const CareersPopup = observer(() => {
                                         {translate("Contact Us?", lang)}
                                     </Link>
                                     </p>
-
-
                                 </>
                             )}
                         </Formik>
-
-
                     </div>
                 )
             }
