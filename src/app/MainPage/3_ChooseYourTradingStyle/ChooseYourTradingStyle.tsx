@@ -12,6 +12,7 @@ import {Swiper as SwiperClass} from "swiper/types";
 import {Swiper, SwiperSlide} from "swiper/react";
 import Slider from '@mui/material/Slider';
 import {cardsNew, ICardNew} from "./cardsNew";
+import {Tooltip} from "@mui/material";
 
 const titles = [
     "Choose your trading style and",
@@ -48,7 +49,7 @@ export const ChooseYourTradingStyle = observer(() => {
 
     const [tradingStyle, setTradingStyle] = useState("Normal")
 
-    const [value, setValue] = useState<number>(1);
+    const [value, setValue] = useState<number>(0);
     const handleChange = (event: Event, newValue: number | number[]) => {
         setValue(newValue as number);
     };
@@ -116,16 +117,36 @@ export const ChooseYourTradingStyle = observer(() => {
 
                             <div className={style.accountContent}>
                                 <div className={style.sliderWrapper}>
-                                    <Slider value={value}
-                                            onChange={handleChange}
-                                            min={-0.3}
-                                            max={3.3}
-                                            step={1}
-                                            marks={marks}
-                                            //valueLabelDisplay="on"
-                                            valueLabelFormat={(x) => `$${value}k`}
-                                            sx={sliderSx}
-                                    />
+                                    <div className={style.before}/>
+                                        <Slider value={value}
+                                                onChange={handleChange}
+                                                min={0}
+                                                max={3}
+                                                step={1}
+                                                marks={true}
+                                                valueLabelDisplay="off"
+                                                valueLabelFormat={(x) => `$${value}k`}
+                                                sx={sliderSx}
+                                        />
+                                    <div className={style.after}/>
+
+                                    <div className={style.marksWrapper}>
+                                        {
+                                            ["$10k", "$25k", "$50k", "$100k"].map((_value, key) => (
+                                                <p key={key}
+                                                   className={clsx({
+                                                       [style.mark]: true,
+                                                       [style.mark_selected]: key === value,
+                                                   })}
+                                                   style={{
+                                                       left: `${key * 33.33}%`
+                                                   }}
+                                                >
+                                                    {_value}
+                                                </p>
+                                            ))
+                                        }
+                                    </div>
                                 </div>
 
                                 <ButtonCustom label={translate("Get Started", lang)}
@@ -198,6 +219,7 @@ export const ChooseYourTradingStyle = observer(() => {
 
 //========= SX =========//
 const sliderSx = {
+    zIndex: 2,
     borderRadius: 0,
     height: 14,
     padding: "0px!important",
@@ -276,9 +298,22 @@ const Card: FC<ICardComponent> = ({
                         >
                             <div className={style.itemSmallLeft}>
                                 {icon}
-                                <p className={style.label}>
-                                    {translate(label, lang)}
-                                </p>
+                                <>
+                                    {
+                                        key === 0 ? (
+                                            <Tooltip title="Tooltip" placement="top" disableFocusListener>
+                                                <p className={style.label}>
+                                                    {translate(label, lang)}
+                                                </p>
+                                            </Tooltip>
+                                        ) : (
+                                            <p className={style.label}>
+                                                {translate(label, lang)}
+                                            </p>
+                                        )
+                                    }
+                                </>
+
                             </div>
 
                             <p className={clsx(style.itemSmallValue, montserrat.className)}>

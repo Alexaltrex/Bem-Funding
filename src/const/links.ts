@@ -28,7 +28,7 @@ export const links: ILink[] = [
         ]
     },
     {
-        label: "Faq",
+        label: "FAQ",
         href: "/faq",
     },
     {
@@ -45,6 +45,10 @@ export const links: ILink[] = [
             {
                 label: "Lexicon",
                 href: "/lexicon",
+            },
+            {
+                label: "Symbols",
+                href: "/symbols",
             },
             {
                 label: "Policies",
@@ -69,7 +73,6 @@ export const links: ILink[] = [
         href: "/leaderboard",
     },
 ]
-
 
 
 // {

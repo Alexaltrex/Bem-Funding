@@ -172,7 +172,7 @@
       }
     }
 
-    .description {
+    .descriptions {
       margin-top: 16px;
       font-weight: 400;
       font-size: 12px;
@@ -181,6 +181,14 @@
 
       @include tablet {
         font-size: 14px;
+      }
+
+      p:not(:first-child) {
+        margin-top: 14px;
+
+        @include tablet {
+          margin-top: 16px;
+        }
       }
     }
   }

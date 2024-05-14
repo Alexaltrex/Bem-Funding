@@ -58,7 +58,7 @@ const Card: FC<ICardComponent> = ({
                                       pre,
                                       title,
                                       subtitle,
-                                      description,
+                                      descriptions,
                                       src,
                                       figure,
                                       className,
@@ -100,9 +100,14 @@ const Card: FC<ICardComponent> = ({
                     )
                 }
 
-                <p className={clsx(style.description)}>
-                    {translate(description, lang)}
-                </p>
+                <div className={clsx(style.descriptions)}>
+                    {
+                        descriptions.map((description, key) => (
+                            <p key={key}>{translate(description, lang)}</p>
+                        ))
+                    }
+
+                </div>
             </div>
 
 

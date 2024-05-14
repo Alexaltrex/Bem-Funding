@@ -9,7 +9,7 @@ export const dictionary = {
     "Bem": "BEM",
     "Careers": "Kariyer",
     "Contacts": "İletişim",
-    "Faq": "S.S.S",
+    "FAQ": "S.S.S",
     "Trader's Library": "Yatırımcı Rehberi",
     "Blog": "Blog",
     "Trading Updates": "Sistem Güncellemeleri",
@@ -32,7 +32,7 @@ export const dictionary = {
     "PHASE": "Süreci",
     "Evaluation": "Değerlendirme",
     "Process": "Süreci",
-    "The Challange": "The challange",
+    "The Challenge": "The challange",
     "Evaluation Phase": "Değerlendirme Süreci",
     '"It is your initial step toward becoming a BEM Trader."': `"BEM Trader olma yolundaki ilk adım."`,
     "Here, we require you to demonstrate your trading skills while maintaining to strict risk management protocols. Upon successful completion of all trading objectives, you will advance to Phase 2 - The Consistency.":

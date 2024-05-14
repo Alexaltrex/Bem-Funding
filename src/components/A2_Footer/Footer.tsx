@@ -14,7 +14,13 @@ const footerLinks = [
     ...links[0].subLinks,
     links[1],
     // @ts-ignore
-    ...links[2].subLinks,
+    links[2].subLinks[0],
+    // @ts-ignore
+    links[2].subLinks[1],
+    // @ts-ignore
+    links[2].subLinks[2],
+    // @ts-ignore
+    links[2].subLinks[3],
     {
         label: "Privacy Policy",
         href: "/privacyPolicy",
@@ -73,8 +79,8 @@ export const Footer = observer(() => {
                         <div className={style.linksMobile}>
                             {
                                 [
-                                    footerLinks.slice(0, 6),
-                                    footerLinks.slice(6, 13),
+                                    footerLinks.slice(0, 5),
+                                    footerLinks.slice(5, 13),
                                 ].map((column, key) => (
                                     <div key={key}
                                          className={style.column}
@@ -99,8 +105,8 @@ export const Footer = observer(() => {
                                 [
                                     footerLinks.slice(0, 3),
                                     footerLinks.slice(3, 6),
-                                    footerLinks.slice(6, 10),
-                                    footerLinks.slice(10, 13),
+                                    footerLinks.slice(6, 9),
+                                    footerLinks.slice(9, 13),
                                 ].map((column, key) => (
                                     <div key={key}
                                          className={style.column}

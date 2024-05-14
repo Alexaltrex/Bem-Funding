@@ -62,30 +62,34 @@ const Item: FC<IItem> = ({
     return (
         <div className={style.item}>
 
-            {
-                isTabletAndMore ? (
-                    <Collapse in={open}
-                              // addEndListener={() => {
-                              //     console.log("end")
-                              // }}
-                    >
-                        <Collapse in={open}
-                                  orientation={'horizontal'}
-                        >
-                            <div className={style.imgWrapper}>
-                                <img src="/jpeg/tradingUpdates.jpg" alt=""/>
-                            </div>
-                        </Collapse>
-                    </Collapse>
-                ) : (
-                    <Collapse in={open}
-                    >
-                        <div className={style.imgWrapper}>
-                            <img src={src} alt=""/>
-                        </div>
-                    </Collapse>
-                )
-            }
+            {/*{*/}
+            {/*    isTabletAndMore ? (*/}
+            {/*        <Collapse in={open}*/}
+            {/*                  // addEndListener={() => {*/}
+            {/*                  //     console.log("end")*/}
+            {/*                  // }}*/}
+            {/*        >*/}
+            {/*            <Collapse in={open}*/}
+            {/*                      orientation={'horizontal'}*/}
+            {/*            >*/}
+            {/*                <div className={style.imgWrapper}>*/}
+            {/*                    <img src="/jpeg/tradingUpdates.jpg" alt=""/>*/}
+            {/*                </div>*/}
+            {/*            </Collapse>*/}
+            {/*        </Collapse>*/}
+            {/*    ) : (*/}
+            {/*        <Collapse in={open}*/}
+            {/*        >*/}
+            {/*            <div className={style.imgWrapper}>*/}
+            {/*                <img src={src} alt=""/>*/}
+            {/*            </div>*/}
+            {/*        </Collapse>*/}
+            {/*    )*/}
+            {/*}*/}
+
+            <div className={style.imgWrapper}>
+                <img src={src} alt=""/>
+            </div>
 
             <div className={style.content}>
 
