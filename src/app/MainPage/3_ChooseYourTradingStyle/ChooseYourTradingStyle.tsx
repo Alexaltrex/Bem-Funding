@@ -282,7 +282,7 @@ const Card: FC<ICardComponent> = ({
                                 </div>
 
                                 <p className={clsx(style.itemBigValue, montserrat.className)}>
-                                    {value}
+                                    {translate(value, lang)}
                                 </p>
                             </div>
                         ))
@@ -317,7 +317,7 @@ const Card: FC<ICardComponent> = ({
                             </div>
 
                             <p className={clsx(style.itemSmallValue, montserrat.className)}>
-                                {value}
+                                {translate(value, lang)}
                             </p>
                         </div>
                     ))

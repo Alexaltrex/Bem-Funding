@@ -29,8 +29,8 @@ export const MeetWith = observer(() => {
                 </p>
 
                 <h2 className={style.title}>
-                    <span className={montserrat.className}>{translate(titles[0], lang)}</span>
-                    <span className={montserrat.className}> {translate(titles[1], lang)}</span>
+                    <p className={montserrat.className}>{translate(titles[0], lang)}</p>
+                    <p className={montserrat.className}>{translate(titles[1], lang)}</p>
                 </h2>
 
                 <div className={style.cards}>

@@ -24,14 +24,14 @@
       margin-top: 6px;
 
       @include tablet {
-        width: 460px;
+        //width: 460px;
       }
 
       @include desktop {
-        width: 495px;
+        //width: 495px;
       }
 
-      span {
+      p {
         &:nth-child(2) {
           @include text-gradient;
         }

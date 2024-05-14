@@ -235,7 +235,7 @@ export const CareersPopup = observer(() => {
                                         {translate("Need support?", lang)} <Link href="/contacts"
                                                                                  onClick={() => onClose()}
                                     >
-                                        {translate("Contact Us?", lang)}
+                                        {translate("Contact Us", lang)}
                                     </Link>
                                     </p>
                                 </>

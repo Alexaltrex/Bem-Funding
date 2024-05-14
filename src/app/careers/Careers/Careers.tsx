@@ -60,8 +60,8 @@ export const Careers = observer(() => {
                        </div>
 
                        <div className={style.description}>
-                           <p>{`Are you looking for an exciting opportunity to grow your career in a dynamic and innovative environment?`}</p>
-                           <p>{`Bem Funding is expanding, and we're on the lookout for talented individuals to join our team. Whether you're an experienced professional or just starting out, we encourage you to leave your CV with us!`}</p>
+                           <p>{translate(`Are you looking for an exciting opportunity to grow your career in a dynamic and innovative environment?`, lang)}</p>
+                           <p>{translate(`Bem Funding is expanding, and we're on the lookout for talented individuals to join our team. Whether you're an experienced professional or just starting out, we encourage you to leave your CV with us!`, lang)}</p>
                        </div>
 
                        <div className={style.tags}>

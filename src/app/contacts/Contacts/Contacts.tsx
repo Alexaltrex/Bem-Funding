@@ -80,10 +80,10 @@ export const Contacts = observer(() => {
                                         icon: svgIcons.marker_pin,
                                         text: "The Meydan Hotel, Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, U.A.E\n",
                                     },
-                                    {
-                                        icon: svgIcons.phone_call,
-                                        text: "+971 58 543 6008",
-                                    },
+                                    // {
+                                    //     icon: svgIcons.phone_call,
+                                    //     text: "+971 58 543 6008",
+                                    // },
                                     {
                                         icon: svgIcons.marker_pin,
                                         text: "company@bemfunding.com",

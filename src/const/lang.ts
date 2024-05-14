@@ -63,11 +63,18 @@ export const dictionary = {
     "Max available leverage": "Azami Kaldıraç Limiti",
     "Choose your trading style and": "Trade stilinizi seçin",
     "get started": "ve başlayın!",
-    "Phase 1 - The Challenge": "Phase 1 - The Challenge",
-    "Phase 2 - The Consistency": "Phase 2 - The Consistency",
+    "Phase 1 - The Challenge": "1. Faz - The challenge",
+    "Phase 2 - The Consistency": "2. Faz - The Consistency",
     "BEM Account": "BEM Account",
     "Normal": "Normal",
     "Swing": "Swing",
+    "3": "3",
+    "9%": "%9",
+    "6%": "%6",
+    "4,5%": "%4.5",
+    "Balance Based": "Balance Based",
+    "Unlimited": "Unlimited",
+    "1:100": "1:100",
 
     // Home 4 - MeetWith
     "For Traders": "Traderlar İçin",
@@ -84,7 +91,7 @@ export const dictionary = {
     "Our trading conditions vary to meet different needs. For traditional instruments, you'll benefit from direct market access, ensuring faster execution and more accurate pricing. Meanwhile, with crypto assets, you’ll trade directly with major CEX liquidity instead of CFDs.": "İşlem koşullarımız farklı ihtiyaçlara göre tasarlanmıştır. Geleneksel enstrümanlar için, daha hızlı işlem ve daha doğru fiyatlandırma sağlayan doğrudan piyasa verisine erişin. Ayrıca, kripto varlıklarla, CFD'ler yerine doğrudan büyük CEX verisi ile işlemlerinizi gerçekleştirin.",
     "Meet with our trading": "BEM Funding",
     "opportunities": "Ayrıcalığını deneyimleyin",
-
+    "Head Hunting": "Head Hunting",
 
     // Home 5 - ChooseBem
     "Choose BEM for the Best and Most Reliable Services in the Field": "Alandaki En İyi ve Güvenilir Hizmetler İçin BEM'e Katılın",
@@ -93,7 +100,6 @@ export const dictionary = {
     // Home 6 - CollaborativeExellence
     "Partners & Team": "Ekibimiz & Ortaklarımız",
     "Collaborative Exellence: Building Bridges, Driving Success": "Güçlü İş Birliği Ağıyla BEM Funding'de Başarıyı Yakalayın!",
-
 
     // Footer
     "Privacy Policy": "Gizlilik Politikası",
@@ -153,6 +159,28 @@ export const dictionary = {
     "Our commitment to you extends beyond mere funding. We recognize the hard work and dedication it takes to succeed in this field. As such, traders who demonstrate exceptional skill and the ability to secure payouts from our firm will not only receive immediate financial rewards but will also unlock opportunities for future benefits. Our reward system is built to acknowledge your achievements, both now and in the future, ensuring that your success is both celebrated and sustained.": "Size olan bağlılığımız sadece finansmanla sınırlı değildir. Bu alanda başarılı olmak için gereken sıkı çalışma ve bağlılığı takdir ediyoruz. Bu nedenle, firmamızdan ödemeler almayı başaran ve olağanüstü beceri gösteren traderlar, sadece anında finansal ödüller almakla kalmayacak, aynı zamanda gelecekteki avantajların da kilidini açacaktır. Ödül sistemimiz, başarılarınızı şimdi ve gelecekte tanımak üzere yapılandırılmıştır, böylece başarınız hem kutlanacak hem de sürdürülecektir.",
     "While we take pride in the support and resources we currently offer, we are also excited about the future. Our vision for BEM Funding 2.0 is not just to fund traders but to forge a pathway to real-life opportunities within the trading industry and beyond. Imagine a future where your success with us opens doors to career advancements with financial institutions, collaborations, and roles that only a select few can dream of. While we're not ready to unveil all the details just yet, rest assured, we are working on innovative ways to elevate your trading career to heights previously unimagined.": "Şu anda sunduğumuz destek ve kaynaklarla gurur duyarken, gelecekle ilgili de heyecanlıyız. BEM Funding 2.0 vizyonumuz sadece traderları finanse etmekle kalmayacak, aynı zamanda trade endüstrisinde ve ötesinde gerçek yaşam fırsatlarına bir yol açacaktır. Bizimle elde ettiğiniz başarıların, finansal kuruluşlarla kariyer ilerlemeleri, iş birlikleri ve yalnızca seçkin birkaç kişinin hayal edebileceği rollerin kapılarını açtığı bir geleceği hayal edin. Henüz tüm detayları açıklamaya hazır olmasak da, trade kariyerinizi daha önce hayal edilmemiş yüksekliklere taşımanın yenilikçi yolları üzerinde çalıştığımızdan emin olabilirsiniz.",
     "As we grow and evolve, our promise to you remains unwavering: to provide a platform that not only funds your trading endeavors but also supports your growth, rewards your achievements, and opens up a world of possibilities. Stay tuned for exciting developments on the horizon.": "Büyüdükçe ve geliştikçe size olan sözümüz değişmez kalacak: trade girişimlerinizi finanse eden, büyümenizi destekleyen, başarılarınızı ödüllendiren ve olasılıklarla dolu o dünyayı açan güçlü bir ekosistem oluşturmak. Ufuktaki heyecan verici gelişmeler için bizi izlemeye devam edin.",
+
+    // Page - Careers
+    "We search for": "Ekibimize yeni yetenekler",
+    "talents": "arıyoruz",
+    "General Purpose Application": "Genel Amaçlı Başvuru",
+    "Are you looking for an exciting opportunity to grow your career in a dynamic and innovative environment?": "Kariyerinizi dinamik ve yenilikçi bir ortamda geliştirmek için heyecan verici bir fırsat mı arıyorsunuz?",
+    "Bem Funding is expanding, and we're on the lookout for talented individuals to join our team. Whether you're an experienced professional or just starting out, we encourage you to leave your CV with us!": "Bem Funding genişliyor ve ekibimize katılacak yetenekli bireyler arıyoruz. İster deneyimli bir profesyonel olun, ister kariyerinizin başında olun, CV'nizi bizimle paylaşmanızı bekliyoruz!",
+    "Apply Now": "Şimdi Başvurun",
+
+    // CareersPopup
+    "Start Your Career Today": "Kariyerinize Bugün Başvurun",
+    "Please fill in your information and send it to the employer.": "Lütfen gerekli alanları doldurduğunuzdan emin olun ve bize gönderin.",
+    "Write here": "Buraya Yazın",
+    "Upload your resume file": "Özgeçmiş dosyanızı yükleyin",
+    "(max 2mb)": "(maksimum 2mb)",
+    "Need support?": "Desteğe mi ihtiyacınız var?",
+    "Contact Us": "Bize Ulaşın",
+    "Frequently": "Sıkça",
+    "Asked": "Sorulan",
+    "Questions": "Sorular",
+
+
 }
 
 export const translate = (str: string, lang: LangEnum): string => {
