@@ -91,7 +91,7 @@
           }
         }
 
-        &:nth-child(1), &:nth-child(3) {
+        &:nth-child(odd) {
           .imgWrapper {
             .cloudWrapper {
               @include desktop {
@@ -101,7 +101,7 @@
           }
         }
 
-        &:nth-child(2) {
+        &:nth-child(even) {
           .imgWrapper {
             .cloudWrapper {
               @include desktop {
