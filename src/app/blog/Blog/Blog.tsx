@@ -129,7 +129,7 @@ export const Blog = observer(() => {
                                         label: "News",
                                         count: 65,
                                     },
-                                ].map(({label, count, background}, key) => (
+                                ].map(({label, count}, key) => (
                                     <div key={key}
                                          className={style.row}
                                     >
