@@ -165,7 +165,7 @@ export const CareersPopup = observer(() => {
                                     <div className={style.rows}>
                                         <div className={style.row}>
                                             <p className={style.rowLabel}>
-                                                linkedin/github link<span>*</span>
+                                                {translate("linkedin / github link", lang)}<span>*</span>
                                             </p>
                                             <FieldText name="link"
                                                        className={style.field}
