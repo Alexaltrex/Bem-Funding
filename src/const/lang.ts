@@ -27,6 +27,9 @@ export const dictionary = {
     "Join Our Community": "Topluluğumuza Katılın",
     "Beyond the Peak": "Bu Başlangıcın Ardında",
     "Lies Your Potential": "Potansiyelin Gizli",
+    "Here at BEM Funding you can train risk-free and qualify to manage up to $200,000 on a BEM Account. Prove your skill and keep up to 90% of the profits from your simulated trades.": "Burada, BEM'de risksiz bir şekilde trade yeteneklerinizi geliştirebilir, 200b$'a varan büyüklükte simüle edilmiş bakiyeleri yönetebilirsiniz. Bu süreçte yeteneklerinizi kanıtladıkça %90'a varan ödül dağıtım paylarına ulaşabilirsiniz.",
+    //"Join us, and transform your summit lessons into real-world victories": "",
+
 
     // Home 2 - EvaluationProcess
     "PHASE": "Süreci",
@@ -44,6 +47,7 @@ export const dictionary = {
     "Upon reaching this stage, you have officially become a BEM Trader. Your primary mission now is to uphold rigorous risk management practices consistently. By doing so, you may be eligible for rewards of up to 90%":
         "Bu aşamaya ulaşıldığında, resmi olarak bir BEM Trader olacaksınız. Şimdi temel göreviniz, titiz risk yönetimi uygulamalarını sürekli olarak sürdürmektir. Bu görev yerine getirildiğinde, %90'a kadar varan ödüller kazanabilirsiniz.",
     "BEM Trader": "BEM Trader",
+    "It is your initial step toward becoming a BEM Trader.": "BEM Trader olma yolundaki ilk adım.",
 
     // Home 3 - ChooseYourTradingStyle
     "2 Step Evaluation": "2 Aşamalı Değerlendirme",
@@ -62,7 +66,8 @@ export const dictionary = {
     "Phase 1 - The Challenge": "Phase 1 - The Challenge",
     "Phase 2 - The Consistency": "Phase 2 - The Consistency",
     "BEM Account": "BEM Account",
-
+    "Normal": "Normal",
+    "Swing": "Swing",
 
     // Home 4 - MeetWith
     "For Traders": "Traderlar İçin",
@@ -138,7 +143,7 @@ export const dictionary = {
     "Check your email to change password": "Şifrenizi değiştirmek için e-postanızı kontrol edin",
     "Recovery link sent": "Şifre sıfırlama linki gönderildi",
 
-     // Page - About
+    // Page - About
     "What We Offer": "Neler Sunuyoruz",
     "A Pathway to Recognition and Reward": "Ödüllendirme Yolunda Bir Adım",
     "Beyond Funding – A Glimpse into the Future": "Finansmanın Ötesinde – Geleceğe Bir Bakış",
