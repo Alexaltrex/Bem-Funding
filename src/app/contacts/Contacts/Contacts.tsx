@@ -40,9 +40,9 @@ const validate = ({fullName, email, contactNumber, coverLetter}: IValues): Formi
     if (!email) {
         errors.email = "Email required"
     }
-    if (!contactNumber) {
-        errors.contactNumber = "Required"
-    }
+    // if (!contactNumber) {
+    //     errors.contactNumber = "Required"
+    // }
     return errors
 }
 
@@ -78,7 +78,7 @@ export const Contacts = observer(() => {
                                 [
                                     {
                                         icon: svgIcons.marker_pin,
-                                        text: "Kurşunlu,35, 42430, Sarayönü/Istanbul, Turkey",
+                                        text: "The Meydan Hotel, Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, U.A.E\n",
                                     },
                                     {
                                         icon: svgIcons.phone_call,
@@ -86,7 +86,7 @@ export const Contacts = observer(() => {
                                     },
                                     {
                                         icon: svgIcons.marker_pin,
-                                        text: "contact@bemfunding.com",
+                                        text: "company@bemfunding.com",
                                     },
                                 ].map(({icon, text}, key) => (
                                     <div key={key}
@@ -153,7 +153,7 @@ export const Contacts = observer(() => {
 
                                     <div className={style.fieldRow}>
                                         <p className={style.fieldRowLabel}>
-                                            {translate("Contact number", lang)}<span>*</span>
+                                            {translate("Contact number", lang)}
                                         </p>
                                         <FieldText name="contactNumber" className={style.field}/>
                                     </div>

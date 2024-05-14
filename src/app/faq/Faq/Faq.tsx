@@ -26,7 +26,7 @@ export const Faq = observer(() => {
     const [result, setResult] = useState<null | string>(null)
 
     const onSearch = async () => {
-        setResult("Result")
+        //setResult("Result")
     }
 
     const onClear = () => setResult(null);

@@ -26,19 +26,19 @@ const feeLabel = "Registration fee"
 
 const marks = [
     {
-        value: 10,
+        value: 0,
         label: '$10k',
     },
     {
-        value: 25,
+        value: 1,
         label: '$25k',
     },
     {
-        value: 50,
+        value: 2,
         label: '$50k',
     },
     {
-        value: 100,
+        value: 3,
         label: '$100k',
     },
 ]
@@ -48,7 +48,7 @@ export const ChooseYourTradingStyle = observer(() => {
 
     const [tradingStyle, setTradingStyle] = useState("Normal")
 
-    const [value, setValue] = useState<number>(30);
+    const [value, setValue] = useState<number>(1);
     const handleChange = (event: Event, newValue: number | number[]) => {
         setValue(newValue as number);
     };
@@ -118,11 +118,11 @@ export const ChooseYourTradingStyle = observer(() => {
                                 <div className={style.sliderWrapper}>
                                     <Slider value={value}
                                             onChange={handleChange}
-                                            min={8}
-                                            max={102}
+                                            min={-0.3}
+                                            max={3.3}
                                             step={1}
                                             marks={marks}
-                                            valueLabelDisplay="on"
+                                            //valueLabelDisplay="on"
                                             valueLabelFormat={(x) => `$${value}k`}
                                             sx={sliderSx}
                                     />

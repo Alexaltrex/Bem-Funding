@@ -27,10 +27,10 @@ export const CollaborativeExellence = observer(() => {
                         {translate(title, lang)}
                     </h2>
 
-                    <ButtonCustom label={translate(buttonLabel, lang)}
-                                  variant={ButtonVariant.blue}
-                                  className={style.btn}
-                    />
+                    {/*<ButtonCustom label={translate(buttonLabel, lang)}*/}
+                    {/*              variant={ButtonVariant.blue}*/}
+                    {/*              className={style.btn}*/}
+                    {/*/>*/}
                 </div>
 
                 <div className={style.bottom}>

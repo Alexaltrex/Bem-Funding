@@ -24,7 +24,9 @@ export const MarketHours = observer(() => {
         <div className={style.marketHours}>
             <div className={style.inner}>
 
-                <h2 className={clsx(style.title, montserrat.className)}>
+                <h2 className={clsx(style.title, montserrat.className)}
+                    onClick={() => setConverter(true)}
+                >
                     {translate(title, lang)}
                 </h2>
 
@@ -33,7 +35,7 @@ export const MarketHours = observer(() => {
                 </p>
 
                 <div className={style.card}
-                     onClick={() => setConverter(true)}
+                     // onClick={() => setConverter(true)}
                 >
 
                     <div className={style.top}>

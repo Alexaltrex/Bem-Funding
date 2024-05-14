@@ -77,22 +77,18 @@ const BlogItemPage = observer(() => {
                                     {
                                         label: "Finance",
                                         count: 210,
-                                        background: "#51faaa"
                                     },
                                     {
                                         label: "Invest",
                                         count: 50,
-                                        background: "#3ad0ff"
                                     },
                                     {
                                         label: "Work",
                                         count: 100,
-                                        background: "#7561ff"
                                     },
                                     {
                                         label: "News",
                                         count: 65,
-                                        background: "#fa6131"
                                     },
                                 ].map(({label, count, background}, key) => (
                                     <div key={key}
@@ -103,7 +99,6 @@ const BlogItemPage = observer(() => {
                                         </p>
 
                                         <p className={style.count}
-                                           style={{background}}
                                         >
                                             {count}
                                         </p>
