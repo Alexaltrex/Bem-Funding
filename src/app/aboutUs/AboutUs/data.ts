@@ -1,4 +1,10 @@
-export const items = [
+export interface ICard {
+    src: string
+    label: string
+    texts: string []
+}
+
+export const items: ICard[] = [
     {
         src: "/png/about us/0.png",
         label: "What We Offer",

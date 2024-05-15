@@ -24,40 +24,62 @@ export const AboutUs = observer(() => {
                     </p>
                 </h1>
 
-                <div className={style.items}>
+                <div className={style.cards}>
                     {
-                        items.map(({src, label, texts}, key) => (
-                            <div key={key}
-                                 className={style.item}
-                            >
-
-                                <div className={style.imgWrapper}>
-                                    <div className={style.cloudWrapper}>
-                                        <CloudComponent seed={key}/>
-                                    </div>
-                                    <img src={src} alt="" className={style.img}/>
-
-                                </div>
-
-                                <div className={style.content}>
-                                    <p className={clsx(style.label, montserrat.className)}>
-                                        {translate(label, lang)}
-                                    </p>
-                                    <div className={style.texts}>
-                                        {
-                                            texts.map((text, key) => (
-                                                <p key={key}>
-                                                    {translate(text, lang)}
-                                                </p>
-                                            ))
-                                        }
-                                    </div>
-                                </div>
-
+                        items.map(({label, texts}, key) => (
+                            <div key={key} className={style.card}>
+                                                    <p className={clsx(style.label, montserrat.className)}>
+                                                        {translate(label, lang)}
+                                                    </p>
+                                                    <div className={style.texts}>
+                                                        {
+                                                            texts.map((text, key) => (
+                                                                <p key={key}>
+                                                                    {translate(text, lang)}
+                                                                </p>
+                                                            ))
+                                                        }
+                                                    </div>
                             </div>
                         ))
                     }
                 </div>
+
+
+                {/*<div className={style.items}>*/}
+                {/*    {*/}
+                {/*        items.map(({src, label, texts}, key) => (*/}
+                {/*            <div key={key}*/}
+                {/*                 className={style.item}*/}
+                {/*            >*/}
+
+                {/*                <div className={style.imgWrapper}>*/}
+                {/*                    <div className={style.cloudWrapper}>*/}
+                {/*                        <CloudComponent seed={key}/>*/}
+                {/*                    </div>*/}
+                {/*                    <img src={src} alt="" className={style.img}/>*/}
+
+                {/*                </div>*/}
+
+                {/*                <div className={style.content}>*/}
+                {/*                    <p className={clsx(style.label, montserrat.className)}>*/}
+                {/*                        {translate(label, lang)}*/}
+                {/*                    </p>*/}
+                {/*                    <div className={style.texts}>*/}
+                {/*                        {*/}
+                {/*                            texts.map((text, key) => (*/}
+                {/*                                <p key={key}>*/}
+                {/*                                    {translate(text, lang)}*/}
+                {/*                                </p>*/}
+                {/*                            ))*/}
+                {/*                        }*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+
+                {/*            </div>*/}
+                {/*        ))*/}
+                {/*    }*/}
+                {/*</div>*/}
 
             </div>
 

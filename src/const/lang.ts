@@ -179,7 +179,7 @@ export const dictionary = {
     "Frequently": "Sıkça",
     "Asked": "Sorulan",
     "Questions": "Sorular",
-"linkedin/github link": "LinkedIn/GitHub link",
+    "linkedin/github link": "LinkedIn/GitHub link",
 
 }
 
