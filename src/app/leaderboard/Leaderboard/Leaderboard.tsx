@@ -76,7 +76,7 @@ export const Leaderboard = observer(() => {
                 <div className={style.cardsTabletAndMore}>
                     {
                         cards.map((card, key) => (
-                            <Card key={key} index={key} {...card}/>
+                            <Card key={key} lang={lang} index={key} {...card}/>
                         ))
                     }
                 </div>
