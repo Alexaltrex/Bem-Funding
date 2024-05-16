@@ -136,6 +136,7 @@ export const dictionary = {
     "Don't have an account?": "Hesabınız yok mu?",
     "Register": "Kayıt Olun",
 
+
     // Sign Up
     "Sign Up": "Kayıt Ol",
     "Already have an account?": "Hesabınız var mı?",
@@ -149,11 +150,12 @@ export const dictionary = {
     "I accept the Privacy Policy": "Gizlilik sözleşmesini, okudum, kabul ediyorum",
     "Create Account": "BEM Funding'e Katıl",
 
-    // Modal - Password recovery
+    // Password recovery
     "Password recovery": "Parolanızı Sıfırlayın",
-    "We will send a password recovery link to your e-mail": "E-posta adresinize şifre yenileme bağlantısı göndereceğiz",
+    "We will send a password recovery link to your e-mail": "Şifrenizi kurtarma bağlantısını e-posta adresinize gönderdik.",
     "Check your email to change password": "Şifrenizi değiştirmek için e-postanızı kontrol edin",
-    "Recovery link sent": "Şifre sıfırlama linki gönderildi",
+    "Recovery link sent": "Kurtarma bağlantısı gönderildi",
+    "Close": "Kapat",
 
     // About Us
     "About Us": "Hakkımızda",
@@ -217,7 +219,7 @@ export const dictionary = {
     "Recent Post": "Son Gönderiler",
     "Featured post": "Öne Çıkan Gönderiler",
     "Most read": "Sık Okunanlar",
-    //"Categories": "",
+    "Categories": "Kategoriler",
 }
 
 export const translate = (str: string, lang: LangEnum): string => {
