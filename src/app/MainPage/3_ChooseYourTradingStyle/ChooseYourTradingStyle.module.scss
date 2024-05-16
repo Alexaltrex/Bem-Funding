@@ -487,10 +487,36 @@
         display: flex;
         align-items: center;
 
-        svg {
+        svg:nth-child(1) {
           width: 16px;
           height: 16px;
         }
+
+        .info {
+          cursor: pointer;
+          width: 14px;
+          height: 14px;
+          margin-left: 4px;
+
+          svg {
+            width: 14px;
+            height: 14px;
+
+            path {
+              stroke: #727581;
+              transition: 0.3s;
+            }
+
+            &:hover {
+              @include desktop {
+                path {
+                  stroke: #FFF;
+                }
+              }
+            }
+          }
+        }
+
 
         .label {
           font-family: var(--font-family);
@@ -526,15 +552,6 @@
       &:last-child .itemSmallValue {
         color: $color_purple;
       }
-
-      &:first-child {
-        .itemSmallLeft {
-          .label {
-            cursor: pointer;
-          }
-        }
-      }
-
 
     }
 

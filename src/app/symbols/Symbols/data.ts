@@ -60,7 +60,7 @@ export const data: IDataItem[] = [
     },
     {
         active: false,
-        label: "AUD/CAD2",
+        label: "AUD/CAD",
         title: "Australian Dollar vs Canadian Dollar",
         timeEnd: "08:10:20",
         information: {

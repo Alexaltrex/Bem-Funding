@@ -17,50 +17,38 @@ export const btns = [
     },
 ]
 
-interface ICardNew {
+export interface ICard {
     order: string
-    avatarSrc: string
     lent: string
     name: string
-    country: string
-    challengeValue: string
+    attached: string
     earned: string
-    endDate: string
-    behindBrightestStar: string
+    profit: string
 }
 
-export const cardsNew: ICardNew[] = [
-    {
-        order: "1st",
-        avatarSrc: '/png/leaderboard/person_0.png',
-        lent: '/png/leaderboard/lentRight_0.png',
-        name: "Jenny",
-        country: "Germany",
-        challengeValue: "$200,000",
-        earned: "15%",
-        endDate: "Oct 4, 2022",
-        behindBrightestStar: "25%",
-    },
+export const cards: ICard[] = [
     {
         order: "2nd",
-        avatarSrc: '/png/leaderboard/person_1.png',
-        lent: '/png/leaderboard/lentRight_1.png',
-        name: "Alex",
-        country: "Germany",
-        challengeValue: "$200,000",
+        lent: '/png/leaderboard/lent_0.png',
+        name: "John Smith",
+        attached: "$ 123.456.000",
         earned: "15%",
-        endDate: "Oct 4, 2022",
-        behindBrightestStar: "25%",
+        profit: "$ 23.456.000",
+    },
+    {
+        order: "1st",
+        lent: '/png/leaderboard/lent_1.png',
+        name: "Constantine 123",
+        attached: "$ 123.456.000",
+        earned: "17%",
+        profit: "$ 223.456.000",
     },
     {
         order: "3rd",
-        avatarSrc: '/png/leaderboard/person_2.png',
-        lent: '/png/leaderboard/lentRight_2.png',
-        name: "Alex",
-        country: "Germany",
-        challengeValue: "$200,000",
-        earned: "15%",
-        endDate: "Oct 4, 2022",
-        behindBrightestStar: "25%",
+        lent: '/png/leaderboard/lent_2.png',
+        name: "John Smith",
+        attached: "$ 123.456.000",
+        earned: "10%",
+        profit: "$3.456.000",
     },
 ]

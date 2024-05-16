@@ -165,7 +165,7 @@ export const CareersPopup = observer(() => {
                                     <div className={style.rows}>
                                         <div className={style.row}>
                                             <p className={style.rowLabel}>
-                                                {translate("linkedin / github link", lang)}<span>*</span>
+                                                {translate("linkedin/github link", lang)}<span>*</span>
                                             </p>
                                             <FieldText name="link"
                                                        className={style.field}
@@ -191,7 +191,7 @@ export const CareersPopup = observer(() => {
                                                 {translate("Message", lang)}<span>*</span>
                                             </p>
                                             <FieldTextarea name="letter"
-                                                           className={style.field}
+                                                           className={clsx(style.field, style.textarea)}
                                                            placeholder={translate("Write here", lang)}
                                             />
                                         </div>
@@ -208,7 +208,7 @@ export const CareersPopup = observer(() => {
                                                 [style.inputWrapper_file]: file,
                                             })}>
                                                 <input type="file"
-                                                       accept=".pdf,.doc,.docx"
+                                                       accept=".pdf"
                                                        onChange={(e) => {
                                                            //console.log(e.target.files)
                                                            if (e.target.files) {
@@ -219,7 +219,7 @@ export const CareersPopup = observer(() => {
                                                 {svgIcons.file_attachment}
                                             </label>
                                             <p className={style.uploadDescription}>
-                                                {translate("Upload your resume file", lang)} <span>.pdf .doc .docx</span> {translate("(max 2mb)", lang)}
+                                                {translate("Upload your resume file", lang)} <span>.pdf</span> {translate("(max 2mb)", lang)}
                                             </p>
                                         </div>
                                     </div>

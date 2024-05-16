@@ -28,7 +28,7 @@ export const items: ICard[] = [
     },
     {
         src: "/png/about us/2.png",
-        label: "Beyond Funding – A Glimpse into the Future",
+        label: "Our Promise to You",
         texts: [
             "As we grow and evolve, our promise to you remains unwavering: to provide a platform that not only funds your trading endeavors but also supports your growth, rewards your achievements, and opens up a world of possibilities. Stay tuned for exciting developments on the horizon."
             ]

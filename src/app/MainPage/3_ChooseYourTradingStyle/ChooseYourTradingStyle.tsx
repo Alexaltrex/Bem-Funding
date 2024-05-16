@@ -12,7 +12,8 @@ import {Swiper as SwiperClass} from "swiper/types";
 import {Swiper, SwiperSlide} from "swiper/react";
 import Slider from '@mui/material/Slider';
 import {cardsNew, ICardNew} from "./cardsNew";
-import {Tooltip} from "@mui/material";
+import {ClickAwayListener, Tooltip, useMediaQuery} from "@mui/material";
+import {svgIcons} from "../../../assets/svgIcons";
 
 const titles = [
     "Choose your trading style and",
@@ -118,16 +119,16 @@ export const ChooseYourTradingStyle = observer(() => {
                             <div className={style.accountContent}>
                                 <div className={style.sliderWrapper}>
                                     <div className={style.before}/>
-                                        <Slider value={value}
-                                                onChange={handleChange}
-                                                min={0}
-                                                max={3}
-                                                step={1}
-                                                marks={true}
-                                                valueLabelDisplay="off"
-                                                valueLabelFormat={(x) => `$${value}k`}
-                                                sx={sliderSx}
-                                        />
+                                    <Slider value={value}
+                                            onChange={handleChange}
+                                            min={0}
+                                            max={3}
+                                            step={1}
+                                            marks={true}
+                                            valueLabelDisplay="off"
+                                            valueLabelFormat={(x) => `$${value}k`}
+                                            sx={sliderSx}
+                                    />
                                     <div className={style.after}/>
 
                                     <div className={style.marksWrapper}>
@@ -254,6 +255,19 @@ const Card: FC<ICardComponent> = ({
                                       itemsBig,
                                       itemsSmall,
                                   }) => {
+    const matchDesktop = useMediaQuery('(min-width:1140px)');
+
+    const [open, setOpen] = useState(false);
+
+    const handleTooltipClose = () => {
+        setOpen(false);
+    };
+
+    const handleTooltipOpen = () => {
+        setOpen(true);
+    };
+
+
     return (
         <div className={style.card}>
 
@@ -296,25 +310,29 @@ const Card: FC<ICardComponent> = ({
                         <div key={key}
                              className={style.itemSmall}
                         >
+
                             <div className={style.itemSmallLeft}>
                                 {icon}
-                                <>
-                                    {
-                                        key === 0 ? (
-                                            <Tooltip title="Tooltip" placement="top" disableFocusListener>
-                                                <p className={style.label}>
-                                                    {translate(label, lang)}
-                                                </p>
-                                            </Tooltip>
-                                        ) : (
-                                            <p className={style.label}>
-                                                {translate(label, lang)}
-                                            </p>
-                                        )
-                                    }
-                                </>
+                                <p className={style.label}>
+                                    {translate(label, lang)}
+                                </p>
+
+                                <Tooltip title="Tooltip content"
+                                         placement="top"
+                                         arrow={true}
+                                         enterTouchDelay={1}
+                                >
+                                                <span className={style.info}>
+                                                    {svgIcons.info_circle}
+                                                </span>
+                                </Tooltip>
 
                             </div>
+
+
+
+
+
 
                             <p className={clsx(style.itemSmallValue, montserrat.className)}>
                                 {translate(value, lang)}

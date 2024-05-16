@@ -4,7 +4,7 @@ import style from "./Symbols.module.scss"
 import {observer} from "mobx-react-lite";
 import {useStore} from "../../../store/useStore";
 import {montserrat} from "../../../assets/fonts/fonts";
-import {translate} from "../../../const/lang";
+import {LangEnum, translate} from "../../../const/lang";
 import {clsx} from "clsx";
 import {FC, useRef, useState} from "react";
 import {SearchForm} from "../../../components/_common/SearchForm/SearchForm";
@@ -13,7 +13,10 @@ import {svgIcons} from "../../../assets/svgIcons";
 import {Collapse} from "@mui/material";
 
 const title = "Symbols";
-const description = "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.";
+const descriptions = [
+    "Here, you can see the pairs available on our platform along with their market hours. However, please note that these data are not dynamically updated. In case of any system issues, updates, or holidays, you can find the relevant information on our Discord and in the Trading Updates section.",
+    "Please note that the trading hours for cryptocurrency pairs over the weekend may vary depending on ongoing maintenance."
+]
 
 export const Symbols = observer(() => {
     const {appStore: {lang}} = useStore();
@@ -29,9 +32,15 @@ export const Symbols = observer(() => {
                     {translate(title, lang)}
                 </h2>
 
-                <p className={style.description}>
-                    {translate(description, lang)}
-                </p>
+                <div className={style.descriptions}>
+                    {
+                        descriptions.map((description, key) => (
+                            <p key={key}>
+                                {translate(description, lang)}
+                            </p>
+                        ))
+                    }
+                </div>
 
                 <div className={style.selectBlock}>
 
@@ -69,7 +78,7 @@ export const Symbols = observer(() => {
                 <div className={style.rows}>
                     {
                         data.map((row, key) => (
-                            <Row key={key} {...row}/>
+                            <Row key={key} lang={lang} {...row}/>
                         ))
                     }
                 </div>
@@ -80,21 +89,26 @@ export const Symbols = observer(() => {
 })
 
 //========= ROW =========//
-const Row: FC<IDataItem> = ({
-                                active,
-                                label,
-                                title,
-                                timeEnd,
-                                information: {
-                                    contractSize,
-                                    marginPercent,
-                                    leverageNormal,
-                                    leverageSwing,
-                                    commisionType,
-                                },
-                                tradingHours
-                            }) => {
-   const [open, setOpen] = useState(false);
+interface IRow extends IDataItem {
+    lang: LangEnum
+}
+
+const Row: FC<IRow> = ({
+                           lang,
+                           active,
+                           label,
+                           title,
+                           timeEnd,
+                           information: {
+                               contractSize,
+                               marginPercent,
+                               leverageNormal,
+                               leverageSwing,
+                               commisionType,
+                           },
+                           tradingHours
+                       }) => {
+    const [open, setOpen] = useState(false);
 
 
     return (
@@ -182,7 +196,7 @@ const Row: FC<IDataItem> = ({
                     <div className={style.dropDownRight}>
 
                         <p className={clsx(style.dropDownTitle, montserrat.className)}>
-                            Trading Hours (GMT +1)
+                            {translate("Trading Hours", lang)} (GMT +1)
                         </p>
 
                         <div className={style.dropDownContent}>

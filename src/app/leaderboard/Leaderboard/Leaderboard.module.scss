@@ -1,13 +1,20 @@
 @import "../../../assets/styles/app";
 
 .leaderboard {
-  @include container;
+  //@include container;
   @include pagePaddings;
   position: relative;
   overflow: hidden;
 
+  @include tablet {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
   @include desktop {
     padding-bottom: 80px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .mounts {
@@ -164,363 +171,311 @@
       }
     }
 
-    .cardsWrapper {
-      backdrop-filter: blur(22px);
-      box-shadow: 0 3px 13px 0 rgba(0, 0, 0, 0.5);
-      background: rgba(0, 0, 0, 0.14);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 10px;
-      padding: 20px;
-      width: 85vw;
-      margin-top: 36px;
-      margin-left: auto;
-      margin-right: auto;
+    .cardsMobile {
+      @include onlyMobile();
+      margin-top: 50px;
 
-      @include tablet {
-        width: auto;
-        margin-top: 74px;
-        margin-left: 0;
-        margin-right: 0;
-        display: flex;
-        align-items: center;
-        padding: 8px 22px;
+      .slide {
+        width: 77vw;
+
+
+        &:nth-child(1) {
+          padding-top: 26px;
+        }
+
+        &:nth-child(3) {
+          padding-top: 45px;
+        }
+
       }
 
-      @include desktop {
-        margin-top: 80px;
-        padding: 20px 35px;
-      }
     }
 
-    .card {
+    .cardsTabletAndMore {
+      @include onlyTabletAndMore(grid);
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+      margin-top: 30px;
+      grid-column-gap: 8px;
+
+      @include desktop {
+        margin-top: 75px;
+        grid-column-gap: 28px;
+      }
+
+    }
+
+  }
+}
+
+
+.card {
+  border-radius: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(30px);
+  background: rgba(255, 255, 255, 0.1);
+
+  @include desktop {
+    border-radius: 15px;
+  }
+
+  .innerCard {
+    border-radius: 13px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+
+    overflow: hidden;
+
+    @include desktop {
+      border-radius: 15px;
+    }
+
+    .cardHeader {
+      @include centerRow;
       position: relative;
-      border: 1px solid $color_yellow;
-      backdrop-filter: blur(22.10000228881836px);
-      box-shadow: 0 3px 13px 0 rgba(0, 0, 0, 0.5);
-      border-radius: 10px;
-      backdrop-filter: blur(34px);
+      height: 35px;
+      background: #000;
 
-      @include tablet {
-        flex-grow: 1;
+      @include desktop {
+        height: 40px;
       }
-
-      &:not(:first-child) {
-        margin-top: 22px;
-
-        @include tablet {
-          margin-top: 0;
-        }
-      }
-
-      &:not(:nth-child(2)) {
-        @include tablet {
-          margin-left: 6px;
-        }
-
-        @include desktop {
-          margin-left: 23px;
-        }
-      }
-
-      &:nth-child(1) {
-        padding: 18px 10px 10px;
-
-        @include tablet {
-          order: 2;
-        }
-
-        @include desktop {
-          padding: 28px 16px 16px;
-        }
-
-        .cardTop {
-          padding-bottom: 10px;
-
-          @include desktop {
-            padding-bottom: 16px;
-          }
-        }
-
-        .cardPrize {
-          padding: 10px 0 7px;
-
-          @include desktop {
-            padding: 16px 0 11px;
-          }
-        }
-      }
-
-      &:nth-child(2) {
-        padding: 13px 10px 7px;
-        border-color: $color_light_gray;
-
-        @include tablet {
-          order: 1;
-        }
-
-        @include desktop {
-          padding: 21px 16px 9px;
-        }
-
-        .cardTop {
-          padding-bottom: 2px;
-
-          @include desktop {
-            padding-bottom: 11px;
-          }
-        }
-
-        .cardPrize {
-          padding: 2px 0 7px;
-
-          @include desktop {
-            padding: 11px 0;
-          }
-        }
-
-      }
-
-      &:nth-child(3) {
-        padding: 14px 10px 6px;
-
-        @include tablet {
-          order: 3;
-        }
-
-        @include desktop {
-          padding: 21px 16px 9px;
-        }
-
-        .cardTop {
-          padding-bottom: 4px;
-
-          @include desktop {
-            padding-bottom: 6px;
-          }
-        }
-
-        .cardPrize {
-          padding: 4px 0 7px;
-
-          @include desktop {
-            padding: 6px 0 11px;
-          }
-        }
-
-        .cardEarned {
-
-        }
-      }
-
 
       .lent {
-        position: absolute;
         display: block;
-        top: -1px;
-        right: -1px;
-        width: 49px;
-        height: auto;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 35px;
+        width: auto;
 
         @include desktop {
-          width: 75px;
-
+          height: 40px;
         }
       }
 
       .order {
         position: absolute;
         font-weight: 700;
-        font-size: 15px;
+        font-size: 10px;
         line-height: 140%;
         text-align: center;
-        color: $color_white;
-        top: 18px;
-        right: 17px;
-        transform: translate(50%, -50%) rotate(45deg);
+        color: #FFF;
+        transform: translateX(-50%) rotate(-45deg);
+        top: 8.5px;
+        left: 11px;
 
         @include desktop {
-          font-size: 23px;
-          top: 28px;
-          right: 26px;
+          top: 9px;
+          left: 14px;
         }
       }
 
-      .cardTop {
-        display: flex;
-        align-items: center;
+      .name {
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 140%;
+        color: #FFF;
 
-        img {
-          display: block;
-          border-radius: 5px;
-          width: 40px;
-          height: 40px;
-
-          @include desktop {
-            border-radius: 7px;
-            width: 60px;
-            height: 60px;
-          }
-        }
-
-        .cardTopLeft {
-          margin-left: 8px;
-
-          @include desktop {
-            margin-left: 12px;
-          }
-
-          .name {
-            font-weight: 700;
-            font-size: 14px;
-            line-height: 140%;
-            color: $color_white;
-
-            @include desktop {
-              font-size: 20px;
-            }
-          }
-
-          .countryWrapper {
-            display: flex;
-            align-items: center;
-            margin-top: 4px;
-
-            @include desktop {
-              margin-top: 6px;
-            }
-
-            .country {
-              font-weight: 400;
-              font-size: 10px;
-              line-height: 140%;
-              color: $color_light_gray;
-              margin-left: 3px;
-
-              @include desktop {
-                margin-left: 5px;
-              }
-            }
-          }
-        }
-      }
-
-      .cardPrize {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        svg {
-          width: 16px;
-          height: 16px;
-
-          @include desktop {
-            width: 24px;
-            height: 24px;
-          }
-        }
-
-        .prizeLabel {
-          margin-top: 4px;
-          font-weight: 400;
-          font-size: 10px;
-          line-height: 140%;
-          text-align: center;
-          color: $color_light_gray;
-
-          @include desktop {
-            margin-top: 6px;
-            font-size: 12px;
-          }
-        }
-
-        .account {
-          margin: 4px auto 0;
-          font-weight: 700;
+        @include desktop {
           font-size: 14px;
-          line-height: 140%;
-          text-align: center;
-          color: $color_white;
-          width: 177px;
-
-          @include desktop {
-            margin: 6px auto 0;
-            font-size: 20px;
-            width: 272px;
-          }
         }
       }
 
-      .cardEarned {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 7px 0;
+      svg {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 9px;
+      }
+
+
+    }
+
+    .cardBody {
+      backdrop-filter: blur(30px);
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .label {
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 140%;
+        color: $color_light_gray;
 
         @include desktop {
-          padding: 11px 0;
+          font-size: 12px;
+        }
+      }
+
+      .attached {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 140%;
+        color: #FFF;
+
+        @include desktop {
+          font-size: 16px;
+        }
+      }
+
+      .dividerTop {
+        border-radius: 14px;
+        width: 70px;
+        height: 2px;
+        background: #FFF;
+        opacity: 0.05;
+
+        @include desktop {
+          width: 80px;
+        }
+      }
+
+      .earned {
+        font-weight: 700;
+        font-size: 17px;
+        line-height: 140%;
+        color: #FFF;
+
+        @include desktop {
+          font-size: 20px;
+        }
+      }
+
+      .profit {
+        font-weight: 700;
+        line-height: 140%;
+        color: #FFF;
+      }
+    }
+
+  }
+
+
+  &_0 {
+    padding: 40px 22px 20px;
+
+    @include desktop {
+      padding: 45px 25px 22px;
+    }
+
+    .innerCard {
+      .cardHeader {
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #9294A5 80%);
+      }
+
+      .cardBody {
+        padding: 42px 0;
+
+        @include desktop {
+          padding: 48px 0;
         }
 
-        .earnedLabel {
-          font-weight: 400;
-          font-size: 10px;
-          line-height: 140%;
-          text-align: center;
-          color: $color_light_gray;
+        .dividerTop {
+          margin: 11px 0;
 
           @include desktop {
-            font-size: 12px;
+            margin: 13px 0;
+          }
+        }
+
+        .profit {
+          font-size: 17px;
+
+          @include desktop {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  &_1 {
+    padding: 46px 32px 30px;
+
+    @include desktop {
+      padding: 53px 36px 34px;
+    }
+
+    .innerCard {
+      .cardHeader {
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #FFBA4A 80%);
+      }
+
+      .cardBody {
+        padding: 37px 0 28px;
+
+        @include desktop {
+          padding: 42px 0 33px;
+        }
+
+        .dividerTop {
+          margin: 20px 0;
+
+          @include desktop {
+            margin: 23px 0;
           }
         }
 
         .earned {
-          font-weight: 700;
-          font-size: 16px;
-          line-height: 140%;
-          color: $color_white;
-          text-align: center;
+          @include text-gradient;
+          font-size: 26px;
+
+          @include desktop {
+            font-size: 30px;
+          }
+        }
+
+        .profit {
+          @include text-gradient;
+          font-size: 21px;
 
           @include desktop {
             font-size: 24px;
           }
         }
       }
+    }
+  }
 
-      .cardBottom {
-        padding-top: 7px;
-        display: flex;
-        justify-content: space-between;
+  &_2 {
+    padding: 36px 22px 20px;
 
-        & > div {
-          p:nth-child(1) {
-            font-weight: 400;
-            font-size: 10px;
-            line-height: 140%;
-            color: $color_light_gray;
+    @include desktop {
+      padding: 41px 25px 22px;
+    }
 
-            @include desktop {
-              font-size: 12px;
-            }
+    .innerCard {
+      .cardHeader {
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #BB7B48 80%);
+      }
+
+      .cardBody {
+        padding: 24px 0;
+
+        @include desktop {
+          padding: 29px 0;
+        }
+
+        .dividerTop {
+          margin: 12px 0;
+
+          @include desktop {
+            margin: 14px 0;
           }
+        }
 
-          p:nth-child(2) {
-            font-weight: 700;
-            font-size: 12px;
-            line-height: 140%;
-            color: $color_white;
-            margin-top: 4px;
+        .profit {
+          font-size: 14px;
 
-            @include desktop {
-              font-size: 14px;
-              margin-top: 14px;
-            }
+          @include desktop {
+            font-size: 16px;
           }
         }
       }
-
     }
-
   }
 
-
 }
+
 

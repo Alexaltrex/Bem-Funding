@@ -11,17 +11,31 @@
       @include h2;
     }
 
-    .description {
+    .descriptions {
       margin-top: 10px;
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 140%;
-      text-align: center;
-      color: $color_white;
 
       @include desktop {
         margin-top: 12px;
-        font-size: 16px;
+      }
+
+      p {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 140%;
+        text-align: center;
+        color: $color_white;
+
+        @include desktop {
+          font-size: 16px;
+        }
+
+        &:not(:first-child) {
+          margin-top: 20px;
+
+          @include desktop {
+            margin-top: 22px;
+          }
+        }
       }
     }
 
@@ -324,7 +338,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-        }
+    }
 
 
     .dropDownLeft {

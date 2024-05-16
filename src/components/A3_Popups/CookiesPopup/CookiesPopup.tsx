@@ -12,16 +12,14 @@ export const CookiesPopup = observer(() => {
     const {
         appStore: {
             lang,
-            //cookiesPopup, setCookiesPopup
         }
     } = useStore();
 
-    // const [necessary, setNecessary] = useState(false);
-    // const [preferencies, setPreferencies] = useState(false);
-    // const [statistics, setStatistics] = useState(false);
-    // const [marketing, setMarketing] = useState(false);
+    const [necessary, setNecessary] = useState(false);
+    const [preferencies, setPreferencies] = useState(false);
+    const [statistics, setStatistics] = useState(false);
+    const [marketing, setMarketing] = useState(false);
 
-    //const [cookies, setCookie] = useCookies(["cookieConsent"]);
 
     const [value, setValue] = useState<null | string>(null)
     useEffect(() => {
@@ -46,12 +44,12 @@ export const CookiesPopup = observer(() => {
                             {translate("We use cookies to make our system dynamic and you can see our cookies policy here.", lang)}
                         </p>
 
-                        <ButtonCustom
-                            label={translate("I undertand", lang)}
-                            variant={ButtonVariant.blue}
-                            className={style.btn}
-                            onClick={onClick}
-                        />
+                        {/*<ButtonCustom*/}
+                        {/*    label={translate("I undertand", lang)}*/}
+                        {/*    variant={ButtonVariant.blue}*/}
+                        {/*    className={style.btn}*/}
+                        {/*    onClick={onClick}*/}
+                        {/*/>*/}
 
                         {/*<p className={style.description}>*/}
                         {/*    {translate(*/}
@@ -60,68 +58,68 @@ export const CookiesPopup = observer(() => {
                         {/*    )}*/}
                         {/*</p>*/}
 
-                        {/*<div className={style.control}>*/}
-                        {/*    <div className={style.switches}>*/}
-                        {/*        {*/}
-                        {/*            [*/}
-                        {/*                {*/}
-                        {/*                    label: translate("Necessary", lang),*/}
-                        {/*                    checked: necessary,*/}
-                        {/*                    onClick: () => setNecessary(!necessary),*/}
-                        {/*                },*/}
-                        {/*                {*/}
-                        {/*                    label: translate("Preferencies", lang),*/}
-                        {/*                    checked: preferencies,*/}
-                        {/*                    onClick: () => setPreferencies(!preferencies),*/}
-                        {/*                },*/}
-                        {/*                {*/}
-                        {/*                    label: translate("Statistics", lang),*/}
-                        {/*                    checked: statistics,*/}
-                        {/*                    onClick: () => setStatistics(!statistics),*/}
-                        {/*                },*/}
-                        {/*                {*/}
-                        {/*                    label: translate("Marketing", lang),*/}
-                        {/*                    checked: marketing,*/}
-                        {/*                    onClick: () => setMarketing(!marketing),*/}
-                        {/*                },*/}
-                        {/*            ].map((item, key) => (*/}
-                        {/*                <SwitchComponent key={key}*/}
-                        {/*                                 className={style.switchItem}*/}
-                        {/*                                 {...item}*/}
-                        {/*                />*/}
-                        {/*            ))*/}
-                        {/*        }*/}
-                        {/*    </div>*/}
+                        <div className={style.control}>
+                            <div className={style.switches}>
+                                {
+                                    [
+                                        {
+                                            label: translate("Necessary", lang),
+                                            checked: necessary,
+                                            onClick: () => setNecessary(!necessary),
+                                        },
+                                        {
+                                            label: translate("Preferencies", lang),
+                                            checked: preferencies,
+                                            onClick: () => setPreferencies(!preferencies),
+                                        },
+                                        {
+                                            label: translate("Statistics", lang),
+                                            checked: statistics,
+                                            onClick: () => setStatistics(!statistics),
+                                        },
+                                        {
+                                            label: translate("Marketing", lang),
+                                            checked: marketing,
+                                            onClick: () => setMarketing(!marketing),
+                                        },
+                                    ].map((item, key) => (
+                                        <SwitchComponent key={key}
+                                                         className={style.switchItem}
+                                                         {...item}
+                                        />
+                                    ))
+                                }
+                            </div>
 
-                        {/*    <div className={style.buttons}>*/}
-                        {/*        {*/}
-                        {/*            [*/}
-                        {/*                {*/}
-                        {/*                    label: "Deny",*/}
-                        {/*                    variant: ButtonVariant.outlined,*/}
-                        {/*                    onClick: () => setCookiesPopup(false),*/}
-                        {/*                },*/}
-                        {/*                {*/}
-                        {/*                    label: "Allow selection",*/}
-                        {/*                    variant: ButtonVariant.outlined,*/}
-                        {/*                    onClick: () => setCookiesPopup(false),*/}
-                        {/*                },*/}
-                        {/*                {*/}
-                        {/*                    label: "Allow all",*/}
-                        {/*                    variant: ButtonVariant.blue,*/}
-                        {/*                    onClick: () => setCookiesPopup(false),*/}
-                        {/*                },*/}
-                        {/*            ].map(({label, variant, onClick}, key) => (*/}
-                        {/*                <ButtonCustom key={key}*/}
-                        {/*                              label={translate(label, lang)}*/}
-                        {/*                              variant={variant}*/}
-                        {/*                              className={style.btn}*/}
-                        {/*                              onClick={onClick}*/}
-                        {/*                />*/}
-                        {/*            ))*/}
-                        {/*        }*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
+                            <div className={style.buttons}>
+                                {
+                                    [
+                                        {
+                                            label: "Deny",
+                                            variant: ButtonVariant.outlined,
+                                            onClick,
+                                        },
+                                        {
+                                            label: "Allow selection",
+                                            variant: ButtonVariant.outlined,
+                                            onClick,
+                                        },
+                                        {
+                                            label: "Allow all",
+                                            variant: ButtonVariant.blue,
+                                            onClick,
+                                        },
+                                    ].map(({label, variant, onClick}, key) => (
+                                        <ButtonCustom key={key}
+                                                      label={translate(label, lang)}
+                                                      variant={variant}
+                                                      className={style.btn}
+                                                      onClick={onClick}
+                                        />
+                                    ))
+                                }
+                            </div>
+                        </div>
                     </div>
                 )
             }

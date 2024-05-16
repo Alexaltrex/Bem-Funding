@@ -19,7 +19,6 @@ export class AppStore {
     lexiconPopup = false
     career = null as null | ICarreer
     converter = false
-    cookiesPopup = true
 
     constructor() {
         makeObservable(this,
@@ -32,8 +31,6 @@ export class AppStore {
                 lexiconPopup: observable,
                 career: observable,
                 converter: observable,
-                cookiesPopup: observable,
-
 
                 setBurgerMenu: action.bound,
                 setLang: action.bound,
@@ -43,7 +40,6 @@ export class AppStore {
                 setLexiconPopup: action.bound,
                 setCareer: action.bound,
                 setConverter: action.bound,
-                setCookiesPopup: action.bound,
 
             }
         )
@@ -79,10 +75,6 @@ export class AppStore {
 
     setConverter(converter: boolean) {
         this.converter = converter
-    }
-
-    setCookiesPopup(cookiesPopup: boolean) {
-        this.cookiesPopup = cookiesPopup
     }
 
 }

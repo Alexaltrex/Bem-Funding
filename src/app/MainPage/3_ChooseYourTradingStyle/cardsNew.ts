@@ -110,7 +110,7 @@ export const cardsNew: ICardNew[] = [
             {
                 icon: icons.target,
                 label: "Profit Target",
-                value: "6%",
+                value: "-",
             },
             {
                 icon: icons.calendar,

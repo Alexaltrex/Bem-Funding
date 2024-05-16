@@ -11,7 +11,7 @@
   border: 1px solid $color_light_gray;
   backdrop-filter: blur(34px);
   background: rgba(0, 0, 0, 0.4);
-  padding: 12px 0 20px;
+  padding: 12px 16px 20px;
 
   @include tablet {
     padding: 27px 24px 30px;
@@ -28,17 +28,17 @@
     line-height: 140%;
     text-align: center;
     color: #FFF;
-    width: 186px;
+    //width: 186px;
 
     @include tablet {
       width: auto;
     }
   }
 
-  .btn {
-    width: 200px;
-    margin: 27px auto 0;
-  }
+  //.btn {
+  //  width: 200px;
+  //  margin: 27px auto 0;
+  //}
 
   //.description {
   //  margin-top: 27px;
@@ -53,61 +53,61 @@
   //
   //}
 
-  //.control {
-  //  margin-top: 27px;
-  //
-  //  @include desktop {
-  //    display: flex;
-  //    align-items: center;
-  //    justify-content: space-between;
-  //  }
-  //
-  //  .switches {
-  //    display: flex;
-  //    justify-content: center;
-  //
-  //    @include desktop {
-  //      justify-content: flex-start;
-  //    }
-  //
-  //    .switchItem {
-  //      &:not(:first-child) {
-  //        margin-left: 12px;
-  //
-  //        @include tablet {
-  //          margin-left: 40px;
-  //        }
-  //      }
-  //    }
-  //  }
-  //
-  //  .buttons {
-  //    margin-top: 18px;
-  //    display: flex;
-  //    flex-direction: column;
-  //    align-items: center;
-  //
-  //    @include tablet {
-  //      flex-direction: row;
-  //      justify-content: center;
-  //    }
-  //
-  //
-  //    .btn {
-  //      width: 200px;
-  //
-  //
-  //        &:not(:first-child) {
-  //          margin-top: 16px;
-  //
-  //          @include tablet {
-  //            margin-top: 0;
-  //            margin-left: 16px;
-  //          }
-  //        }
-  //    }
-  //  }
-  //}
+  .control {
+    margin-top: 27px;
+
+    @include desktop {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .switches {
+      display: flex;
+      justify-content: center;
+
+      @include desktop {
+        justify-content: flex-start;
+      }
+
+      .switchItem {
+        &:not(:first-child) {
+          margin-left: 12px;
+
+          @include tablet {
+            margin-left: 40px;
+          }
+        }
+      }
+    }
+
+    .buttons {
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      @include tablet {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+
+      .btn {
+        width: 200px;
+
+
+          &:not(:first-child) {
+            margin-top: 16px;
+
+            @include tablet {
+              margin-top: 0;
+              margin-left: 16px;
+            }
+          }
+      }
+    }
+  }
 
 }
 

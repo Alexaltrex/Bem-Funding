@@ -3,15 +3,17 @@
 import style from "./Leaderboard.module.scss";
 import {observer} from "mobx-react-lite";
 import {useStore} from "../../../store/useStore";
-import {translate} from "../../../const/lang";
-import {useState} from "react";
+import {LangEnum, translate} from "../../../const/lang";
+import {FC, useState} from "react";
 import {clsx} from "clsx";
 import {montserrat} from "../../../assets/fonts/fonts";
 import 'swiper/css';
-import {btns} from "./data";
-import {cardsNew} from "./data";
-import {svgIcons} from "../../../assets/svgIcons";
+import {btns, cards, ICard} from "./data";
 import {CloudComponent} from "../../../components/_common/Cloud/Cloud";
+import {Swiper as SwiperClass} from "swiper/types";
+import {Swiper, SwiperSlide} from 'swiper/react';
+import 'swiper/css';
+import {svgIcons} from "../../../assets/svgIcons";
 
 const title = "Leaderboard";
 
@@ -30,7 +32,6 @@ export const Leaderboard = observer(() => {
             <div className={style.cloudWrapper}>
                 <CloudComponent seed={1}/>
             </div>
-
 
             <div className={style.inner}>
 
@@ -54,83 +55,104 @@ export const Leaderboard = observer(() => {
                     }
                 </div>
 
+                <Swiper slidesPerView='auto'
+                        centeredSlides={true}
+                        className={style.cardsMobile}
+                        spaceBetween={8}
+                        initialSlide={1}
 
-                <div className={style.cardsWrapper}>
+                >
                     {
-                        cardsNew.map(({
-                                          order,
-                                          avatarSrc,
-                                          lent,
-                                          name,
-                                          country,
-                                          challengeValue,
-                                          earned,
-                                          endDate,
-                                          behindBrightestStar,
-                                      }, key) => (
-                            <div key={key}
-                                 className={style.card}
+                        cards.map((card, key) => (
+                            <SwiperSlide key={key}
+                                         className={style.slide}
                             >
-
-                                <img src={lent} alt="" className={style.lent}/>
-                                <p className={clsx(style.order, montserrat.className)}>
-                                    {order}
-                                </p>
-
-                                <div className={style.cardTop}>
-                                    <img src={avatarSrc} alt=""/>
-                                    <div className={style.cardTopLeft}>
-                                        <p className={clsx(style.name, montserrat.className)}>
-                                            {name}
-                                        </p>
-                                        <div className={style.countryWrapper}>
-                                            {svgIcons.flag_eng}
-                                            <p className={style.country}>
-                                                {country}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className={style.cardPrize}>
-                                    {/*@ts-ignore*/}
-                                    {svgIcons[`trophy_${key}`]}
-                                    <p className={style.prizeLabel}>{translate("Prize", lang)}</p>
-
-                                    <p className={clsx(montserrat.className, style.account)}>
-                                        {challengeValue} {translate("Challenge Account", lang)}
-                                    </p>
-
-                                </div>
-
-                                <div className={style.cardEarned}>
-                                    <p className={style.earnedLabel}>{translate("Earned", lang)}</p>
-                                    <p className={clsx(style.earned, montserrat.className)}>{earned}</p>
-                                </div>
-
-                                <div className={style.cardBottom}>
-                                    <div>
-                                        <p>{translate("End Date", lang)}</p>
-                                        <p className={montserrat.className}>{endDate}</p>
-                                    </div>
-                                    <div>
-                                        <p>{translate("Behind Brightest Star", lang)}</p>
-                                        <p className={montserrat.className}>{behindBrightestStar}</p>
-                                    </div>
-                                </div>
-
-
-                            </div>
+                                <Card key={key} index={key} lang={lang} {...card}/>
+                            </SwiperSlide>
                         ))
                     }
+                </Swiper>
 
+                <div className={style.cardsTabletAndMore}>
+                    {
+                        cards.map((card, key) => (
+                            <Card key={key} index={key} {...card}/>
+                        ))
+                    }
                 </div>
-
-
             </div>
-
-
         </div>
     )
 })
+
+//========= CARD =========//
+interface ICardComponent extends ICard {
+    lang: LangEnum
+    index: number
+}
+
+const Card: FC<ICardComponent> = ({
+                                      lang,
+                                      index,
+                                      name,
+                                      lent,
+                                      order,
+                                      attached,
+                                      earned,
+                                      profit,
+                                  }) => {
+    return (
+        <div className={clsx(style.card, style[`card_${index}`])}>
+            <div className={style.innerCard}>
+
+                <div className={style.cardHeader}>
+
+                    <img src={lent} alt="" className={style.lent}/>
+
+                    <p className={clsx(montserrat.className, style.order)}>{order}</p>
+
+                    <p className={clsx(montserrat.className, style.name)}>
+                        {name}
+                    </p>
+
+                    {svgIcons.flag_eng}
+                </div>
+
+                <div className={style.cardBody}>
+
+                    <p className={style.label}>
+                        {translate("Attached", lang)}
+                    </p>
+
+                    <p className={clsx(montserrat.className, style.attached)}>
+                        {attached}
+                    </p>
+
+                    <div className={style.dividerTop}/>
+
+                    <p className={style.label}>
+                        {translate("Earned", lang)}
+                    </p>
+
+                    <p className={clsx(montserrat.className, style.earned)}>
+                        {earned}
+                    </p>
+
+                    <div className={style.dividerTop}/>
+
+                    <p className={style.label}>
+                        {translate("Profit", lang)}
+                    </p>
+
+                    <p className={clsx(montserrat.className, style.profit)}>
+                        {profit}
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    )
+}
+
+
 

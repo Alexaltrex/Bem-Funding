@@ -55,7 +55,6 @@ interface ICardComponent extends ICard {
 
 const Card: FC<ICardComponent> = ({
                                       lang, phase,
-                                      pre,
                                       title,
                                       subtitle,
                                       descriptions,
@@ -77,16 +76,8 @@ const Card: FC<ICardComponent> = ({
             <div className={style.content}>
 
                 <p className={style.phase}>
-                    {translate("PHASE", lang)} {phase}
+                    {translate(phase, lang)}
                 </p>
-
-                {
-                    pre && (
-                        <p className={style.cardPre}>
-                            {translate(pre, lang)}
-                        </p>
-                    )
-                }
 
                 <p className={clsx(style.cardTitle, montserrat.className)}>
                     {translate(title, lang)}

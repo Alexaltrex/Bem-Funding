@@ -104,9 +104,12 @@
           }
 
           @include desktop {
-            width: 500px;
+            width: 480px;
           }
+        }
 
+        .textarea {
+          height: 130px;
         }
       }
     }

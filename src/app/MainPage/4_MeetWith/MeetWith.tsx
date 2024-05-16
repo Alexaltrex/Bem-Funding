@@ -16,7 +16,6 @@ const titles = [
     "opportunities",
 ]
 
-
 export const MeetWith = observer(() => {
     const {appStore: {lang}} = useStore();
 

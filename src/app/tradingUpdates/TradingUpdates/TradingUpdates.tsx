@@ -87,9 +87,7 @@ const Item: FC<IItem> = ({
             {/*    )*/}
             {/*}*/}
 
-            <div className={style.imgWrapper}>
-                <img src={src} alt=""/>
-            </div>
+            <img src={src} alt="" className={style.img}/>
 
             <div className={style.content}>
 
@@ -120,11 +118,24 @@ const Item: FC<IItem> = ({
                     Editor: {editor}
                 </p>
 
-                <Collapse in={open}>
-                    <p className={style.text}>
-                        {text}
-                    </p>
-                </Collapse>
+                {
+                    open ? (
+                            <p className={style.text}>{text}</p>
+                        ) : (
+                        <p className={style.text}>
+                            {text.slice(0, 40)}<span>...</span>
+                        </p>
+                    )
+                }
+
+
+
+
+                {/*<Collapse in={open}>*/}
+                {/*    <p className={style.text}>*/}
+                {/*        {text}*/}
+                {/*    </p>*/}
+                {/*</Collapse>*/}
 
             </div>
         </div>

@@ -10,7 +10,7 @@ import {FormikHelpers} from "formik/dist/types";
 import {FieldText} from "../../../components/_common/FieldText/FieldText";
 import {ButtonCustom, ButtonVariant} from "../../../components/_common/ButtonCustom/ButtonCustom";
 import {FieldTextarea} from "../../../components/_common/FieldTextarea/FieldTextarea";
-import {YMaps, Map} from "@pbe/react-yandex-maps";
+import {YMaps, Map, Placemark} from "@pbe/react-yandex-maps";
 import {useStore} from "../../../store/useStore";
 import {observer} from "mobx-react-lite";
 import {translate} from "../../../const/lang";
@@ -78,14 +78,14 @@ export const Contacts = observer(() => {
                                 [
                                     {
                                         icon: svgIcons.marker_pin,
-                                        text: "The Meydan Hotel, Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, U.A.E\n",
+                                        text: "The Meydan Hotel, Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, U.A.E",
                                     },
                                     // {
                                     //     icon: svgIcons.phone_call,
                                     //     text: "+971 58 543 6008",
                                     // },
                                     {
-                                        icon: svgIcons.marker_pin,
+                                        icon: svgIcons.mail,
                                         text: "company@bemfunding.com",
                                     },
                                 ].map(({icon, text}, key) => (
@@ -103,19 +103,48 @@ export const Contacts = observer(() => {
 
                         <div className={style.mapWrapper}>
                             <YMaps>
-                                    <Map state={{
-                                        center: [40.706902352897515,-73.97974500000001],
-                                        zoom: 9,
-                                        controls: [
-                                            //'zoomControl',
-                                            //'fullscreenControl',
-                                        ],
-                                    }}
-                                         style={{
-                                             width: "100%",
-                                             height: "100%"
-                                         }}
+                                <Map state={{
+                                    center: [25.155664459072018, 55.30028825917784],
+                                    zoom: 14,
+                                    controls: [
+                                        //'zoomControl',
+                                        //'fullscreenControl',
+                                    ],
+                                }}
+                                     style={{
+                                         width: "100%",
+                                         height: "100%"
+                                     }}
+                                >
+
+                                    <Placemark modules={['geoObject.addon.hint']}
+                                               geometry={[25.155664459072018, 55.30028825917784]}
+                                        //                         properties={{
+                                        //                             hintContent: `
+                                        //  <div class=${style.hint}>
+                                        //      <img src='${img.small}'>
+                                        //      <p class=${style.title}>${title}</p>
+                                        //      <p class=${style.period}>${period(year)}</p>
+                                        //  </div>
+                                        // `,
+                                        //                         }}
+                                        //                         options={{
+                                        //                             hintOpenTimeout: 0,
+                                        //                             hintCloseTimeout: 0,
+                                        //                             //hintOffset: [50, 50],
+                                        //                             hideIconOnBalloonOpen: false,
+                                        //                             iconLayout: "default#image",
+                                        //                             // @ts-ignore
+                                        //                             iconImageHref: iconImageHref,
+                                        //                             iconImageSize: [hover ? 16 : 14, hover ? 16 : 14],
+                                        //                             iconImageOffset: [hover ? -8 : -7, hover ? -8 : -7],
+                                        //                         }}
+                                        //                         onClick={onClickHandler}
+                                        //                         onMouseEnter={() => setHover(true)}
+                                        //                         onMouseLeave={() => setHover(false)}
                                     />
+
+                                </Map>
                             </YMaps>
                             {/*<img src="/jpeg/contacts/map.jpg" alt=""/>*/}
                         </div>
@@ -162,7 +191,8 @@ export const Contacts = observer(() => {
                                         <p className={style.fieldRowLabel}>
                                             {translate("Message", lang)}
                                         </p>
-                                        <FieldTextarea name="coverLetter" className={clsx(style.field, style.textarea)}/>
+                                        <FieldTextarea name="coverLetter"
+                                                       className={clsx(style.field, style.textarea)}/>
                                     </div>
 
                                     {/*@ts-ignore*/}
