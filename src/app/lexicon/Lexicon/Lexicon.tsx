@@ -241,7 +241,9 @@ export const Lexicon = observer(() => {
 
                             </div>
                         ) : (
-                            <p className={style.noResult}>No search result</p>
+                            <p className={style.noResult}>
+                                {translate("No search result", lang)}
+                            </p>
                         )
                     }
 

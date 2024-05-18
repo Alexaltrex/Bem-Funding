@@ -2,6 +2,9 @@ import {DetailedHTMLProps, FC, InputHTMLAttributes} from "react";
 import style from "./FieldText.module.scss";
 import {clsx} from "clsx";
 import {useField} from "formik";
+import {observer} from "mobx-react-lite";
+import {useStore} from "../../../store/useStore";
+import {translate} from "../../../const/lang";
 
 interface IFieldCustom extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
     name: string
@@ -9,12 +12,14 @@ interface IFieldCustom extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputEl
     background?: boolean
 }
 
-export const FieldText: FC<IFieldCustom> = ({
+export const FieldText: FC<IFieldCustom> = observer(({
                                                 name,
                                                 className,
                                                 background = true,
                                                 ...props
                                             }) => {
+    const {appStore: {lang}} = useStore();
+
     const [field, meta, helpers] = useField(name);
 
     return (
@@ -32,10 +37,10 @@ export const FieldText: FC<IFieldCustom> = ({
             {
                 meta.touched && meta.error && (
                     <p className={style.error}>
-                        {meta.error}
+                        {translate(meta.error, lang)}
                     </p>
                 )
             }
         </div>
     )
-}
+})

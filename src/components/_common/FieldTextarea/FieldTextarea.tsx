@@ -2,6 +2,9 @@ import {DetailedHTMLProps, FC, InputHTMLAttributes, TextareaHTMLAttributes} from
 import style from "./FieldTextarea.module.scss";
 import {clsx} from "clsx";
 import {useField} from "formik";
+import {useStore} from "../../../store/useStore";
+import {observer} from "mobx-react-lite";
+import {translate} from "../../../const/lang";
 
 interface IFieldCustom extends DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement> {
     name: string
@@ -9,12 +12,14 @@ interface IFieldCustom extends DetailedHTMLProps<TextareaHTMLAttributes<HTMLText
     background?: boolean
 }
 
-export const FieldTextarea: FC<IFieldCustom> = ({
+export const FieldTextarea: FC<IFieldCustom> = observer(({
                                                 name,
                                                 className,
                                                 background = true,
                                                 ...props
                                             }) => {
+    const {appStore: {lang}} = useStore();
+
     const [field, meta, helpers] = useField(name);
 
 
@@ -33,10 +38,10 @@ export const FieldTextarea: FC<IFieldCustom> = ({
             {
                 meta.touched && meta.error && (
                     <p className={style.error}>
-                        {meta.error}
+                        {translate(meta.error, lang)}
                     </p>
                 )
             }
         </div>
     )
-}
+})

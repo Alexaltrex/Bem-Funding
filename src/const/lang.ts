@@ -221,6 +221,12 @@ export const dictionary = {
     "Featured post": "Öne Çıkan Gönderiler",
     "Most read": "Sık Okunanlar",
     "Categories": "Kategoriler",
+
+    // Form errors
+    "Required": "Zorunlu",
+    "Invalid Email": "Geçersiz Email",
+    "No search result": "Arama sonucu bulunamadı.",
+    "Confirm error": "Eşleştirme Hatası",
 }
 
 export const translate = (str: string, lang: LangEnum): string => {

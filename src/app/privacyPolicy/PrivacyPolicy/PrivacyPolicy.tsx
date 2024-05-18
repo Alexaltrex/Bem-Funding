@@ -17,7 +17,7 @@ export const PrivacyPolicy = observer(() => {
 
     const pathname = usePathname();
 
-    console.log(pathname)
+    //console.log(pathname)
 
     return (
         <div className={style.privacyPolicy}>

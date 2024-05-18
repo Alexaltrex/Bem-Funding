@@ -6,11 +6,14 @@ import {useStore} from "../../../store/useStore";
 import {montserrat} from "../../../assets/fonts/fonts";
 import {LangEnum, translate} from "../../../const/lang";
 import {clsx} from "clsx";
-import {FC, useState} from "react";
-import {SearchForm} from "../../../components/_common/SearchForm/SearchForm";
+import {FC, useRef, useState} from "react";
 import {svgIcons} from "../../../assets/svgIcons";
 import {Collapse} from "@mui/material";
 import {dataNew, daysOfWeek, IExchange} from "./dataNew";
+import {FormikHelpers} from "formik/dist/types";
+import {useFormik} from "formik";
+import {useOutsideClick} from "../../../hooks/useOutsideClick";
+import {getWords, searchExchanges} from "./helpers";
 
 const title = "Symbols";
 const descriptions = [
@@ -22,7 +25,54 @@ export const Symbols = observer(() => {
     const {appStore: {lang}} = useStore();
 
     const [marketIndex, setMarketIndex] = useState(0)
+    const [exchanges, setExchanges] = useState(dataNew[marketIndex].exchanges)
 
+    const onMarket = (index: number) => {
+        setMarketIndex(index);
+        setExchanges(dataNew[index].exchanges)
+        formik.resetForm();
+    }
+
+    // search
+    interface IValues {
+        value: string
+    }
+    const initialValues = {
+        value: ""
+    }
+    const onSubmit = ({value}: IValues, formikHelpers: FormikHelpers<IValues>) => {
+        if (value) {
+            setExchanges(searchExchanges({lang, marketIndex, subString: value}))
+            // const groups = searchGroups(json as ILexiconItem[], value);
+            // setGroups(groups);
+            // if (groups.length > 0) {
+            //     setLexiconGroup(groups[0])
+            // }
+            // setLetter("");
+        } else {
+            //setMarketIndex(marketIndex);
+            setExchanges(dataNew[marketIndex].exchanges);
+        }
+    }
+    const formik = useFormik({
+        initialValues,
+        onSubmit
+    })
+    const onClear = () => {
+        //setMarketIndex(0);
+        setExchanges(dataNew[marketIndex].exchanges);
+        formik.resetForm();
+    }
+
+    // dropdown
+    const [words, setWords] = useState<string[]>([]);
+    const onWord = (word: string) => {
+        formik.setFieldValue("value", word);
+        setWords([]);
+        formik.submitForm();
+    }
+    const ref = useRef<HTMLDivElement>(null!);
+    useOutsideClick(ref, () => setWords([]));
 
     return (
         <div className={style.symbols}>
@@ -44,11 +94,11 @@ export const Symbols = observer(() => {
 
                 <div className={style.selectBlock}>
 
-                    <div className={style.labels}>
+                    <div className={style.markets}>
                         {
                             dataNew.map(({marketName}, key) => (
                                 <button key={key}
-                                        onClick={() => setMarketIndex(key)}
+                                        onClick={() => onMarket(key)}
                                         className={clsx({
                                             [style.labelBtn]: true,
                                             [style.labelBtn_selected]: marketIndex === key,
@@ -60,22 +110,80 @@ export const Symbols = observer(() => {
                         }
                     </div>
 
-                    <SearchForm onSearch={async () => {
-                    }}
-                                onClear={() => {
-                                }}
-                                className={style.searchForm}
-                    />
+                    <div className={style.formWrapper}>
 
+                        <form onSubmit={formik.handleSubmit}
+                              className={style.searchForm}
+                              autoComplete="off"
+                        >
+
+                            <input name="value"
+                                   placeholder={translate("Write here", lang) + "..."}
+                                   value={formik.values.value}
+                                   onBlur={formik.handleBlur}
+                                   onChange={(e) => {
+                                       formik.handleChange(e);
+                                       if (e.target.value) {
+                                           setWords(getWords({
+                                               lang,
+                                               marketIndex,
+                                               subString: e.target.value
+                                           }));
+                                       }
+                                   }}
+                            />
+
+                            {
+                                formik.values.value && (
+                                    <button onClick={() => onClear()}
+                                    >
+                                        {svgIcons.close_gradient}
+                                    </button>
+                                )
+                            }
+
+                            <button type="submit">
+                                {svgIcons.search}
+                            </button>
+                        </form>
+
+                        {
+                            Boolean(words.length) && (
+                                <div className={style.dropdownWrapper}
+                                     ref={ref}
+                                >
+                                    {
+                                        words.map((_word, key) => (
+                                            <button key={key}
+                                                    onClick={() => onWord(_word)}
+                                            >
+                                                {_word}
+                                            </button>
+                                        ))
+                                    }
+                                </div>
+                            )
+                        }
+                    </div>
                 </div>
 
-                <div className={style.rows}>
-                    {
-                        dataNew[marketIndex].exchanges.map((exchange, key) => (
-                            <Row key={key} lang={lang} {...exchange}/>
-                        ))
-                    }
-                </div>
+                {
+                    exchanges.length > 0 ? (
+                        <div className={style.rows}>
+                            {
+                                exchanges.map((exchange, key) => (
+                                    <Row key={key} lang={lang} {...exchange}/>
+                                ))
+                            }
+                        </div>
+                    ) : (
+                        <p className={clsx(style.noResult, style.rows)}>
+                            {translate("No search result", lang)}
+
+                        </p>
+                    )
+                }
+
 
             </div>
         </div>
@@ -102,8 +210,7 @@ const Row: FC<IRow> = ({
                        }) => {
     const [open, setOpen] = useState(false);
 
-    let active = true;
-    let statusLabel = '';
+    let active;
 
     // "Monday" 1
     // "Tuesday" 2
@@ -114,16 +221,12 @@ const Row: FC<IRow> = ({
     // "Sunday" 0
 
     const day = (new Date()).getDay();
-
     const startTime = tradingHours[0].slice(0, 5);
     const endTime = tradingHours[0].slice(-5);
 
     if (day === 6 || day === 0) {
         active = false
     } else {
-        const realDayIndex = day - 1
-        //console.log(realDayIndex)
-        //console.log(tradingHours[0].slice(0,5))
         const hoursStart = Number(tradingHours[0].slice(0, 2));
         const minutesStart = Number(tradingHours[0].slice(3, 5));
         const start = hoursStart * minutesStart;
@@ -140,7 +243,6 @@ const Row: FC<IRow> = ({
             active = false
         }
     }
-
 
     return (
         <div className={style.rowComponent}>
