@@ -8,6 +8,16 @@ export const daysOfWeek = [
     "Sunday",
 ]
 
+export type TradingHoursType = [
+    string,
+    string,
+    string,
+    string,
+    string,
+    string,
+    string,
+]
+
 export interface IExchange {
     abbreviation: string
     fullName: {
@@ -20,15 +30,7 @@ export interface IExchange {
     leverageSwing: string
     commission: string
     commissionType: string
-    tradingHours: [
-        string,
-        string,
-        string,
-        string,
-        string,
-        string,
-        string,
-    ]
+    tradingHours: TradingHoursType
 }
 
 export interface IDataNewItem {
@@ -48,7 +50,7 @@ const forexTradingHours = [
     "00:05 - 23:55",
     "Trading is closed",
     "Trading is closed"
-]
+] as TradingHoursType
 
 const forexData = {
     contractSize: "100,000",
@@ -290,7 +292,7 @@ const cashTradingHours = [
     "01:05 - 23:50",
     "03:05 - 23:50",
     "01:05 - 23:50",
-]
+] as TradingHoursType
 
 //========= METALS =========//
 const metalsAbbreviations = [
@@ -384,7 +386,7 @@ const cryptoTradingHours = [
     "00:05 - 23:55",
     "00:05 - 23:55",
     "00:05 - 23:55",
-]
+] as TradingHoursType
 
 //========= DATA =========//
 export const dataNew: IDataNewItem[] = [
@@ -444,7 +446,7 @@ export const dataNew: IDataNewItem[] = [
                 cashTradingHours[key],
                 "Trading is closed",
                 "Trading is closed"
-            ]
+            ] as TradingHoursType
         })),
     },
     // Metals CFD
@@ -473,7 +475,7 @@ export const dataNew: IDataNewItem[] = [
                 "01:05 - 23:50",
                 "Trading is closed",
                 "Trading is closed"
-            ]
+            ] as TradingHoursType
         }))
     },
     // Crypto
@@ -502,7 +504,7 @@ export const dataNew: IDataNewItem[] = [
                 cryptoTradingHours[key],
                 "Trading is closed",
                 "Trading is closed"
-            ]
+            ] as TradingHoursType
         }))
     },
 
