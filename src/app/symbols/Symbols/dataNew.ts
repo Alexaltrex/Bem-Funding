@@ -292,7 +292,7 @@ const cashTradingHours = [
     "01:05 - 23:50",
     "03:05 - 23:50",
     "01:05 - 23:50",
-] as TradingHoursType
+]
 
 //========= METALS =========//
 const metalsAbbreviations = [
@@ -386,7 +386,7 @@ const cryptoTradingHours = [
     "00:05 - 23:55",
     "00:05 - 23:55",
     "00:05 - 23:55",
-] as TradingHoursType
+]
 
 //========= DATA =========//
 export const dataNew: IDataNewItem[] = [
