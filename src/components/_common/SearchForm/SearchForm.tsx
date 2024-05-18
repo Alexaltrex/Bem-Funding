@@ -57,7 +57,7 @@ export const SearchForm: FC<ISearchForm> = observer(({
         >
 
             <input name="value"
-                   placeholder={translate("Write here...", lang)}
+                   placeholder={translate("Write here", lang) + "..."}
                    value={formik.values.value}
                    onBlur={formik.handleBlur}
                    onChange={(e) => {

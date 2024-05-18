@@ -121,7 +121,7 @@ const Card: FC<ICardComponent> = ({
                 <div className={style.cardBody}>
 
                     <p className={style.label}>
-                        {translate("Attached", lang)}
+                        {translate("Account Size", lang)}
                     </p>
 
                     <p className={clsx(montserrat.className, style.attached)}>

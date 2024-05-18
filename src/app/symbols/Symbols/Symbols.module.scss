@@ -344,11 +344,11 @@
     .dropDownLeft {
 
       @include tablet {
-        width: 198px;
+        width: 270px;
       }
 
       @include desktop {
-        width: 363px;
+        width: 400px;
       }
 
       .row {

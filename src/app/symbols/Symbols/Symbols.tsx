@@ -6,11 +6,11 @@ import {useStore} from "../../../store/useStore";
 import {montserrat} from "../../../assets/fonts/fonts";
 import {LangEnum, translate} from "../../../const/lang";
 import {clsx} from "clsx";
-import {FC, useRef, useState} from "react";
+import {FC, useState} from "react";
 import {SearchForm} from "../../../components/_common/SearchForm/SearchForm";
-import {data, IDataItem} from "./data";
 import {svgIcons} from "../../../assets/svgIcons";
 import {Collapse} from "@mui/material";
+import {dataNew, daysOfWeek, IExchange} from "./dataNew";
 
 const title = "Symbols";
 const descriptions = [
@@ -21,7 +21,7 @@ const descriptions = [
 export const Symbols = observer(() => {
     const {appStore: {lang}} = useStore();
 
-    const [index, setIndex] = useState(0)
+    const [marketIndex, setMarketIndex] = useState(0)
 
 
     return (
@@ -46,21 +46,15 @@ export const Symbols = observer(() => {
 
                     <div className={style.labels}>
                         {
-                            [
-                                "Forex",
-                                "Exotics",
-                                "Metal CFD",
-                                "Cash CFD",
-                                "Crypto",
-                            ].map((label, key) => (
+                            dataNew.map(({marketName}, key) => (
                                 <button key={key}
-                                        onClick={() => setIndex(key)}
+                                        onClick={() => setMarketIndex(key)}
                                         className={clsx({
                                             [style.labelBtn]: true,
-                                            [style.labelBtn_selected]: index === key,
+                                            [style.labelBtn_selected]: marketIndex === key,
                                         })}
                                 >
-                                    <span>{translate(label, lang)}</span>
+                                    <span>{marketName[lang]}</span>
                                 </button>
                             ))
                         }
@@ -77,8 +71,8 @@ export const Symbols = observer(() => {
 
                 <div className={style.rows}>
                     {
-                        data.map((row, key) => (
-                            <Row key={key} lang={lang} {...row}/>
+                        dataNew[marketIndex].exchanges.map((exchange, key) => (
+                            <Row key={key} lang={lang} {...exchange}/>
                         ))
                     }
                 </div>
@@ -89,26 +83,63 @@ export const Symbols = observer(() => {
 })
 
 //========= ROW =========//
-interface IRow extends IDataItem {
+interface IRow extends IExchange {
     lang: LangEnum
 }
 
 const Row: FC<IRow> = ({
                            lang,
-                           active,
-                           label,
-                           title,
-                           timeEnd,
-                           information: {
-                               contractSize,
-                               marginPercent,
-                               leverageNormal,
-                               leverageSwing,
-                               commisionType,
-                           },
-                           tradingHours
+                           abbreviation,
+                           fullName,
+                           contractSize,
+                           marginPercent,
+                           leverageNormal,
+                           leverageSwing,
+                           commission,
+                           commissionType,
+                           tradingHours,
+
                        }) => {
     const [open, setOpen] = useState(false);
+
+    let active = true;
+    let statusLabel = '';
+
+    // "Monday" 1
+    // "Tuesday" 2
+    // "Wednesday" 3
+    // "Thursday" 4
+    // "Friday" 5
+    // "Saturday" 6
+    // "Sunday" 0
+
+    const day = (new Date()).getDay();
+
+    const startTime = tradingHours[0].slice(0, 5);
+    const endTime = tradingHours[0].slice(-5);
+
+    if (day === 6 || day === 0) {
+        active = false
+    } else {
+        const realDayIndex = day - 1
+        //console.log(realDayIndex)
+        //console.log(tradingHours[0].slice(0,5))
+        const hoursStart = Number(tradingHours[0].slice(0, 2));
+        const minutesStart = Number(tradingHours[0].slice(3, 5));
+        const start = hoursStart * minutesStart;
+        const hoursEnd = Number(tradingHours[0].slice(-5, -3));
+        const minutesEnd = Number(tradingHours[0].slice(-2));
+        const end = hoursEnd * minutesEnd;
+        const hours = (new Date()).getHours();
+        const minutes = (new Date()).getMinutes();
+        const now = hours * minutes;
+
+        if (now >= start && now <= end) {
+            active = true
+        } else {
+            active = false
+        }
+    }
 
 
     return (
@@ -130,10 +161,10 @@ const Row: FC<IRow> = ({
                     })}
                     />
                     <p className={clsx(style.label, montserrat.className)}>
-                        {label}
+                        {abbreviation}
                     </p>
                     <p className={style.rowTitle}>
-                        {title}
+                        {fullName[lang]}
                     </p>
                 </div>
 
@@ -141,7 +172,11 @@ const Row: FC<IRow> = ({
                     [style.right]: true,
                     [style.right_active]: active,
                 })}>
-                    Market will close in {timeEnd}
+                    {
+                        active
+                            ? (lang === LangEnum.ENG ? `Market will close in ${endTime}` : `Piyasa ${endTime} içinde kapanacak`)
+                            : (lang === LangEnum.ENG ? `Market will open in ${startTime}` : `Piyasa ${startTime} içinde açılacak`)
+                    }
                 </p>
 
             </div>
@@ -150,7 +185,7 @@ const Row: FC<IRow> = ({
                 <div className={style.dropDown}>
                     <div className={style.dropDownLeft}>
                         <p className={clsx(style.dropDownTitle, montserrat.className)}>
-                            Information
+                            {translate("Information", lang)}
                         </p>
 
                         <div className={style.dropDownContent}>
@@ -173,8 +208,8 @@ const Row: FC<IRow> = ({
                                         value: leverageSwing,
                                     },
                                     {
-                                        label: "Commission type",
-                                        value: commisionType,
+                                        label: "Commission",
+                                        value: commission + (Boolean(commissionType) ? `, ${commissionType}` : ""),
                                     },
                                 ].map(({label, value}, key) => (
                                     <div key={key}
@@ -196,63 +231,28 @@ const Row: FC<IRow> = ({
                     <div className={style.dropDownRight}>
 
                         <p className={clsx(style.dropDownTitle, montserrat.className)}>
-                            {translate("Trading Hours", lang)} (GMT +1)
+                            {translate("Trading Hours (GMT +1)", lang)}
                         </p>
 
                         <div className={style.dropDownContent}>
                             {
-                                [
-                                    {
-                                        label: "Monday",
-                                        value: tradingHours[0],
-                                    },
-                                    {
-                                        label: "Tuesday",
-                                        value: tradingHours[1],
-                                    },
-                                    {
-                                        label: "Wednesday",
-                                        value: tradingHours[2],
-                                    },
-                                    {
-                                        label: "Thursday",
-                                        value: tradingHours[3],
-                                    },
-                                    {
-                                        label: "Friday",
-                                        value: tradingHours[4],
-                                    },
-                                    {
-                                        label: "Saturday",
-                                        value: tradingHours[5],
-                                    },
-                                    {
-                                        label: "Sunday",
-                                        value: tradingHours[6],
-                                    },
-
-                                ].map(({label, value}, key) => (
+                                tradingHours.map((tradingHours, key) => (
                                     <div key={key}
                                          className={style.row}
                                     >
                                         <p className={style.label}>
-                                            {label}
+                                            {translate(daysOfWeek[key], lang)}
                                         </p>
                                         <p className={style.value}>
-                                            {value}
+                                            {tradingHours}
                                         </p>
                                     </div>
                                 ))
                             }
                         </div>
-
-
                     </div>
-
                 </div>
             </Collapse>
-
-
         </div>
     )
 }

@@ -118,6 +118,8 @@ export const dictionary = {
     "Earned": "Kazanılan",
     "End Date": "Bitiş Tarihi",
     "Behind Brightest Star": "Büyüme Oranı",
+    "Account Size": "Hesap Büyüklüğü",
+    "Profit": "Kar",
 
     // Contacts
     "Any question?": "Bize Ulaşın?",
@@ -163,9 +165,6 @@ export const dictionary = {
     "A Pathway to Recognition and Reward": "Ödüllendirme Yolunda Bir Adım",
     "Beyond Funding – A Glimpse into the Future": "Finansmanın Ötesinde – Geleceğe Bir Bakış",
     "Our Promise to You": "Size Olan Sözümüz",
-
-
-
     "At BEM Funding, our mission is clear: to identify and empower the world's most talented traders. We understand the journey of a trader is filled with challenges and opportunities alike. Our goal is to fund those who not only have the skills to thrive in the competitive world of trading but also the dedication and resilience to continually excel. Our offering is designed for traders who envision themselves at the forefront of the industry, working with some of the most prestigious financial institutions worldwide.": "BEM Funding olarak misyonumuz net: Dünyanın en yetenekli traderlarını belirlemek ve güçlendirmek. Bir traderın yolculuğunun hem zorluklarla hem de fırsatlarla dolu olduğunu anlıyoruz. Amacımız, sadece rekabetçi trade dünyasında başarılı olmak için gerekli becerilere sahip olanları değil, aynı zamanda sürekli mükemmeliyet gösterme kararlılığı ve direncine sahip olanları da finanse etmektir. Sunduklarımız, kendilerini sektörün ön saflarında hayal eden, dünya çapındaki en prestijli finans kuruluşlarıyla çalışmayı hedefleyen traderlar için tasarlanmıştır.",
     "Our commitment to you extends beyond mere funding. We recognize the hard work and dedication it takes to succeed in this field. As such, traders who demonstrate exceptional skill and the ability to secure payouts from our firm will not only receive immediate financial rewards but will also unlock opportunities for future benefits. Our reward system is built to acknowledge your achievements, both now and in the future, ensuring that your success is both celebrated and sustained.": "Size olan bağlılığımız sadece finansmanla sınırlı değildir. Bu alanda başarılı olmak için gereken sıkı çalışma ve bağlılığı takdir ediyoruz. Bu nedenle, firmamızdan ödemeler almayı başaran ve olağanüstü beceri gösteren traderlar, sadece anında finansal ödüller almakla kalmayacak, aynı zamanda gelecekteki avantajların da kilidini açacaktır. Ödül sistemimiz, başarılarınızı şimdi ve gelecekte tanımak üzere yapılandırılmıştır, böylece başarınız hem kutlanacak hem de sürdürülecektir.",
     "While we take pride in the support and resources we currently offer, we are also excited about the future. Our vision for BEM Funding 2.0 is not just to fund traders but to forge a pathway to real-life opportunities within the trading industry and beyond. Imagine a future where your success with us opens doors to career advancements with financial institutions, collaborations, and roles that only a select few can dream of. While we're not ready to unveil all the details just yet, rest assured, we are working on innovative ways to elevate your trading career to heights previously unimagined.": "Şu anda sunduğumuz destek ve kaynaklarla gurur duyarken, gelecekle ilgili de heyecanlıyız. BEM Funding 2.0 vizyonumuz sadece traderları finanse etmekle kalmayacak, aynı zamanda trade endüstrisinde ve ötesinde gerçek yaşam fırsatlarına bir yol açacaktır. Bizimle elde ettiğiniz başarıların, finansal kuruluşlarla kariyer ilerlemeleri, iş birlikleri ve yalnızca seçkin birkaç kişinin hayal edebileceği rollerin kapılarını açtığı bir geleceği hayal edin. Henüz tüm detayları açıklamaya hazır olmasak da, trade kariyerinizi daha önce hayal edilmemiş yüksekliklere taşımanın yenilikçi yolları üzerinde çalıştığımızdan emin olabilirsiniz.",
@@ -214,6 +213,8 @@ export const dictionary = {
     "Metal CFD": "Metal CFD",
     "Cash CFD": "Cash CFD",
     "Crypto": "Kripto",
+    "Information": "Information",
+    "Trading Hours (GMT +1)": "Trading Hours (GMT +1)",
 
     // Blog
     "Recent Post": "Son Gönderiler",

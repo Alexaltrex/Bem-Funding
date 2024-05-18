@@ -7,6 +7,7 @@ import {useStore} from "../../../store/useStore";
 import {translate} from "../../../const/lang";
 import {FC, useEffect, useState} from "react";
 import {ButtonCustom, ButtonVariant} from "../../_common/ButtonCustom/ButtonCustom";
+import {svgIcons} from "../../../assets/svgIcons";
 
 export const CookiesPopup = observer(() => {
     const {
@@ -35,91 +36,87 @@ export const CookiesPopup = observer(() => {
     return (
         <>
             {
-                value && value !== "true" && (
-                    <div className={clsx({
-                        [style.cookiesPopup]: true,
-                        //[style.cookiesPopup_hide]: !cookiesPopup,
-                    })}>
-                        <p className={style.title}>
-                            {translate("We use cookies to make our system dynamic and you can see our cookies policy here.", lang)}
-                        </p>
+                value && value !== "true" &&
+                (
+                    <div className={style.cookiesPopup}>
 
-                        {/*<ButtonCustom*/}
-                        {/*    label={translate("I undertand", lang)}*/}
-                        {/*    variant={ButtonVariant.blue}*/}
-                        {/*    className={style.btn}*/}
-                        {/*    onClick={onClick}*/}
-                        {/*/>*/}
+                        <div className={style.top}>
 
-                        {/*<p className={style.description}>*/}
-                        {/*    {translate(*/}
-                        {/*        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",*/}
-                        {/*        lang*/}
-                        {/*    )}*/}
-                        {/*</p>*/}
-
-                        <div className={style.control}>
-                            <div className={style.switches}>
-                                {
-                                    [
-                                        {
-                                            label: translate("Necessary", lang),
-                                            checked: necessary,
-                                            onClick: () => setNecessary(!necessary),
-                                        },
-                                        {
-                                            label: translate("Preferencies", lang),
-                                            checked: preferencies,
-                                            onClick: () => setPreferencies(!preferencies),
-                                        },
-                                        {
-                                            label: translate("Statistics", lang),
-                                            checked: statistics,
-                                            onClick: () => setStatistics(!statistics),
-                                        },
-                                        {
-                                            label: translate("Marketing", lang),
-                                            checked: marketing,
-                                            onClick: () => setMarketing(!marketing),
-                                        },
-                                    ].map((item, key) => (
-                                        <SwitchComponent key={key}
-                                                         className={style.switchItem}
-                                                         {...item}
-                                        />
-                                    ))
-                                }
+                            <div className={style.topLeft}>
+                                {svgIcons.logo}
+                                <p className={style.titleMobile}>
+                                    {translate("We use cookies to make our system dynamic and you can see our cookies policy here.", lang)}
+                                </p>
                             </div>
 
-                            <div className={style.buttons}>
-                                {
-                                    [
-                                        {
-                                            label: "Deny",
-                                            variant: ButtonVariant.outlined,
-                                            onClick,
-                                        },
-                                        {
-                                            label: "Allow selection",
-                                            variant: ButtonVariant.outlined,
-                                            onClick,
-                                        },
-                                        {
-                                            label: "Allow all",
-                                            variant: ButtonVariant.blue,
-                                            onClick,
-                                        },
-                                    ].map(({label, variant, onClick}, key) => (
-                                        <ButtonCustom key={key}
-                                                      label={translate(label, lang)}
-                                                      variant={variant}
-                                                      className={style.btn}
-                                                      onClick={onClick}
-                                        />
-                                    ))
-                                }
+                            <div className={style.topRight}>
+                                <p className={style.titleTabletAndMore}>
+                                    {translate("We use cookies to make our system dynamic and you can see our cookies policy here.", lang)}
+                                </p>
+
+                                <div className={style.switches}>
+                                    {
+                                        [
+                                            {
+                                                label: translate("Necessary", lang),
+                                                checked: necessary,
+                                                onClick: () => setNecessary(!necessary),
+                                            },
+                                            {
+                                                label: translate("Preferencies", lang),
+                                                checked: preferencies,
+                                                onClick: () => setPreferencies(!preferencies),
+                                            },
+                                            {
+                                                label: translate("Statistics", lang),
+                                                checked: statistics,
+                                                onClick: () => setStatistics(!statistics),
+                                            },
+                                            {
+                                                label: translate("Marketing", lang),
+                                                checked: marketing,
+                                                onClick: () => setMarketing(!marketing),
+                                            },
+                                        ].map((item, key) => (
+                                            <SwitchComponent key={key}
+                                                             className={style.switchItem}
+                                                             {...item}
+                                            />
+                                        ))
+                                    }
+                                </div>
                             </div>
                         </div>
+
+                        <div className={style.buttons}>
+                            {
+                                [
+                                    {
+                                        label: "Allow all",
+                                        variant: ButtonVariant.blue,
+                                        onClick,
+                                    },
+                                    {
+                                        label: "Allow selection",
+                                        variant: ButtonVariant.outlined,
+                                        onClick,
+                                    },
+                                    {
+                                        label: "Deny",
+                                        variant: ButtonVariant.outlined,
+                                        onClick,
+                                    },
+                                ].map(({label, variant, onClick}, key) => (
+                                    <ButtonCustom key={key}
+                                                  label={translate(label, lang)}
+                                                  variant={variant}
+                                                  className={style.btn}
+                                                  onClick={onClick}
+                                    />
+                                ))
+                            }
+                        </div>
+
                     </div>
                 )
             }

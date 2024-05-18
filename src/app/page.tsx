@@ -19,11 +19,9 @@ const MainPage = () => {
             <EvaluationProcess/>
             <img src="/png/main_page/howTo_back.png" alt="" className={style.back}/>
         </div>
-
         <ChooseYourTradingStyle/>
         <MeetWith/>
         <ChooseBem/>
-
         <CollaborativeExellence/>
 
         <img src="/png/main_page/mounts_bottom.png" alt="" className={style.mounts_bottom}/>

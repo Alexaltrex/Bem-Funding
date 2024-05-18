@@ -54,14 +54,14 @@ export const links: ILink[] = [
                 label: "Policies",
                 href: "/privacyPolicy",
             },
-            {
-                label: "Economic Calendar",
-                href: "/economicCalendar",
-            },
-            {
-                label: "Market Hours",
-                href: "/marketHours",
-            },
+            // {
+            //     label: "Economic Calendar",
+            //     href: "/economicCalendar",
+            // },
+            // {
+            //     label: "Market Hours",
+            //     href: "/marketHours",
+            // },
         ]
     },
     {
