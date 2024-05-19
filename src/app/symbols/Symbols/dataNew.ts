@@ -376,17 +376,7 @@ const cryptoLeverageNormal = [
     "1:3.3",
     "1:3.3",
 ]
-const cryptoTradingHours = [
-    "00:05 - 23:55",
-    "00:05 - 23:55",
-    "00:05 - 23:55",
-    "00:05 - 23:55",
-    "00:05 - 23:59",
-    "00:05 - 23:55",
-    "00:05 - 23:55",
-    "00:05 - 23:55",
-    "00:05 - 23:55",
-]
+const cryptoTradingHours = "00:05 - 23:55";
 
 //========= DATA =========//
 export const dataNew: IDataNewItem[] = [
@@ -497,13 +487,13 @@ export const dataNew: IDataNewItem[] = [
             commission: "0.025",
             commissionType: "Percent/Volume",
             tradingHours: [
-                cryptoTradingHours[key],
-                cryptoTradingHours[key],
-                cryptoTradingHours[key],
-                cryptoTradingHours[key],
-                cryptoTradingHours[key],
-                "Trading is closed",
-                "Trading is closed"
+                cryptoTradingHours,
+                cryptoTradingHours,
+                cryptoTradingHours,
+                cryptoTradingHours,
+                cryptoTradingHours,
+                cryptoTradingHours,
+                cryptoTradingHours,
             ] as TradingHoursType
         }))
     },

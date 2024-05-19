@@ -1,4 +1,4 @@
-import {dataNew, IExchange} from "./dataNew";
+import {dataNew, IExchange, TradingHoursType} from "./dataNew";
 import {LangEnum} from "../../../const/lang";
 import {getRegExp} from "../../lexicon/Lexicon/helpers";
 
@@ -52,3 +52,116 @@ export const searchExchanges = ({
 
     return _exchanges
 }
+
+//========= GET WORK STATUS =========//
+type GetWorkStatusType = (tradingHours: TradingHoursType) => ({active: boolean, secondsBefore: number})
+
+export const getWorkStatus: GetWorkStatusType = (tradingHours) => {
+
+    let active; // работает или нет
+    let secondsBefore = 0; // количество секунд до открытия или закрытия
+
+    // "Monday" 1
+    // "Tuesday" 2
+    // "Wednesday" 3
+    // "Thursday" 4
+    // "Friday" 5
+    // "Saturday" 6
+    // "Sunday" 0
+
+    const day = (new Date()).getDay();
+    const realIndexOfDay = day === 0 ? 6 : day - 1; // правильный индекс дня (по порядку, начиная с 0)
+
+    const hoursStart = Number(tradingHours[0].slice(0, 2)); // число часов открытия
+    const minutesStart = Number(tradingHours[0].slice(3, 5)); // число минут открытия
+    const allSecondsStart = (hoursStart * 60 + minutesStart) * 60;
+
+    const hoursEnd = Number(tradingHours[0].slice(-5, -3)); // число часов закрытия
+    const minutesEnd = Number(tradingHours[0].slice(-2)); // число минут минут
+    const allSecondsEnd = (hoursEnd * 60 + minutesEnd) * 60;
+
+    const hours = (new Date()).getHours(); // текущее число часов
+    const minutes = (new Date()).getMinutes(); // текущее число минут
+    const seconds = (new Date()).getSeconds();
+    const allSecondsNow = (hours * 60 + minutes) * 60 + seconds;
+
+    // если текущий день - суббота или воскресенье и эти дни - нерабочие
+    if ((realIndexOfDay === 5 || realIndexOfDay === 6) && tradingHours[5] === "Trading is closed") {
+        active = false;
+
+        if (realIndexOfDay === 5) { // если суббота
+           secondsBefore = (24 * 60 * 60 - allSecondsNow) + 24 * 60 * 60 + allSecondsStart;
+        }
+        if (realIndexOfDay === 6) { // если воскресенье
+            secondsBefore = (24 * 60 * 60 - allSecondsNow) + allSecondsStart;
+        }
+
+    } else { // если текущий день - рабочий
+
+        // если текущее время - рабочее
+        if (allSecondsNow >= allSecondsStart && allSecondsNow <= allSecondsEnd) {
+            active = true;
+            secondsBefore = allSecondsEnd - allSecondsNow;
+        } else { // если текущее время - не рабочее
+            active = false;
+
+            // если ЕЩЕ не открылся
+            if (allSecondsNow < allSecondsStart) {
+                secondsBefore = allSecondsStart - allSecondsNow;
+            } else { // если УЖЕ закрылся
+                // если суббота и воскресенье - рабочие (т.е. все дни - рабочие)
+                // или суббота и воскресенье - не рабочие, но следующий день - рабочий
+                if (
+                    (tradingHours[5] !== "Trading is closed") ||
+                    (!tradingHours[5] === "Trading is closed" && realIndexOfDay <=3)
+                ) {
+                    secondsBefore = (24 * 60 * 60 - allSecondsNow) + allSecondsStart;
+                }
+
+                // суббота и воскресенье - не рабочие, и текущий день - пятница
+                if (!tradingHours[5] === "Trading is closed" && realIndexOfDay === 4) {
+                    secondsBefore = (24 * 60 * 60 - allSecondsNow) + 2 * 24 * 60 * 60 + allSecondsStart;
+                }
+            }
+
+        }
+    }
+
+    return ({active, secondsBefore})
+}
+
+//========= CONVERT SECONDS TO COUNTDOWN =========//
+export const convertSecondsToCountdown = (seconds: number): string => {
+    const secondsString = convertToTwoDigit(getSecs(seconds * 1000));
+    const minutesString = convertToTwoDigit(getMins(seconds * 1000));
+    const hoursString = convertToTwoDigit(getHours(seconds * 1000));
+    const daysString = convertToTwoDigit(getDays(seconds * 1000));
+    return `${daysString}:${hoursString}:${minutesString}:${secondsString}`
+}
+
+export const getDays = (ms: number) => {
+    const days = Math.trunc(ms / (60000 * 60 * 24));
+    return days
+}
+export const getHours = (ms: number) => {
+    const min = ms / 60000;
+    const days = Math.trunc(min / (60 * 24));
+    const hours = Math.trunc(((min - days * 24 * 60)) / 60);
+    return hours;
+}
+export const getMins = (ms: number) => {
+    const min = ms / 60000;
+    const days = Math.trunc(min / (60 * 24));
+    const hours = Math.trunc(((min - days * 24 * 60)) / 60);
+    const minutes = Math.trunc(min - days * 24 * 60 - hours * 60)
+    return minutes;
+}
+export const getSecs = (ms: number) => {
+    const secs = ms / 1000;
+    const days = Math.trunc(secs / (60 * 60 * 24));
+    const hours = Math.trunc(((secs - days * 24 * 60 * 60)) / (60 * 60));
+    const minutes = Math.trunc((secs - days * 24 * 60 * 60 - hours * 60 * 60) / 60);
+    const seconds = Math.trunc(secs - days * 24 * 60 * 60 - hours * 60 * 60 - 60 * minutes);
+    return seconds;
+}
+export const convertToTwoDigit = (num: number): string => num > 9 ? String(num) : `0${num}`;

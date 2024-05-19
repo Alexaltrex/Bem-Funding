@@ -6,14 +6,14 @@ import {useStore} from "../../../store/useStore";
 import {montserrat} from "../../../assets/fonts/fonts";
 import {LangEnum, translate} from "../../../const/lang";
 import {clsx} from "clsx";
-import {FC, useRef, useState} from "react";
+import {FC, useEffect, useRef, useState} from "react";
 import {svgIcons} from "../../../assets/svgIcons";
 import {Collapse} from "@mui/material";
 import {dataNew, daysOfWeek, IExchange} from "./dataNew";
 import {FormikHelpers} from "formik/dist/types";
 import {useFormik} from "formik";
 import {useOutsideClick} from "../../../hooks/useOutsideClick";
-import {getWords, searchExchanges} from "./helpers";
+import {convertSecondsToCountdown, getWords, getWorkStatus, searchExchanges} from "./helpers";
 
 const title = "Symbols";
 const descriptions = [
@@ -172,7 +172,10 @@ export const Symbols = observer(() => {
                         <div className={style.rows}>
                             {
                                 exchanges.map((exchange, key) => (
-                                    <Row key={key} lang={lang} {...exchange}/>
+                                    <Row key={marketIndex + exchange.abbreviation}
+                                         lang={lang}
+                                         {...exchange}
+                                    />
                                 ))
                             }
                         </div>
@@ -210,7 +213,10 @@ const Row: FC<IRow> = ({
                        }) => {
     const [open, setOpen] = useState(false);
 
-    let active;
+    const [active, setActive] = useState(false);
+    const [secondsBefore, setSecondsBefore] = useState(0)
+
+    //let active;
 
     // "Monday" 1
     // "Tuesday" 2
@@ -220,29 +226,41 @@ const Row: FC<IRow> = ({
     // "Saturday" 6
     // "Sunday" 0
 
-    const day = (new Date()).getDay();
-    const startTime = tradingHours[0].slice(0, 5);
-    const endTime = tradingHours[0].slice(-5);
+    // const day = (new Date()).getDay();
+    // const startTime = tradingHours[0].slice(0, 5);
+    // const endTime = tradingHours[0].slice(-5);
+    //
+    // if (day === 6 || day === 0) {
+    //     active = false
+    // } else {
+    //     const hoursStart = Number(tradingHours[0].slice(0, 2));
+    //     const minutesStart = Number(tradingHours[0].slice(3, 5));
+    //     const start = hoursStart * minutesStart;
+    //     const hoursEnd = Number(tradingHours[0].slice(-5, -3));
+    //     const minutesEnd = Number(tradingHours[0].slice(-2));
+    //     const end = hoursEnd * minutesEnd;
+    //     const hours = (new Date()).getHours();
+    //     const minutes = (new Date()).getMinutes();
+    //     const now = hours * minutes;
+    //
+    //     if (now >= start && now <= end) {
+    //         active = true
+    //     } else {
+    //         active = false
+    //     }
+    // }
 
-    if (day === 6 || day === 0) {
-        active = false
-    } else {
-        const hoursStart = Number(tradingHours[0].slice(0, 2));
-        const minutesStart = Number(tradingHours[0].slice(3, 5));
-        const start = hoursStart * minutesStart;
-        const hoursEnd = Number(tradingHours[0].slice(-5, -3));
-        const minutesEnd = Number(tradingHours[0].slice(-2));
-        const end = hoursEnd * minutesEnd;
-        const hours = (new Date()).getHours();
-        const minutes = (new Date()).getMinutes();
-        const now = hours * minutes;
+    useEffect(()=> {
+        const timeId = setInterval(() => {
+            const {active, secondsBefore} = getWorkStatus(tradingHours);
+            setActive(active);
+            setSecondsBefore(secondsBefore);
+            //console.log(secondsBefore)
+        }, 1000)
+        return () => clearInterval(timeId)
+    }, [])
 
-        if (now >= start && now <= end) {
-            active = true
-        } else {
-            active = false
-        }
-    }
+
 
     return (
         <div className={style.rowComponent}>
@@ -274,10 +292,11 @@ const Row: FC<IRow> = ({
                     [style.right]: true,
                     [style.right_active]: active,
                 })}>
+                    {/*{convertSecondsToCountdown(secondsBefore)}*/}
                     {
                         active
-                            ? (lang === LangEnum.ENG ? `Market will close in ${endTime}` : `Piyasa ${endTime} içinde kapanacak`)
-                            : (lang === LangEnum.ENG ? `Market will open in ${startTime}` : `Piyasa ${startTime} içinde açılacak`)
+                            ? (lang === LangEnum.ENG ? `Market will close in ${convertSecondsToCountdown(secondsBefore)}` : `Piyasa ${convertSecondsToCountdown(secondsBefore)} içinde kapanacak`)
+                            : (lang === LangEnum.ENG ? `Market will open in ${convertSecondsToCountdown(secondsBefore)}` : `Piyasa ${convertSecondsToCountdown(secondsBefore)} içinde açılacak`)
                     }
                 </p>
 
