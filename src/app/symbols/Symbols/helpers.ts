@@ -113,7 +113,7 @@ export const getWorkStatus: GetWorkStatusType = (tradingHours) => {
                 // или суббота и воскресенье - не рабочие, но следующий день - рабочий
                 if (
                     (tradingHours[5] !== "Trading is closed") ||
-                    (!tradingHours[5] === "Trading is closed" && realIndexOfDay <=3)
+                    (tradingHours[5] === "Trading is closed" && realIndexOfDay <=3)
                 ) {
                     secondsBefore = (24 * 60 * 60 - allSecondsNow) + allSecondsStart;
                 }
