@@ -51,13 +51,24 @@ const Item: FC<IItem> = ({
                              date,
                              editor,
                              text,
-    src,
+                             src,
                          }) => {
 
     const [open, setOpen] = useState(false);
     //const [openText, setOpenText] = useState(false);
 
     const isTabletAndMore = useMediaQuery('(min-width:768px)');
+
+    // mobile 27
+    // tablet: 51
+    // desktop: 77
+
+    const matchesTablet = useMediaQuery('(min-width:768px)');
+    const matchesDesktop = useMediaQuery('(min-width:1140px)');
+    const limit = matchesDesktop
+        ? 75 * 6
+        : matchesTablet ? 50 * 6 : 25 * 6
+
 
     return (
         <div className={style.item}>
@@ -104,7 +115,9 @@ const Item: FC<IItem> = ({
                             })}
                     >
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13.9999 21.2108C13.4981 21.2108 12.9964 21.0192 12.6138 20.6368L0.574396 8.59729C-0.191465 7.83143 -0.191465 6.58971 0.574396 5.82416C1.33995 5.05861 2.58141 5.05861 3.34733 5.82416L13.9999 16.4774L24.6526 5.82454C25.4184 5.05898 26.6598 5.05898 27.4253 5.82454C28.1915 6.59009 28.1915 7.8318 27.4253 8.59766L15.3861 20.6372C15.0033 21.0196 14.5016 21.2108 13.9999 21.2108Z" fill="#3AD0FF" />
+                            <path
+                                d="M13.9999 21.2108C13.4981 21.2108 12.9964 21.0192 12.6138 20.6368L0.574396 8.59729C-0.191465 7.83143 -0.191465 6.58971 0.574396 5.82416C1.33995 5.05861 2.58141 5.05861 3.34733 5.82416L13.9999 16.4774L24.6526 5.82454C25.4184 5.05898 26.6598 5.05898 27.4253 5.82454C28.1915 6.59009 28.1915 7.8318 27.4253 8.59766L15.3861 20.6372C15.0033 21.0196 14.5016 21.2108 13.9999 21.2108Z"
+                                fill="#3AD0FF"/>
                         </svg>
                     </button>
 
@@ -120,15 +133,13 @@ const Item: FC<IItem> = ({
 
                 {
                     open ? (
-                            <p className={style.text}>{text}</p>
-                        ) : (
+                        <p className={style.text}>{text}</p>
+                    ) : (
                         <p className={style.text}>
-                            {text.slice(0, 40)}<span>...</span>
+                            {text.slice(0, limit)}<span>...</span>
                         </p>
                     )
                 }
-
-
 
 
                 {/*<Collapse in={open}>*/}
