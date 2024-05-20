@@ -70,9 +70,8 @@ export const getWorkStatus: GetWorkStatusType = (tradingHours) => {
     // "Saturday" 6
     // "Sunday" 0
 
-    const dateNow = new Date(moment().tz("Europe/Moscow").format());
-    const day = (dateNow).getDay();
-
+    const dateNowMoment = moment().tz("Europe/Moscow");
+    const day = dateNowMoment.day();
 
     const realIndexOfDay = day === 0 ? 6 : day - 1; // правильный индекс дня (по порядку, начиная с 0)
 
@@ -84,9 +83,9 @@ export const getWorkStatus: GetWorkStatusType = (tradingHours) => {
     const minutesEnd = Number(tradingHours[0].slice(-2)); // число минут минут
     const allSecondsEnd = (hoursEnd * 60 + minutesEnd) * 60;
 
-    const hours = (dateNow).getHours(); // текущее число часов
-    const minutes = (dateNow).getMinutes(); // текущее число минут
-    const seconds = (dateNow).getSeconds();
+    const hours = dateNowMoment.hour(); // текущее число часов
+    const minutes = dateNowMoment.minute(); // текущее число минут
+    const seconds = dateNowMoment.second();
     const allSecondsNow = (hours * 60 + minutes) * 60 + seconds;
 
     // если текущий день - суббота или воскресенье и эти дни - нерабочие

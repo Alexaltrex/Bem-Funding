@@ -76,11 +76,6 @@ export const Symbols = observer(() => {
     const ref = useRef<HTMLDivElement>(null!);
     useOutsideClick(ref, () => setWords([]));
 
-    console.log(new Date(moment().tz("Europe/Moscow").format()))
-
-    //console.log(moment().tz("Europe/Moscow").format()) // +3
-    //console.log(moment.tz.names())
-
     return (
         <div className={style.symbols}>
             <div className={style.inner}>
