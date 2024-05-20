@@ -214,7 +214,6 @@ export const dictionary = {
     "Cash CFD": "Cash CFD",
     "Crypto": "Kripto",
     "Information": "Information",
-    "Trading Hours (GMT +1)": "Trading Hours (GMT +1)",
 
     // Blog
     "Recent Post": "Son Gönderiler",

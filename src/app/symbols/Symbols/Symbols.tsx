@@ -3,7 +3,7 @@
 import style from "./Symbols.module.scss"
 import {observer} from "mobx-react-lite";
 import {useStore} from "../../../store/useStore";
-import {montserrat} from "../../../assets/fonts/fonts";
+import {montserrat, robotoMono} from "../../../assets/fonts/fonts";
 import {LangEnum, translate} from "../../../const/lang";
 import {clsx} from "clsx";
 import {FC, useEffect, useRef, useState} from "react";
@@ -14,6 +14,7 @@ import {FormikHelpers} from "formik/dist/types";
 import {useFormik} from "formik";
 import {useOutsideClick} from "../../../hooks/useOutsideClick";
 import {convertSecondsToCountdown, getWords, getWorkStatus, searchExchanges} from "./helpers";
+import moment from 'moment-timezone';
 
 const title = "Symbols";
 const descriptions = [
@@ -37,6 +38,7 @@ export const Symbols = observer(() => {
     interface IValues {
         value: string
     }
+
     const initialValues = {
         value: ""
     }
@@ -73,6 +75,11 @@ export const Symbols = observer(() => {
     }
     const ref = useRef<HTMLDivElement>(null!);
     useOutsideClick(ref, () => setWords([]));
+
+    console.log(new Date(moment().tz("Europe/Moscow").format()))
+
+    //console.log(moment().tz("Europe/Moscow").format()) // +3
+    //console.log(moment.tz.names())
 
     return (
         <div className={style.symbols}>
@@ -214,53 +221,16 @@ const Row: FC<IRow> = ({
     const [open, setOpen] = useState(false);
 
     const [active, setActive] = useState(false);
-    const [secondsBefore, setSecondsBefore] = useState(0)
+    const [secondsBefore, setSecondsBefore] = useState(-1)
 
-    //let active;
-
-    // "Monday" 1
-    // "Tuesday" 2
-    // "Wednesday" 3
-    // "Thursday" 4
-    // "Friday" 5
-    // "Saturday" 6
-    // "Sunday" 0
-
-    // const day = (new Date()).getDay();
-    // const startTime = tradingHours[0].slice(0, 5);
-    // const endTime = tradingHours[0].slice(-5);
-    //
-    // if (day === 6 || day === 0) {
-    //     active = false
-    // } else {
-    //     const hoursStart = Number(tradingHours[0].slice(0, 2));
-    //     const minutesStart = Number(tradingHours[0].slice(3, 5));
-    //     const start = hoursStart * minutesStart;
-    //     const hoursEnd = Number(tradingHours[0].slice(-5, -3));
-    //     const minutesEnd = Number(tradingHours[0].slice(-2));
-    //     const end = hoursEnd * minutesEnd;
-    //     const hours = (new Date()).getHours();
-    //     const minutes = (new Date()).getMinutes();
-    //     const now = hours * minutes;
-    //
-    //     if (now >= start && now <= end) {
-    //         active = true
-    //     } else {
-    //         active = false
-    //     }
-    // }
-
-    useEffect(()=> {
+    useEffect(() => {
         const timeId = setInterval(() => {
             const {active, secondsBefore} = getWorkStatus(tradingHours);
             setActive(active);
             setSecondsBefore(secondsBefore);
-            //console.log(secondsBefore)
         }, 1000)
         return () => clearInterval(timeId)
     }, [])
-
-
 
     return (
         <div className={style.rowComponent}>
@@ -288,17 +258,41 @@ const Row: FC<IRow> = ({
                     </p>
                 </div>
 
-                <p className={clsx({
-                    [style.right]: true,
-                    [style.right_active]: active,
-                })}>
-                    {/*{convertSecondsToCountdown(secondsBefore)}*/}
-                    {
-                        active
-                            ? (lang === LangEnum.ENG ? `Market will close in ${convertSecondsToCountdown(secondsBefore)}` : `Piyasa ${convertSecondsToCountdown(secondsBefore)} içinde kapanacak`)
-                            : (lang === LangEnum.ENG ? `Market will open in ${convertSecondsToCountdown(secondsBefore)}` : `Piyasa ${convertSecondsToCountdown(secondsBefore)} içinde açılacak`)
-                    }
-                </p>
+                {
+                    secondsBefore > 0 && (
+                        <p className={clsx({
+                            [style.right]: true,
+                            [style.right_active]: active,
+                        })}>
+                            {
+                                active
+                                    ? lang === LangEnum.ENG
+                                    ? (
+                                        <>
+                                            <span>Market will close in </span><span
+                                            className={robotoMono.className}>{convertSecondsToCountdown(secondsBefore)}</span>
+                                        </>
+                                    )
+                                    : (
+                                        <>
+                                            <span>Piyasa </span><span>{convertSecondsToCountdown(secondsBefore)}</span><span> içinde kapanacak</span>
+                                        </>
+                                    )
+                                    : lang === LangEnum.ENG
+                                    ? (
+                                        <>
+                                            <span>Market will open in </span><span
+                                            className={robotoMono.className}>convertSecondsToCountdown(secondsBefore)</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <span>Piyasa </span><span>{convertSecondsToCountdown(secondsBefore)}</span><span> içinde açılacak</span>
+                                        </>
+                                    )
+                            }
+                        </p>
+                    )
+                }
 
             </div>
 
@@ -352,7 +346,7 @@ const Row: FC<IRow> = ({
                     <div className={style.dropDownRight}>
 
                         <p className={clsx(style.dropDownTitle, montserrat.className)}>
-                            {translate("Trading Hours (GMT +1)", lang)}
+                            {`${translate("Trading Hours", lang)}  (GMT +3)`}
                         </p>
 
                         <div className={style.dropDownContent}>

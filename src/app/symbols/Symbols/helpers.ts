@@ -1,6 +1,7 @@
 import {dataNew, IExchange, TradingHoursType} from "./dataNew";
 import {LangEnum} from "../../../const/lang";
 import {getRegExp} from "../../lexicon/Lexicon/helpers";
+import moment from "moment-timezone";
 
 //========= GET WORDS =========//
 export interface IGetWords {
@@ -54,7 +55,7 @@ export const searchExchanges = ({
 }
 
 //========= GET WORK STATUS =========//
-type GetWorkStatusType = (tradingHours: TradingHoursType) => ({active: boolean, secondsBefore: number})
+type GetWorkStatusType = (tradingHours: TradingHoursType) => ({ active: boolean, secondsBefore: number })
 
 export const getWorkStatus: GetWorkStatusType = (tradingHours) => {
 
@@ -69,7 +70,10 @@ export const getWorkStatus: GetWorkStatusType = (tradingHours) => {
     // "Saturday" 6
     // "Sunday" 0
 
-    const day = (new Date()).getDay();
+    const dateNow = new Date(moment().tz("Europe/Moscow").format());
+    const day = (dateNow).getDay();
+
+
     const realIndexOfDay = day === 0 ? 6 : day - 1; // правильный индекс дня (по порядку, начиная с 0)
 
     const hoursStart = Number(tradingHours[0].slice(0, 2)); // число часов открытия
@@ -80,9 +84,9 @@ export const getWorkStatus: GetWorkStatusType = (tradingHours) => {
     const minutesEnd = Number(tradingHours[0].slice(-2)); // число минут минут
     const allSecondsEnd = (hoursEnd * 60 + minutesEnd) * 60;
 
-    const hours = (new Date()).getHours(); // текущее число часов
-    const minutes = (new Date()).getMinutes(); // текущее число минут
-    const seconds = (new Date()).getSeconds();
+    const hours = (dateNow).getHours(); // текущее число часов
+    const minutes = (dateNow).getMinutes(); // текущее число минут
+    const seconds = (dateNow).getSeconds();
     const allSecondsNow = (hours * 60 + minutes) * 60 + seconds;
 
     // если текущий день - суббота или воскресенье и эти дни - нерабочие
@@ -90,7 +94,7 @@ export const getWorkStatus: GetWorkStatusType = (tradingHours) => {
         active = false;
 
         if (realIndexOfDay === 5) { // если суббота
-           secondsBefore = (24 * 60 * 60 - allSecondsNow) + 24 * 60 * 60 + allSecondsStart;
+            secondsBefore = (24 * 60 * 60 - allSecondsNow) + 24 * 60 * 60 + allSecondsStart;
         }
         if (realIndexOfDay === 6) { // если воскресенье
             secondsBefore = (24 * 60 * 60 - allSecondsNow) + allSecondsStart;
@@ -113,7 +117,7 @@ export const getWorkStatus: GetWorkStatusType = (tradingHours) => {
                 // или суббота и воскресенье - не рабочие, но следующий день - рабочий
                 if (
                     (tradingHours[5] !== "Trading is closed") ||
-                    (tradingHours[5] === "Trading is closed" && realIndexOfDay <=3)
+                    (tradingHours[5] === "Trading is closed" && realIndexOfDay <= 3)
                 ) {
                     secondsBefore = (24 * 60 * 60 - allSecondsNow) + allSecondsStart;
                 }
@@ -136,7 +140,9 @@ export const convertSecondsToCountdown = (seconds: number): string => {
     const minutesString = convertToTwoDigit(getMins(seconds * 1000));
     const hoursString = convertToTwoDigit(getHours(seconds * 1000));
     const daysString = convertToTwoDigit(getDays(seconds * 1000));
-    return `${daysString}:${hoursString}:${minutesString}:${secondsString}`
+    return daysString === "00"
+        ? `${hoursString}:${minutesString}:${secondsString}`
+        : `${daysString}:${hoursString}:${minutesString}:${secondsString}`
 }
 
 export const getDays = (ms: number) => {
