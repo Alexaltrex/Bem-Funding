@@ -46,7 +46,7 @@ export const TradingUpdates = observer(() => {
                 </h2>
 
                 {
-                Boolean(items) && (
+                items && (
                     <div className={style.items}>
                         {
                             (seeMore ? items : items.slice(0, 4))
