@@ -46,17 +46,17 @@ export const TradingUpdates = observer(() => {
                 </h2>
 
                 {
-                items && (
-                    <div className={style.items}>
-                        {
-                            (seeMore ? items : items.slice(0, 4))
-                                .map((item, key) => (
-                                <Item key={key} {...item}/>
-                            ))
-                        }
-                    </div>
-                )
-            }
+                    items && (
+                        <div className={style.items}>
+                            {
+                                (seeMore ? items : items.slice(0, 4))
+                                    .map((item, key) => (
+                                        <Item key={key} {...item}/>
+                                    ))
+                            }
+                        </div>
+                    )
+                }
 
                 {
                     (loading || !Boolean(items)) && (
@@ -67,7 +67,7 @@ export const TradingUpdates = observer(() => {
                                         <Skeleton key={k}
                                                   className={style.skeleton}
                                                   variant="rectangular"
-                                                  //height={236}
+                                            //height={236}
                                         />
                                     ))
                             }
@@ -76,7 +76,7 @@ export const TradingUpdates = observer(() => {
                 }
 
                 {
-                    (Boolean(items) && items.length > 4 && !seeMore) && (
+                    (items && items.length > 4 && !seeMore) && (
                         <ButtonCustom label={translate(bntLabel, lang)}
                                       className={style.btn}
                                       variant={ButtonVariant.contained}
