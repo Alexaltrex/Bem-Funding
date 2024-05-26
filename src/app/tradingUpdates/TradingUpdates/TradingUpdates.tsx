@@ -119,7 +119,7 @@ const Item: FC<ITradingUpdate> = ({
     return (
         <div className={style.item}>
 
-            <img src={image} alt="" className={style.img}/>
+            <img src={image ? image : ""} alt="" className={style.img}/>
 
             <div className={style.content}>
 
