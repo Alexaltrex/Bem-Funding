@@ -8,16 +8,31 @@ import {montserrat} from "../../../assets/fonts/fonts";
 import {translate} from "../../../const/lang";
 import {IItem, items} from "./data";
 import {ButtonCustom, ButtonVariant} from "../../../components/_common/ButtonCustom/ButtonCustom";
-import {FC, useRef, useState} from "react";
+import {FC, useEffect, useRef, useState} from "react";
 import gsap from "gsap";
 import {useGSAP} from "@gsap/react";
 import {Collapse, useMediaQuery} from "@mui/material";
+import {tradingUpdatesApi} from "../../../api/api";
 
 const title = "Trading Updates";
 const bntLabel = "See more";
 
 export const TradingUpdates = observer(() => {
     const {appStore: {lang}} = useStore();
+
+    useEffect(() => {
+        const getter = async () => {
+            try {
+                const response = await tradingUpdatesApi.getAll();
+                console.log(response)
+            } catch (e: any) {
+                console.log(e.message)
+            } finally {
+
+            }
+        }
+        getter().then
+    }, [])
 
     return (
         <div className={style.tradingUpdates}>
