@@ -6,13 +6,11 @@ import {useStore} from "../../../store/useStore";
 import {clsx} from "clsx";
 import {montserrat} from "../../../assets/fonts/fonts";
 import {translate} from "../../../const/lang";
-import {IItem, items} from "./data";
 import {ButtonCustom, ButtonVariant} from "../../../components/_common/ButtonCustom/ButtonCustom";
-import {FC, useEffect, useRef, useState} from "react";
-import gsap from "gsap";
-import {useGSAP} from "@gsap/react";
-import {Collapse, useMediaQuery} from "@mui/material";
-import {tradingUpdatesApi} from "../../../api/api";
+import {FC, useEffect, useState} from "react";
+import {useMediaQuery} from "@mui/material";
+import {ITradingUpdate, tradingUpdatesApi} from "../../../api/api";
+import Skeleton from '@mui/material/Skeleton';
 
 const title = "Trading Updates";
 const bntLabel = "See more";
@@ -20,18 +18,23 @@ const bntLabel = "See more";
 export const TradingUpdates = observer(() => {
     const {appStore: {lang}} = useStore();
 
+    const [items, setItems] = useState<null | ITradingUpdate[]>(null)
+    const [loading, setLoading] = useState(false);
+    const [seeMore, setSeeMore] = useState(false);
+
     useEffect(() => {
         const getter = async () => {
             try {
+                setLoading(true);
                 const response = await tradingUpdatesApi.getAll();
-                console.log(response)
+                setItems(response);
             } catch (e: any) {
                 console.log(e.message)
             } finally {
-
+                setLoading(false);
             }
         }
-        getter().then
+        getter().then();
     }, [])
 
     return (
@@ -42,18 +45,46 @@ export const TradingUpdates = observer(() => {
                     {translate(title, lang)}
                 </h2>
 
-                <div className={style.items}>
-                    {
-                        items.map((item, key) => (
-                            <Item key={key} {...item}/>
-                        ))
-                    }
-                </div>
+                {
+                Boolean(items) && (
+                    <div className={style.items}>
+                        {
+                            (seeMore ? items : items.slice(0, 4))
+                                .map((item, key) => (
+                                <Item key={key} {...item}/>
+                            ))
+                        }
+                    </div>
+                )
+            }
 
-                <ButtonCustom label={translate(bntLabel, lang)}
-                              className={style.btn}
-                              variant={ButtonVariant.contained}
-                />
+                {
+                    (loading || !Boolean(items)) && (
+                        <div className={style.items}>
+                            {
+                                Array.from({length: 4}, (v, k) => k)
+                                    .map(k => (
+                                        <Skeleton key={k}
+                                                  className={style.skeleton}
+                                                  variant="rectangular"
+                                                  //height={236}
+                                        />
+                                    ))
+                            }
+                        </div>
+                    )
+                }
+
+                {
+                    (Boolean(items) && items.length > 4 && !seeMore) && (
+                        <ButtonCustom label={translate(bntLabel, lang)}
+                                      className={style.btn}
+                                      variant={ButtonVariant.contained}
+                                      onClick={() => setSeeMore(true)}
+                        />
+                    )
+                }
+
 
             </div>
         </div>
@@ -61,13 +92,14 @@ export const TradingUpdates = observer(() => {
 })
 
 //========= ITEM =========//
-const Item: FC<IItem> = ({
-                             title,
-                             date,
-                             editor,
-                             text,
-                             src,
-                         }) => {
+const Item: FC<ITradingUpdate> = ({
+                                      id,
+                                      title,
+                                      content,
+                                      editor,
+                                      date,
+                                      image,
+                                  }) => {
 
     const [open, setOpen] = useState(false);
     //const [openText, setOpenText] = useState(false);
@@ -84,36 +116,10 @@ const Item: FC<IItem> = ({
         ? 75 * 6
         : matchesTablet ? 50 * 6 : 25 * 6
 
-
     return (
         <div className={style.item}>
 
-            {/*{*/}
-            {/*    isTabletAndMore ? (*/}
-            {/*        <Collapse in={open}*/}
-            {/*                  // addEndListener={() => {*/}
-            {/*                  //     console.log("end")*/}
-            {/*                  // }}*/}
-            {/*        >*/}
-            {/*            <Collapse in={open}*/}
-            {/*                      orientation={'horizontal'}*/}
-            {/*            >*/}
-            {/*                <div className={style.imgWrapper}>*/}
-            {/*                    <img src="/jpeg/tradingUpdates.jpg" alt=""/>*/}
-            {/*                </div>*/}
-            {/*            </Collapse>*/}
-            {/*        </Collapse>*/}
-            {/*    ) : (*/}
-            {/*        <Collapse in={open}*/}
-            {/*        >*/}
-            {/*            <div className={style.imgWrapper}>*/}
-            {/*                <img src={src} alt=""/>*/}
-            {/*            </div>*/}
-            {/*        </Collapse>*/}
-            {/*    )*/}
-            {/*}*/}
-
-            <img src={src} alt="" className={style.img}/>
+            <img src={image} alt="" className={style.img}/>
 
             <div className={style.content}>
 
@@ -148,20 +154,13 @@ const Item: FC<IItem> = ({
 
                 {
                     open ? (
-                        <p className={style.text}>{text}</p>
+                        <p className={style.text}>{content}</p>
                     ) : (
                         <p className={style.text}>
-                            {text.slice(0, limit)}<span>...</span>
+                            {content.slice(0, limit)}<span>...</span>
                         </p>
                     )
                 }
-
-
-                {/*<Collapse in={open}>*/}
-                {/*    <p className={style.text}>*/}
-                {/*        {text}*/}
-                {/*    </p>*/}
-                {/*</Collapse>*/}
 
             </div>
         </div>

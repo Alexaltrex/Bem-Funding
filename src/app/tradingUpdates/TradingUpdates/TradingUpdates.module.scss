@@ -30,6 +30,29 @@
         margin-top: 24px;
       }
 
+      .skeleton {
+        //border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        background-color: rgba(84, 84, 84, 0.5);
+        height: 350px;
+
+        @include tablet {
+          height: 236px;
+        }
+
+        &:not(:first-child) {
+          margin-top: 12px;
+
+          @include tablet {
+            margin-top: 16px;
+          }
+
+          @include desktop {
+            margin-top: 24px;
+          }
+        }
+      }
+
 
     }
 
@@ -76,7 +99,7 @@
     }
   }
 
-  img {
+  .img {
     flex-shrink: 0;
     display: block;
     border-radius: 10px;
