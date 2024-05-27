@@ -86,8 +86,8 @@ export const Blog = observer(() => {
                 setSearchBlogs(response);
                 console.log(response)
             }
-        } catch (e) {
-            console.log(e: any)
+        } catch (e: any) {
+            console.log(e)
         } finally {
             setLoadingSearchBlogs(false);
         }

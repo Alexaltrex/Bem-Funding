@@ -6,7 +6,6 @@ import {montserrat} from "../../../assets/fonts/fonts";
 import {translate} from "../../../const/lang";
 import {observer} from "mobx-react-lite";
 import {useStore} from "../../../store/useStore";
-import {cards} from "../data";
 import {Card} from "../Card/Card";
 import {useParams} from "next/navigation";
 import {useEffect, useState} from "react";
