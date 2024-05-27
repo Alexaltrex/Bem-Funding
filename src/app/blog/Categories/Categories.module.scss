@@ -1,0 +1,82 @@
+@import "../../../assets/styles/app";
+
+.categories {
+
+  .subTitle {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 140%;
+    color: $color_white;
+
+    @include desktop {
+      font-size: 30px;
+    }
+  }
+
+  .list {
+    margin-top: 16px;
+
+    @include desktop {
+      margin-top: 24px;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid $color_light_gray;
+      padding-bottom: 8px;
+
+      @include desktop {
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 8px;
+
+        @include desktop {
+          margin-bottom: 12px;
+        }
+      }
+
+      .label {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 140%;
+        color: $color_white;
+      }
+
+      .count {
+        border-radius: 5px;
+        padding: 1px 12px;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 140%;
+        text-align: right;
+        color: $color_white;
+        border: 1px solid $color_purple;
+      }
+
+
+    }
+
+    .skeleton {
+      background-color: rgba(84, 84, 84, 0.5);
+      height: 24px;
+      border-radius: 5px;
+
+      @include desktop {
+        height: 32px;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 17px;
+
+        @include desktop {
+          margin-bottom: 23px;
+        }
+      }
+    }
+  }
+}

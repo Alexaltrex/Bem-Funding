@@ -9,8 +9,9 @@ import {translate} from "../../../const/lang";
 import {ButtonCustom, ButtonVariant} from "../../../components/_common/ButtonCustom/ButtonCustom";
 import {FC, useEffect, useState} from "react";
 import {useMediaQuery} from "@mui/material";
-import {ITradingUpdate, tradingUpdatesApi} from "../../../api/api";
+import {baseURL, ITradingUpdate, tradingUpdatesApi, uploadPath} from "../../../api/api";
 import Skeleton from '@mui/material/Skeleton';
+import { format } from 'date-fns';
 
 const title = "Trading Updates";
 const bntLabel = "See more";
@@ -119,7 +120,7 @@ const Item: FC<ITradingUpdate> = ({
     return (
         <div className={style.item}>
 
-            <img src={image ? image : ""} alt="" className={style.img}/>
+            <img src={image ? uploadPath + image : ""} alt="" className={style.img}/>
 
             <div className={style.content}>
 
@@ -145,7 +146,7 @@ const Item: FC<ITradingUpdate> = ({
                 </div>
 
                 <p className={style.date}>
-                    {date}
+                    {format(new Date(date), "d MMM yyyy")}
                 </p>
 
                 <p className={style.editor}>

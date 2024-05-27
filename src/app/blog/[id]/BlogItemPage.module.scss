@@ -7,6 +7,64 @@
   .inner {
     @include inner;
 
+    .titleSkeleton {
+      width: 100%;
+      background-color: rgba(84, 84, 84, 0.5);
+      height: 34px;
+      border-radius: 5px;
+
+      @include tablet {
+        height: 42px;
+      }
+
+      @include desktop {
+        height: 56px;
+      }
+    }
+
+    .infoSkeleton {
+      margin-top: 16px;
+      height: 25px;
+      width: 100%;
+      border-radius: 5px;
+      background-color: rgba(84, 84, 84, 0.5);
+    }
+
+    .imgSkeleton {
+      width: 100%;
+      background-color: rgba(84, 84, 84, 0.5);
+      border-radius: 15px;
+      margin-top: 16px;
+      height: 235px;
+
+      @include tablet {
+        height: 403px;
+        margin-top: 24px;
+      }
+
+      @include desktop {
+        height: 620px;
+        margin-top: 40px;
+      }
+    }
+
+    .textsSkeleton {
+      width: 100%;
+      background-color: rgba(84, 84, 84, 0.5);
+      border-radius: 5px;
+      height: 100px;
+      margin-top: 16px;
+
+      @include tablet {
+        margin-top: 20px;
+      }
+
+      @include desktop {
+        margin-top: 40px;
+      }
+    }
+
+
     .title {
       @include h2;
       text-align: left;
@@ -148,6 +206,12 @@
               margin-bottom: 32px;
             }
           }
+
+          .cardSkeleton {
+            border-radius: 10px;
+            background-color: rgba(84, 84, 84, 0.5);
+          }
+
         }
 
 

@@ -7,6 +7,62 @@
   .inner {
     @include inner;
 
+    .searchForm {
+      margin-top: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 10px;
+      box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      padding-left: 18px;
+      padding-right: 11px;
+
+      @include tablet {
+        margin-top: 16px;
+        width: 640px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      @include desktop {
+        margin-top: 24px;
+        width: 930px;
+      }
+
+      input {
+        flex-grow: 1;
+        border: none;
+        background: none;
+        outline: none;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 140%;
+        color: $color_white;
+
+
+        &::placeholder {
+          color: $color_light_gray;
+          opacity: 0.5;
+        }
+      }
+
+      button {
+        @include button;
+        width: 24px;
+        height: 24px;
+
+        svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+
+    }
+
+
     .title {
       @include h2;
     }
@@ -64,6 +120,13 @@
           }
         }
       }
+
+      .categorySkeleton {
+        width: 100%;
+        background-color: rgba(84, 84, 84, 0.5);
+        height: 25px;
+        border-radius: 10px;
+      }
     }
 
     .wrapper {
@@ -116,6 +179,18 @@
               margin-top: 24px;
             }
 
+            .noResult {
+              font-weight: 700;
+              font-size: 14px;
+              line-height: 140%;
+              text-align: center;
+              color: $color_white;
+
+              @include desktop {
+                font-size: 16px;
+              }
+            }
+
             .card {
               height: 155px;
               margin-bottom: 16px;
@@ -129,6 +204,11 @@
                 height: 236px;
                 margin-bottom: 32px;
               }
+            }
+
+            .cardSkeleton {
+              border-radius: 10px;
+              background-color: rgba(84, 84, 84, 0.5);
             }
           }
         }
@@ -146,50 +226,6 @@
           width: 350px;
         }
 
-        .categoriesCount {
-          .row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid $color_light_gray;
-            padding-bottom: 8px;
-
-            @include desktop {
-              padding-bottom: 12px;
-              margin-bottom: 12px;
-            }
-
-            &:not(:last-child) {
-              margin-bottom: 8px;
-
-              @include desktop {
-                margin-bottom: 12px;
-              }
-            }
-
-
-            .label {
-              font-weight: 400;
-              font-size: 16px;
-              line-height: 140%;
-              color: $color_white;
-            }
-
-            .count {
-              border-radius: 5px;
-              padding: 1px 12px;
-              font-weight: 400;
-              font-size: 20px;
-              line-height: 140%;
-              text-align: right;
-              color: $color_white;
-              border: 1px solid $color_purple;
-            }
-
-
-          }
-        }
-
         .mostRead {
           margin-top: 16px;
 
@@ -201,30 +237,37 @@
             margin-top: 42px;
           }
 
-          .cards {
+          .mostRead_cards {
             margin-top: 16px;
 
             @include desktop {
               margin-top: 36px;
             }
 
+            .mostReadCardSkeleton {
+              width: 100%;
+              height: 70px;
+              border-radius: 5px;
+              background-color: rgba(84, 84, 84, 0.5);
+
+              &:not(:first-child) {
+                margin-top: 16px;
+              }
+            }
+
             .cardItem {
               display: flex;
+              text-decoration: none;
 
               &:not(:first-child) {
                 margin-top: 16px;
               }
 
-              .link {
+              img {
                 display: block;
-
-                img {
-                  display: block;
-                  width: 70px;
-                  height: 70px;
-                  border-radius: 5px;
-                }
-
+                width: 70px;
+                height: 70px;
+                border-radius: 5px;
               }
 
               .cardItemTitle {
