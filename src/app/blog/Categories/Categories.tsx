@@ -11,7 +11,7 @@ import {montserrat} from "../../../assets/fonts/fonts";
 interface ICategories {
     lang: LangEnum
     className?: string
-    categories: ICategory | null
+    categories: ICategory[] | null
     loadingCategory: boolean
 }
 
