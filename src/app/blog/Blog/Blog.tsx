@@ -49,7 +49,7 @@ export const Blog = observer(() => {
                 setLoadingCategory(true);
                 const categories = await blogApi.getCategories();
                 setCategories(categories);
-            } catch (e) {
+            } catch (e: any) {
                 console.log(e.message)
             } finally {
                 setLoadingCategory(false);
@@ -64,7 +64,7 @@ export const Blog = observer(() => {
                 setLoadingBlogs(true);
                 const blogs = await blogApi.getBlogs();
                 setBlogs(blogs);
-            } catch (e) {
+            } catch (e: any) {
                 console.log(e.message)
             } finally {
                 setLoadingBlogs(false);
@@ -87,7 +87,7 @@ export const Blog = observer(() => {
                 console.log(response)
             }
         } catch (e) {
-            console.log(e)
+            console.log(e: any)
         } finally {
             setLoadingSearchBlogs(false);
         }

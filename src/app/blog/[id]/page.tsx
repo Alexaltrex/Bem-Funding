@@ -36,7 +36,7 @@ const BlogItemPage = observer(() => {
                     category: {name: category.name}
                 });
 
-            } catch (e) {
+            } catch (e: any) {
                 console.log(e.message)
             } finally {
                 setLoadingBlog(false);
@@ -55,7 +55,7 @@ const BlogItemPage = observer(() => {
                 setLoadingBlogs(true);
                 const blogs = await blogApi.getBlogs();
                 setBlogs(blogs);
-            } catch (e) {
+            } catch (e: any) {
                 console.log(e.message)
             } finally {
                 setLoadingBlogs(false);
@@ -74,7 +74,7 @@ const BlogItemPage = observer(() => {
                 setLoadingCategory(true);
                 const categories = await blogApi.getCategories();
                 setCategories(categories);
-            } catch (e) {
+            } catch (e: any) {
                 console.log(e.message)
             } finally {
                 setLoadingCategory(false);
