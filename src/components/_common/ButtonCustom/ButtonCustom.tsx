@@ -26,7 +26,7 @@ export const ButtonCustom: FC<IButtonCustom> = ({
                                                     variant = ButtonVariant.outlined,
                                                     onClick,
                                                     className,
-                                                    disabled = true
+                                                    disabled = false
                                                 }) => {
     return (
         <>
