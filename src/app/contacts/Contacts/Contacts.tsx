@@ -52,6 +52,8 @@ const validate = ({fullName, email, contactNumber, coverLetter}: IValues): Formi
 export const Contacts = observer(() => {
     const {appStore: {lang}} = useStore();
 
+    console.log(process.env.test);
+
     const [sending, setSending] = useState(false)
 
     const onSubmit = async (values: IValues, formikHelpers: FormikHelpers<IValues>) => {
