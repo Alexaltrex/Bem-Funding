@@ -34,7 +34,6 @@ export const Blog = observer(() => {
 
     // categories
     const [selectedCategoryId, setSelectedCategoryId] = useState(-1);
-    const [category, setCategory] = useState("All")
     const [loadingCategory, setLoadingCategory] = useState(false);
     const [categories, setCategories] = useState<null | ICategory[]>(null);
 
@@ -87,7 +86,7 @@ export const Blog = observer(() => {
                 console.log(response)
             }
         } catch (e: any) {
-            console.log(e)
+            console.log(e.message)
         } finally {
             setLoadingSearchBlogs(false);
         }

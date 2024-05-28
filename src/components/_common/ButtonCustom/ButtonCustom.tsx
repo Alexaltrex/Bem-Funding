@@ -17,6 +17,7 @@ interface IButtonCustom {
     variant?: ButtonVariant
     onClick?: () => void
     className?: string
+    disabled?: boolean
 }
 
 export const ButtonCustom: FC<IButtonCustom> = ({
@@ -24,7 +25,8 @@ export const ButtonCustom: FC<IButtonCustom> = ({
                                                     href,
                                                     variant = ButtonVariant.outlined,
                                                     onClick,
-                                                    className
+                                                    className,
+                                                    disabled = true
                                                 }) => {
     return (
         <>
@@ -53,6 +55,7 @@ export const ButtonCustom: FC<IButtonCustom> = ({
                             onClick={() => {
                                 onClick && onClick()
                             }}
+                            disabled={disabled}
                     >
                         <span className={montserrat.className}>{label}</span>
                     </button>

@@ -14,6 +14,8 @@ import {YMaps, Map, Placemark} from "@pbe/react-yandex-maps";
 import {useStore} from "../../../store/useStore";
 import {observer} from "mobx-react-lite";
 import {translate} from "../../../const/lang";
+import {useEffect, useState} from "react";
+import axios, {AxiosResponse} from "axios";
 
 export interface IValues {
     fullName: string
@@ -50,14 +52,19 @@ const validate = ({fullName, email, contactNumber, coverLetter}: IValues): Formi
 export const Contacts = observer(() => {
     const {appStore: {lang}} = useStore();
 
+    const [sending, setSending] = useState(false)
+
     const onSubmit = async (values: IValues, formikHelpers: FormikHelpers<IValues>) => {
         try {
             console.log(values);
-
+            setSending(true);
+            const response = await axios.post("/api/contacts", values);
+            console.log(response);
         } catch (e) {
             console.log(e)
         } finally {
             formikHelpers.resetForm();
+            setSending(false);
         }
     }
 
@@ -197,8 +204,8 @@ export const Contacts = observer(() => {
 
                                     {/*@ts-ignore*/}
                                     <ButtonCustom type="submit"
-                                                  disabled={props.isSubmitting}
-                                                  label={translate("Submit", lang)}
+                                                  disabled={props.isSubmitting || sending}
+                                                  label={sending ? translate("Submit", lang) + "..." : translate("Submit", lang)}
                                                   variant={ButtonVariant.blue}
                                                   className={style.submitBtn}
                                     />
