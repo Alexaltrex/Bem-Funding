@@ -52,7 +52,7 @@ const validate = ({fullName, email, contactNumber, coverLetter}: IValues): Formi
 export const Contacts = observer(() => {
     const {appStore: {lang}} = useStore();
 
-    console.log(process.env.test);
+    console.log(process.env.NEXT_PUBLIC_TEST);
 
     const [sending, setSending] = useState(false)
 
