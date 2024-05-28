@@ -17,14 +17,14 @@ export async function POST(request: Request) {
         port: 465,
         secure: true,
         auth: {
-            user: "bemcontacter@gmail.com",
-            pass: "rcni seoh tmuz bfjq",
+            user: process.env.NEXT_PUBLIC_SENDER_EMAIL,
+            pass: process.env.NEXT_PUBLIC_EMAIL_APP_PASSWORD,
         }
     });
 
     await transporter.sendMail({
-        from: "bemcontacter@gmail.com",
-        to: "contact@bemfunding.com",
+        from: process.env.NEXT_PUBLIC_SENDER_EMAIL,
+        to: process.env.NEXT_PUBLIC_RECEIVER_EMAIL,
         subject: 'Question from BEM Funding / Contacts',
         text: "",
         html:
