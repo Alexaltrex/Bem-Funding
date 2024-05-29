@@ -16,6 +16,11 @@ export interface ITradingUpdate {
     editor: string
     date: string
     image: string | null
+    translations?: {
+        langCode: string
+        title: string
+        content: string
+    }[]
 }
 
 export const tradingUpdatesApi = {
@@ -30,30 +35,56 @@ export interface ICategory {
     id: number
     name: string
     posts: any[]
+    translations: {
+        langCode: string
+        name: string
+    }[]
 }
 
 export interface IBlogItem {
     id: number
-    title: string
-    content: string
+    categoryId: number
+    date: string
     author: string
     image: string | null
-    date: string
-    views: number
     slug: string
-    categoryId: number
+    title: string
     rank: number
-}
-
-export interface IBlog extends IBlogItem {
+    content: string
+    views: number
     category: {
+        id: number
         name: string
     }
+    translations: {
+        langCode: string
+        title: string
+        content: string
+    }[]
 }
 
-export interface ICategory {
+export interface IBlog {
     id: number
-    name: string
+    categoryId: number
+    date: string
+    author: string
+    title: string
+    image: string | null
+    slug: string
+    rank: number
+    views: number
+    translations: {
+        langCode: string
+        title: string
+    }[]
+    category: {
+        name: string
+        id: number
+        translations: {
+            name: string
+            categoryId: number
+        }[]
+    }
 }
 
 export const blogApi = {

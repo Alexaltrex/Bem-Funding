@@ -5,7 +5,7 @@ import {clsx} from "clsx";
 import {montserrat} from "../../../assets/fonts/fonts";
 import {LangEnum} from "../../../const/lang";
 import {IBlog, uploadPath} from "../../../api/api";
-import { format } from 'date-fns';
+import {format} from 'date-fns';
 
 interface ICardComponent {
     lang: LangEnum
@@ -26,13 +26,13 @@ export const Card: FC<ICardComponent> = ({
             <img src={card.image ? uploadPath + card.image : ""} alt="" className={style.back}/>
 
             <p className={clsx(style.title, montserrat.className)}>
-                {card.title}
+                {lang === LangEnum.ENG ? card.title : card.translations[0]?.title || "???"}
             </p>
 
             <div className={style.bottom}>
 
                 <p className={style.category}>
-                    {card.category.name}
+                    {lang === LangEnum.ENG ? card.category.name : (card.category.translations[0]?.name || "???" )}
                 </p>
 
                 <p className={style.date}>

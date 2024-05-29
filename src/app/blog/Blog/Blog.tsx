@@ -5,7 +5,7 @@ import {observer} from "mobx-react-lite";
 import {useStore} from "../../../store/useStore";
 import {clsx} from "clsx";
 import {montserrat} from "../../../assets/fonts/fonts";
-import {translate} from "../../../const/lang";
+import {LangEnum, translate} from "../../../const/lang";
 import {useEffect, useState} from "react";
 import Link from "next/link";
 import {Card} from "../Card/Card";
@@ -145,8 +145,8 @@ export const Blog = observer(() => {
                             {
                                 [
                                     ...(categories as ICategory[]),
-                                    {id: -1, name: "All"},
-                                ].map(({id, name}) => (
+                                    {id: -1, name: "All", translations: [{"langCode": "tr", "name": "Tüm",}]},
+                                ].map(({id, name, translations}) => (
                                     <button key={id}
                                             className={clsx({
                                                 [style.categoryItem]: true,
@@ -159,7 +159,7 @@ export const Blog = observer(() => {
                                                 setSearchBlogs(null);
                                             }}
                                     >
-                                        <span>{name}</span>
+                                        <span>{lang === LangEnum.ENG ? name : (translations[0]?.name) || "???"}</span>
                                     </button>
                                 ))
                             }
@@ -336,7 +336,7 @@ export const Blog = observer(() => {
                                                 }
                                                 return 0
                                             })
-                                                .map(({id, title, image}, key) => (
+                                                .map(({id, title, image, translations}, key) => (
                                                     <Link key={key}
                                                           className={style.cardItem}
                                                           href={`/blog/${id}`}
@@ -344,7 +344,7 @@ export const Blog = observer(() => {
                                                         <img src={image ? uploadPath + image : ""} alt=""/>
 
                                                         <p className={clsx(style.cardItemTitle, montserrat.className)}>
-                                                            {title}
+                                                            {lang === LangEnum.ENG ? title : translations[0]?.title || "???"}
                                                         </p>
                                                     </Link>
                                                 ))

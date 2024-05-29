@@ -1,7 +1,7 @@
+import * as React from "react";
 import {FC} from "react";
 import {clsx} from "clsx";
 import style from "./Categories.module.scss"
-import * as React from "react";
 import {ICategory} from "../../../api/api";
 import Skeleton from '@mui/material/Skeleton';
 import {LangEnum, translate} from "../../../const/lang";
@@ -32,12 +32,12 @@ export const Categories: FC<ICategories> = ({
                 categories && (
                     <div className={style.list}>
                         {
-                            (categories as ICategory[]).map(({id, name, posts}) => (
+                            (categories as ICategory[]).map(({id, name, posts, translations}) => (
                                 <div key={id}
                                      className={style.row}
                                 >
                                     <p className={style.label}>
-                                        {name}
+                                        {lang === LangEnum.ENG ? name : (translations[0]?.name || "???")}
                                     </p>
 
                                     <p className={style.count}

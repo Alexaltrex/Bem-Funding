@@ -226,6 +226,9 @@ export const dictionary = {
     "Invalid Email": "Geçersiz Email",
     "No search result": "Arama sonucu bulunamadı.",
     "Confirm error": "Eşleştirme Hatası",
+
+    "Editor": "Editör",
+    "See more": "Daha fazla gör",
 }
 
 export const translate = (str: string, lang: LangEnum): string => {

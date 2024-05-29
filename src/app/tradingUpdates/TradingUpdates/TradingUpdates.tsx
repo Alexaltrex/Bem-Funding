@@ -5,13 +5,13 @@ import {observer} from "mobx-react-lite";
 import {useStore} from "../../../store/useStore";
 import {clsx} from "clsx";
 import {montserrat} from "../../../assets/fonts/fonts";
-import {translate} from "../../../const/lang";
+import {LangEnum, translate} from "../../../const/lang";
 import {ButtonCustom, ButtonVariant} from "../../../components/_common/ButtonCustom/ButtonCustom";
 import {FC, useEffect, useState} from "react";
 import {useMediaQuery} from "@mui/material";
 import {baseURL, ITradingUpdate, tradingUpdatesApi, uploadPath} from "../../../api/api";
 import Skeleton from '@mui/material/Skeleton';
-import { format } from 'date-fns';
+import {format} from 'date-fns';
 
 const title = "Trading Updates";
 const bntLabel = "See more";
@@ -52,7 +52,7 @@ export const TradingUpdates = observer(() => {
                             {
                                 (seeMore ? items : items.slice(0, 4))
                                     .map((item, key) => (
-                                        <Item key={key} {...item}/>
+                                        <Item key={key} lang={lang} {...item}/>
                                     ))
                             }
                         </div>
@@ -93,19 +93,22 @@ export const TradingUpdates = observer(() => {
 })
 
 //========= ITEM =========//
+interface IItem extends ITradingUpdate {
+    lang: LangEnum
+}
+
 const Item: FC<ITradingUpdate> = ({
+                                      lang,
                                       id,
                                       title,
                                       content,
                                       editor,
                                       date,
                                       image,
+                                      translations
                                   }) => {
 
     const [open, setOpen] = useState(false);
-    //const [openText, setOpenText] = useState(false);
-
-    const isTabletAndMore = useMediaQuery('(min-width:768px)');
 
     // mobile 27
     // tablet: 51
@@ -115,7 +118,9 @@ const Item: FC<ITradingUpdate> = ({
     const matchesDesktop = useMediaQuery('(min-width:1140px)');
     const limit = matchesDesktop
         ? 75 * 6
-        : matchesTablet ? 50 * 6 : 25 * 6
+        : matchesTablet ? 50 * 6 : 25 * 6;
+
+    const contentLang = lang === LangEnum.ENG ? content : (translations ? translations[0].content : "???");
 
     return (
         <div className={style.item}>
@@ -127,7 +132,7 @@ const Item: FC<ITradingUpdate> = ({
                 <div className={style.top}>
 
                     <p className={clsx(style.itemTitle, montserrat.className)}>
-                        {title}
+                        {lang === LangEnum.ENG ? title : (translations ? translations[0]?.title : "???")}
                     </p>
 
                     <button onClick={() => setOpen(!open)}
@@ -150,15 +155,17 @@ const Item: FC<ITradingUpdate> = ({
                 </p>
 
                 <p className={style.editor}>
-                    Editor: {editor}
+                    {translate("Editor", lang)}: {editor}
                 </p>
 
                 {
                     open ? (
-                        <p className={style.text}>{content}</p>
+                        <p className={style.text}>
+                            {contentLang}
+                        </p>
                     ) : (
                         <p className={style.text}>
-                            {content.slice(0, limit)}<span>...</span>
+                            {contentLang.slice(0, limit)}<span>...</span>
                         </p>
                     )
                 }
