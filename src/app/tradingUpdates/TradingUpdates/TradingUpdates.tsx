@@ -97,7 +97,7 @@ interface IItem extends ITradingUpdate {
     lang: LangEnum
 }
 
-const Item: FC<ITradingUpdate> = ({
+const Item: FC<IItem> = ({
                                       lang,
                                       id,
                                       title,
