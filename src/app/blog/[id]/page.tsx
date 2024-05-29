@@ -118,12 +118,12 @@ const BlogItemPage = observer(() => {
                                 </p>
 
                                 <p className={style.date}>
-                                    {format(new Date((blog as IBlog).date), "d MMM yyyy")}
+                                    {format(new Date((blog as IBlogItem).date), "d MMM yyyy")}
 
                                 </p>
                             </div>
 
-                            <img src={(blog as IBlog).image ? uploadPath + (blog as IBlog).image : ""} alt=""
+                            <img src={(blog as IBlogItem).image ? uploadPath + (blog as IBlogItem).image : ""} alt=""
                                  className={style.img}/>
 
                             <div className={style.texts}>
