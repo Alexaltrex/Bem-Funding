@@ -26,6 +26,7 @@ export async function POST(request: Request) {
 
     let buffer;
     if (file) {
+        // @ts-ignore
         const arrayBuffer = await file.arrayBuffer()
         buffer = Buffer.from(arrayBuffer)
     }
