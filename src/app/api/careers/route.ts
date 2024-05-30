@@ -59,7 +59,7 @@ export async function POST(request: Request) {
                 </div>
              `,
         attachments: [
-            buffer ? {
+            (buffer && file) ? {
                 filename: file.name,
                 content: buffer
             } : {}
