@@ -60,7 +60,7 @@ export async function POST(request: Request) {
              `,
         attachments: [
             (buffer && file) ? {
-                filename: file.name,
+                filename: file?.name || "file",
                 content: buffer
             } : {}
         ]
