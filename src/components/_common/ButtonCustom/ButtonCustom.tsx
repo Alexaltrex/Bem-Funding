@@ -58,6 +58,7 @@ export const ButtonCustom: FC<IButtonCustom> = ({
                                 onClick && onClick()
                             }}
                             disabled={disabled}
+                            // @ts-ignore
                             type={type}
                     >
                         <span className={montserrat.className}>{label}</span>
