@@ -15,7 +15,7 @@ export interface IValues {
 }
 
 export async function POST(request: Request) {
-    const formData = await request.formData() as IValues;
+    const formData = await request.formData();
     const fullName = formData.get("fullName");
     const email = formData.get("email");
     const link = formData.get("link");
