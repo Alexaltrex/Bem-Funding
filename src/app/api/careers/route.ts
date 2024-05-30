@@ -60,6 +60,7 @@ export async function POST(request: Request) {
              `,
         attachments: [
             (buffer && file) ? {
+                // @ts-ignore
                 filename: file?.name || "file",
                 content: buffer
             } : {}
