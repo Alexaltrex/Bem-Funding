@@ -9,6 +9,13 @@ import {
 } from "../app/lexicon/Lexicon/helpers";
 import {ICarreer} from "../app/careers/Careers/data";
 import json from "../../public/json/lexicon.json"
+import {AlertColor} from "@mui/material";
+
+interface IMailAlert {
+    open: boolean
+    message: string
+    severity: AlertColor
+}
 
 export class AppStore {
     burgerMenu: boolean = false
@@ -19,6 +26,11 @@ export class AppStore {
     lexiconPopup = false
     career = null as null | ICarreer
     converter = false
+    mailAlert = {
+        open: false,
+        message: "test message",
+        severity: 'success'
+    } as IMailAlert
 
     constructor() {
         makeObservable(this,
@@ -31,6 +43,7 @@ export class AppStore {
                 lexiconPopup: observable,
                 career: observable,
                 converter: observable,
+                mailAlert: observable,
 
                 setBurgerMenu: action.bound,
                 setLang: action.bound,
@@ -40,7 +53,7 @@ export class AppStore {
                 setLexiconPopup: action.bound,
                 setCareer: action.bound,
                 setConverter: action.bound,
-
+                setMailAlert: action.bound,
             }
         )
     }
@@ -75,6 +88,10 @@ export class AppStore {
 
     setConverter(converter: boolean) {
         this.converter = converter
+    }
+
+    setMailAlert(mailAlert: IMailAlert) {
+        this.mailAlert = mailAlert;
     }
 
 }

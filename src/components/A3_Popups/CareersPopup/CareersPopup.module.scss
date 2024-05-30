@@ -196,6 +196,16 @@
 
     }
 
+    .filename {
+      margin-top: 8px;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 140%;
+      color: $color_white;
+      font-style: italic;
+    }
+
+
     .submitBtn {
       margin-top: 20px;
       width: 100% ;

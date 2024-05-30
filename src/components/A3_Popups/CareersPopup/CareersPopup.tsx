@@ -10,7 +10,7 @@ import {svgIcons} from "../../../assets/svgIcons";
 import {clsx} from "clsx";
 import {montserrat} from "../../../assets/fonts/fonts";
 import {translate} from "../../../const/lang";
-import {Formik, FormikErrors, FormikProps} from "formik";
+import {Form, Formik, FormikErrors, FormikProps} from "formik";
 import {mailRegexp} from "../../../const/form";
 import {FormikHelpers} from "formik/dist/types";
 import {FieldText} from "../../_common/FieldText/FieldText";
@@ -18,7 +18,7 @@ import {FieldTextarea} from "../../_common/FieldTextarea/FieldTextarea";
 import {ButtonCustom, ButtonVariant} from "../../_common/ButtonCustom/ButtonCustom";
 import Link from "next/link";
 import {useOutsideClick} from "../../../hooks/useOutsideClick";
-
+import axios from "axios";
 
 const title = "Start Your Career Today";
 const subTitle = "Please fill in your information and send it to the employer.";
@@ -28,7 +28,7 @@ export interface IValues {
     email: string
     link: string
     contactNumber: string
-    letter?: string
+    letter: string
 }
 
 const initialValues: IValues = {
@@ -53,12 +53,16 @@ const validate = ({fullName, email, link, contactNumber}: IValues): FormikErrors
         errors.email = "Required"
     }
 
-    if (!link) {
-        errors.link = "Required"
-    }
+    // if (!link) {
+    //     errors.link = "Required"
+    // }
 
     if (!contactNumber) {
         errors.contactNumber = "Required"
+    }
+
+    if (!letter) {
+        errors.letter = "Required"
     }
 
     return errors
@@ -72,6 +76,8 @@ export const CareersPopup = observer(() => {
             career, setCareer
         }
     } = useStore();
+
+    const [file, setFile] = useState<null | File>(null)
 
     const appRef = useRef<HTMLDivElement>(null!);
 
@@ -88,16 +94,30 @@ export const CareersPopup = observer(() => {
     const onSubmit = async (values: IValues, formikHelpers: FormikHelpers<IValues>) => {
         try {
             console.log(values);
+            const formData = new FormData();
+            Object.keys(values).forEach(key => (
+                // @ts-ignore
+                formData.append(`${key}`, values[key])
+            ));
 
-            formikHelpers.resetForm();
-        } catch (e) {
-            console.log(e)
+            if (file) {
+                formData.append("file", file);
+
+            }
+
+            formData.append("careers", career ? career.title : "");
+
+            const response = await axios.post("/api/careers", formData);
+            console.log(response)
+
+        } catch (e: any) {
+            console.log(e.message)
         } finally {
             formikHelpers.resetForm();
         }
     }
 
-    const [file, setFile] = useState<null | File>(null)
+
 
     const onClose = () => {
         setCareer(null);
@@ -124,7 +144,7 @@ export const CareersPopup = observer(() => {
                                 validate={validate}
                         >
                             {(props: FormikProps<IValues>) => (
-                                <>
+                                <Form>
 
                                     <button className={style.closeBtn}
                                             onClick={() => onClose()}
@@ -165,7 +185,7 @@ export const CareersPopup = observer(() => {
                                     <div className={style.rows}>
                                         <div className={style.row}>
                                             <p className={style.rowLabel}>
-                                                {translate("linkedin/github link", lang)}<span>*</span>
+                                                {translate("linkedin/github link", lang)}
                                             </p>
                                             <FieldText name="link"
                                                        className={style.field}
@@ -210,24 +230,36 @@ export const CareersPopup = observer(() => {
                                                 <input type="file"
                                                        accept=".pdf"
                                                        onChange={(e) => {
-                                                           //console.log(e.target.files)
-                                                           if (e.target.files) {
-                                                               setFile(e.target.files[0])
+
+                                                           if (e.target.files && (e.target.files[0].size / (1024 * 1024) < 2)) {
+                                                               //console.log(e.target.files[0]);
+                                                               setFile(e.target.files[0]);
                                                            }
                                                        }}
                                                 />
                                                 {svgIcons.file_attachment}
                                             </label>
                                             <p className={style.uploadDescription}>
-                                                {translate("Upload your resume file", lang)} <span>.pdf</span> {translate("(max 2mb)", lang)}
+                                                {translate("Upload your resume file", lang)}
+                                                <span>.pdf</span> {translate("(max 2mb)", lang)}
                                             </p>
+
                                         </div>
                                     </div>
 
-                                    <ButtonCustom label={translate("Submit", lang)}
+                                    {
+                                        file && (
+                                            <p className={style.filename}>
+                                                {(file as File).name}
+                                            </p>
+                                        )
+                                    }
+
+                                    {/*@ts-ignore*/}
+
+                                    <ButtonCustom type="submit"
+                                                  label={translate("Submit", lang)}
                                                   className={style.submitBtn}
-                                                    // @ts-ignore
-                                                  type="submit"
                                                   variant={ButtonVariant.blue}
                                     />
 
@@ -238,7 +270,7 @@ export const CareersPopup = observer(() => {
                                         {translate("Contact Us", lang)}
                                     </Link>
                                     </p>
-                                </>
+                                </Form>
                             )}
                         </Formik>
                     </div>

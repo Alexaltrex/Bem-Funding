@@ -14,8 +14,8 @@ import {YMaps, Map, Placemark} from "@pbe/react-yandex-maps";
 import {useStore} from "../../../store/useStore";
 import {observer} from "mobx-react-lite";
 import {translate} from "../../../const/lang";
-import {useEffect, useState} from "react";
-import axios, {AxiosResponse} from "axios";
+import {useState} from "react";
+import axios from "axios";
 
 export interface IValues {
     fullName: string
@@ -50,7 +50,7 @@ const validate = ({fullName, email, contactNumber, coverLetter}: IValues): Formi
 
 //========= CONTACTS =========//
 export const Contacts = observer(() => {
-    const {appStore: {lang}} = useStore();
+    const {appStore: {lang, setMailAlert}} = useStore();
 
     console.log(process.env.NEXT_PUBLIC_TEST);
 
@@ -61,9 +61,11 @@ export const Contacts = observer(() => {
             console.log(values);
             setSending(true);
             const response = await axios.post("/api/contacts", values);
-            console.log(response);
-        } catch (e) {
-            console.log(e)
+            setMailAlert({open: true, message: "The mail is successfully delivered", severity: "success"})
+           console.log(response);
+        } catch (e: any) {
+            console.log(e.message)
+            setMailAlert({open: true, message: `Error: ${e.message}`, severity: "error"})
         } finally {
             formikHelpers.resetForm();
             setSending(false);
@@ -115,47 +117,18 @@ export const Contacts = observer(() => {
                                 <Map state={{
                                     center: [25.155664459072018, 55.30028825917784],
                                     zoom: 14,
-                                    controls: [
-                                        //'zoomControl',
-                                        //'fullscreenControl',
-                                    ],
+                                    controls: [],
                                 }}
                                      style={{
                                          width: "100%",
                                          height: "100%"
                                      }}
                                 >
-
                                     <Placemark modules={['geoObject.addon.hint']}
                                                geometry={[25.155664459072018, 55.30028825917784]}
-                                        //                         properties={{
-                                        //                             hintContent: `
-                                        //  <div class=${style.hint}>
-                                        //      <img src='${img.small}'>
-                                        //      <p class=${style.title}>${title}</p>
-                                        //      <p class=${style.period}>${period(year)}</p>
-                                        //  </div>
-                                        // `,
-                                        //                         }}
-                                        //                         options={{
-                                        //                             hintOpenTimeout: 0,
-                                        //                             hintCloseTimeout: 0,
-                                        //                             //hintOffset: [50, 50],
-                                        //                             hideIconOnBalloonOpen: false,
-                                        //                             iconLayout: "default#image",
-                                        //                             // @ts-ignore
-                                        //                             iconImageHref: iconImageHref,
-                                        //                             iconImageSize: [hover ? 16 : 14, hover ? 16 : 14],
-                                        //                             iconImageOffset: [hover ? -8 : -7, hover ? -8 : -7],
-                                        //                         }}
-                                        //                         onClick={onClickHandler}
-                                        //                         onMouseEnter={() => setHover(true)}
-                                        //                         onMouseLeave={() => setHover(false)}
                                     />
-
                                 </Map>
                             </YMaps>
-                            {/*<img src="/jpeg/contacts/map.jpg" alt=""/>*/}
                         </div>
 
                     </div>
