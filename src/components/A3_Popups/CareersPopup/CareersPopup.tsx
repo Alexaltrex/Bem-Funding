@@ -39,7 +39,7 @@ const initialValues: IValues = {
     letter: "",
 }
 
-const validate = ({fullName, email, link, contactNumber}: IValues): FormikErrors<IValues> => {
+const validate = ({fullName, email, link, contactNumber, letter}: IValues): FormikErrors<IValues> => {
     const errors: FormikErrors<IValues> = {};
 
     if (!fullName) {
