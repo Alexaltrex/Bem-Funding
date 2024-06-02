@@ -30,18 +30,26 @@ const marks = [
     {
         value: 0,
         label: '$10k',
+        registrationFee: "110usd",
+        discountedFee: "99usd",
     },
     {
         value: 1,
         label: '$25k',
+        registrationFee: "230usd",
+        discountedFee: "207usd",
     },
     {
         value: 2,
         label: '$50k',
+        registrationFee: "350usd",
+        discountedFee: "315usd",
     },
     {
         value: 3,
         label: '$100k',
+        registrationFee: "540usd",
+        discountedFee: "486usd",
     },
 ]
 
@@ -54,6 +62,8 @@ export const ChooseYourTradingStyle = observer(() => {
     const handleChange = (event: Event, newValue: number | number[]) => {
         setValue(newValue as number);
     };
+
+    console.log(value)
 
     const [swiper, setSwiper] = useState<SwiperClass | null>(null)
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -104,10 +114,24 @@ export const ChooseYourTradingStyle = observer(() => {
                             </div>
 
                             <div className={style.stepsBottom}>
-                                <p className={style.feeLabel}>
-                                    {translate(feeLabel, lang)}
-                                </p>
-                                <p className={clsx(style.fee, montserrat.className)}>$70</p>
+                                <div className={style.stepsBottomItem}>
+                                    <p className={style.feeLabel}>
+                                        {translate(feeLabel, lang)}
+                                    </p>
+                                    <p className={clsx(style.fee, montserrat.className)}>
+                                        {marks[value].registrationFee}
+                                    </p>
+                                </div>
+
+                                <div className={style.stepsBottomItem}>
+                                    <p className={style.feeLabel}>
+                                        {translate("10% discount", lang)}
+                                    </p>
+                                    <p className={clsx(style.fee, montserrat.className)}>
+                                        {marks[value].discountedFee}
+                                    </p>
+                                </div>
+
                             </div>
                         </div>
 
@@ -190,7 +214,7 @@ export const ChooseYourTradingStyle = observer(() => {
                                      className={style.slide}
 
                         >
-                            <Card lang={lang} {...card}/>
+                            <Card lang={lang} tradingStyle={tradingStyle} {...card}/>
                         </SwiperSlide>
                     ))
                 }
@@ -209,7 +233,7 @@ export const ChooseYourTradingStyle = observer(() => {
                 <div className={style.inner}>
                     {
                         cardsNew.map((card, key) => (
-                            <Card key={key} lang={lang} {...card}/>
+                            <Card key={key} lang={lang} tradingStyle={tradingStyle} {...card}/>
                         ))
                     }
                 </div>
@@ -246,10 +270,12 @@ const sliderSx = {
 //========= CARD =========//
 interface ICardComponent extends ICardNew {
     lang: LangEnum
+    tradingStyle: string
 }
 
 const Card: FC<ICardComponent> = ({
                                       lang,
+                                      tradingStyle,
                                       title,
                                       icon,
                                       itemsBig,
@@ -329,13 +355,12 @@ const Card: FC<ICardComponent> = ({
 
                             </div>
 
-
-
-
-
-
                             <p className={clsx(style.itemSmallValue, montserrat.className)}>
-                                {translate(value, lang)}
+                                {translate(
+                                    key === 4
+                                        ? tradingStyle === "Normal" ? "1:100" : "1:30"
+                                        : value,
+                                    lang)}
                             </p>
                         </div>
                     ))

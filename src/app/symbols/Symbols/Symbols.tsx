@@ -218,6 +218,8 @@ const Row: FC<IRow> = ({
     const [active, setActive] = useState(false);
     const [secondsBefore, setSecondsBefore] = useState(-1)
 
+    //console.log(convertSecondsToCountdown(secondsBefore))
+
     useEffect(() => {
         const timeId = setInterval(() => {
             const {active, secondsBefore} = getWorkStatus(tradingHours);
@@ -277,7 +279,7 @@ const Row: FC<IRow> = ({
                                     ? (
                                         <>
                                             <span>Market will open in </span><span
-                                            className={robotoMono.className}>convertSecondsToCountdown(secondsBefore)</span>
+                                            className={robotoMono.className}>{convertSecondsToCountdown(secondsBefore)}</span>
                                         </>
                                     ) : (
                                         <>

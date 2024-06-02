@@ -57,8 +57,8 @@
         .stepsSection {
 
           @include tablet {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            display: flex;
+            justify-content: space-between;
           }
 
           .stepsTop {
@@ -134,31 +134,53 @@
           }
 
           .stepsBottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             margin-top: 16px;
 
             @include tablet {
               margin-top: 0;
+              flex-direction: row;
+              justify-content: center;
+            }
+
+            .stepsBottomItem {
               display: flex;
               flex-direction: column;
-              justify-content: flex-end;
+              align-items: center;
+
+             @include tablet {
+               width: 210px;
+             }
+
+              &:not(:first-child) {
+                margin-top: 12px;
+
+                @include tablet {
+                  margin-top: 0;
+                  margin-left: 36px;
+                }
+              }
+
+              .feeLabel {
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 140%;
+                color: $color_light_gray;
+                text-align: center;
+              }
+
+              .fee {
+                @include text-gradient;
+                font-weight: 700;
+                font-size: 54px;
+                line-height: 140%;
+                text-align: center;
+              }
             }
 
-            .feeLabel {
-              font-weight: 400;
-              font-size: 16px;
-              line-height: 140%;
-              color: $color_light_gray;
-              text-align: center;
-            }
 
-            .fee {
-              @include text-gradient;
-              font-weight: 700;
-              font-size: 54px;
-              line-height: 140%;
-              text-align: center;
-
-            }
           }
         }
 

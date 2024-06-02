@@ -16,7 +16,7 @@ export const CookiesPopup = observer(() => {
         }
     } = useStore();
 
-    const [necessary, setNecessary] = useState(false);
+    const [necessary, setNecessary] = useState(true);
     const [preferencies, setPreferencies] = useState(false);
     const [statistics, setStatistics] = useState(false);
     const [marketing, setMarketing] = useState(false);
@@ -24,12 +24,12 @@ export const CookiesPopup = observer(() => {
 
     const [value, setValue] = useState<null | string>(null)
     useEffect(() => {
-        const value = localStorage.getItem("cookiesAccept") || "";
+        const value = localStorage.getItem("bem-funding-cookies-accept") || "";
         setValue(value === "true" ? value : "false");
     }, [])
 
     const onClick = () => {
-        localStorage.setItem("cookiesAccept", "true");
+        localStorage.setItem("bem-funding-cookies-accept", "true");
         setValue("true");
     };
 
@@ -61,6 +61,7 @@ export const CookiesPopup = observer(() => {
                                                 label: translate("Necessary", lang),
                                                 checked: necessary,
                                                 onClick: () => setNecessary(!necessary),
+                                                nonChangeable: true,
                                             },
                                             {
                                                 label: translate("Preferencies", lang),
@@ -131,17 +132,23 @@ interface ISwitchComponent {
     checked: boolean
     onClick: () => void
     className?: string
+    nonChangeable?: boolean
 }
 
 export const SwitchComponent: FC<ISwitchComponent> = ({
                                                           label,
                                                           checked,
                                                           onClick,
-                                                          className
+                                                          className,
+                                                          nonChangeable = false
                                                       }) => {
     return (
         <div className={clsx(style.switchComponent, Boolean(className) && className)}
-             onClick={() => onClick()}
+             onClick={() => {
+                if (!nonChangeable) {
+                    onClick();
+                }
+             }}
         >
             <p className={style.label}>
                 {label}

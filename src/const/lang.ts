@@ -80,6 +80,7 @@ export const dictionary = {
     "Balance Based": "Bakiye Tabanlı",
     "Unlimited": "Sınırsız",
     "1:100": "1:100",
+    "1:30": "1:30",
     "-": "-",
 
     // Home 4 - MeetWith
@@ -229,6 +230,7 @@ export const dictionary = {
 
     "Editor": "Editör",
     "See more": "Daha fazla gör",
+    "10% discount": "%10 indirim",
 }
 
 export const translate = (str: string, lang: LangEnum): string => {
