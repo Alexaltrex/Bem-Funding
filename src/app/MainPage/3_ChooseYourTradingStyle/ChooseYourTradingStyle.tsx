@@ -150,6 +150,7 @@ export const ChooseYourTradingStyle = observer(() => {
                                 <ButtonCustom label={translate("Get Started", lang)}
                                               className={style.startBtn}
                                               variant={ButtonVariant.blue}
+                                              //@ts-ignore
                                               href={getStartedHrefs[value][tradingStyle]}
                                 />
 
