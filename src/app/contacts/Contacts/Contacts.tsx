@@ -190,7 +190,7 @@ export const Contacts = observer(() => {
                                         <ReCAPTCHA
                                             ref={recaptchaRef}
                                             size={matchesTabletAndMore ? "normal" : "compact"}
-                                            sitekey="6LfvGPApAAAAAKiAnjTWg6WDgyWNVm1ywcefYvYC" //{process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
+                                            sitekey="6LfvGPApAAAAALKhOOVSiSny6Ig5AMxT7ratTzyg" //{process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
                                         />
                                     </div>
 
