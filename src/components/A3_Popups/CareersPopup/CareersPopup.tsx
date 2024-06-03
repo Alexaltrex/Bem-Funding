@@ -98,10 +98,9 @@ export const CareersPopup = observer(() => {
     const recaptchaRef = useRef<ReCAPTCHA>(null!);
 
     const onSubmit = async (values: IValues, formikHelpers: FormikHelpers<IValues>) => {
-        try {
-            const recaptchaValue = recaptchaRef.current.getValue();
-
-            if (recaptchaValue) {
+        const recaptchaValue = recaptchaRef.current.getValue();
+        if (recaptchaValue) {
+            try {
                 console.log(values);
 
                 setSending(true);
@@ -122,15 +121,14 @@ export const CareersPopup = observer(() => {
                 console.log(response)
 
                 setMailAlert({open: true, message: "The mail is successfully delivered", severity: "success"})
+            } catch (e: any) {
+                console.log(e.message)
+                setMailAlert({open: true, message: `Error: ${e.message}`, severity: "error"})
+            } finally {
+                formikHelpers.resetForm();
+                recaptchaRef.current.reset();
+                setSending(false);
             }
-
-        } catch (e: any) {
-            console.log(e.message)
-            setMailAlert({open: true, message: `Error: ${e.message}`, severity: "error"})
-        } finally {
-            formikHelpers.resetForm();
-            recaptchaRef.current.reset();
-            setSending(false);
         }
     }
 

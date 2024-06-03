@@ -62,22 +62,22 @@ export const Contacts = observer(() => {
     const recaptchaRef = useRef<ReCAPTCHA>(null!);
 
     const onSubmit = async (values: IValues, formikHelpers: FormikHelpers<IValues>) => {
-        try {
-            const recaptchaValue = recaptchaRef.current.getValue();
-            if (recaptchaValue) {
+        const recaptchaValue = recaptchaRef.current.getValue();
+        if (recaptchaValue) {
+            try {
                 console.log(values);
                 setSending(true);
                 const response = await axios.post("/api/contacts", values);
                 setMailAlert({open: true, message: "The mail is successfully delivered", severity: "success"})
                 console.log(response);
+            } catch (e: any) {
+                console.log(e.message)
+                setMailAlert({open: true, message: `Error: ${e.message}`, severity: "error"})
+            } finally {
+                formikHelpers.resetForm();
+                setSending(false);
+                recaptchaRef.current.reset();
             }
-        } catch (e: any) {
-            console.log(e.message)
-            setMailAlert({open: true, message: `Error: ${e.message}`, severity: "error"})
-        } finally {
-            formikHelpers.resetForm();
-            setSending(false);
-            recaptchaRef.current.reset();
         }
     };
 
