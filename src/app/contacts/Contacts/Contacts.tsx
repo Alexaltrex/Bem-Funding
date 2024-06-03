@@ -14,8 +14,10 @@ import {YMaps, Map, Placemark} from "@pbe/react-yandex-maps";
 import {useStore} from "../../../store/useStore";
 import {observer} from "mobx-react-lite";
 import {translate} from "../../../const/lang";
-import {useState} from "react";
+import {useRef, useState} from "react";
 import axios from "axios";
+import ReCAPTCHA from "react-google-recaptcha";
+import {useMediaQuery} from "@mui/material";
 
 export interface IValues {
     fullName: string
@@ -52,25 +54,32 @@ const validate = ({fullName, email, contactNumber, coverLetter}: IValues): Formi
 export const Contacts = observer(() => {
     const {appStore: {lang, setMailAlert}} = useStore();
 
-    console.log(process.env.NEXT_PUBLIC_TEST);
-
     const [sending, setSending] = useState(false)
+
+    const matchesTabletAndMore = useMediaQuery('(min-width:768px)');
+
+    // recapture
+    const recaptchaRef = useRef();
 
     const onSubmit = async (values: IValues, formikHelpers: FormikHelpers<IValues>) => {
         try {
-            console.log(values);
-            setSending(true);
-            const response = await axios.post("/api/contacts", values);
-            setMailAlert({open: true, message: "The mail is successfully delivered", severity: "success"})
-           console.log(response);
+            const recaptchaValue = recaptchaRef.current.getValue();
+            if (recaptchaValue) {
+                console.log(values);
+                setSending(true);
+                const response = await axios.post("/api/contacts", values);
+                setMailAlert({open: true, message: "The mail is successfully delivered", severity: "success"})
+                console.log(response);
+            }
         } catch (e: any) {
             console.log(e.message)
             setMailAlert({open: true, message: `Error: ${e.message}`, severity: "error"})
         } finally {
             formikHelpers.resetForm();
             setSending(false);
+            recaptchaRef.current.reset();
         }
-    }
+    };
 
     return (
         <div className={style.contacts}>
@@ -175,6 +184,14 @@ export const Contacts = observer(() => {
                                         </p>
                                         <FieldTextarea name="coverLetter"
                                                        className={clsx(style.field, style.textarea)}/>
+                                    </div>
+
+                                    <div className={style.recaptureWrapper}>
+                                        <ReCAPTCHA
+                                            ref={recaptchaRef}
+                                            size={matchesTabletAndMore ? "normal" : "compact"}
+                                            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                                        />
                                     </div>
 
                                     {/*@ts-ignore*/}

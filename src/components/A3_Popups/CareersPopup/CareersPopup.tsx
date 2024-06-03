@@ -19,6 +19,7 @@ import {ButtonCustom, ButtonVariant} from "../../_common/ButtonCustom/ButtonCust
 import Link from "next/link";
 import {useOutsideClick} from "../../../hooks/useOutsideClick";
 import axios from "axios";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const title = "Start Your Career Today";
 const subTitle = "Please fill in your information and send it to the employer.";
@@ -66,16 +67,18 @@ const validate = ({fullName, email, link, contactNumber, letter}: IValues): Form
     }
 
     return errors
-}
-
+};
 
 export const CareersPopup = observer(() => {
     const {
         appStore: {
             lang,
-            career, setCareer
+            career, setCareer,
+            setMailAlert,
         }
     } = useStore();
+
+    const [sending, setSending] = useState(false)
 
     const [file, setFile] = useState<null | File>(null)
 
@@ -91,38 +94,50 @@ export const CareersPopup = observer(() => {
 
     }, {dependencies: [career], scope: appRef});
 
+    // recapture
+    const recaptchaRef = useRef();
+
     const onSubmit = async (values: IValues, formikHelpers: FormikHelpers<IValues>) => {
         try {
-            console.log(values);
-            const formData = new FormData();
-            Object.keys(values).forEach(key => (
-                // @ts-ignore
-                formData.append(`${key}`, values[key])
-            ));
+            const recaptchaValue = recaptchaRef.current.getValue();
 
-            if (file) {
-                formData.append("file", file);
+            if (recaptchaValue) {
+                console.log(values);
 
+                setSending(true);
+
+                const formData = new FormData();
+                Object.keys(values).forEach(key => (
+                    // @ts-ignore
+                    formData.append(`${key}`, values[key])
+                ));
+
+                if (file) {
+                    formData.append("file", file);
+                }
+
+                formData.append("careers", career ? career.title : "");
+
+                const response = await axios.post("/api/careers", formData);
+                console.log(response)
+
+                setMailAlert({open: true, message: "The mail is successfully delivered", severity: "success"})
             }
-
-            formData.append("careers", career ? career.title : "");
-
-            const response = await axios.post("/api/careers", formData);
-            console.log(response)
 
         } catch (e: any) {
             console.log(e.message)
+            setMailAlert({open: true, message: `Error: ${e.message}`, severity: "error"})
         } finally {
             formikHelpers.resetForm();
+            recaptchaRef.current.reset();
+            setSending(false);
         }
     }
-
-
 
     const onClose = () => {
         setCareer(null);
         setFile(null);
-    }
+    };
 
     const ref = useRef<HTMLDivElement>(null!);
 
@@ -255,10 +270,18 @@ export const CareersPopup = observer(() => {
                                         )
                                     }
 
-                                    {/*@ts-ignore*/}
+                                    <div className={style.recaptureWrapper}>
+                                        <ReCAPTCHA
+                                            ref={recaptchaRef}
+                                            size="normal"
+                                            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                                        />
+                                    </div>
 
+                                    {/*@ts-ignore*/}
                                     <ButtonCustom type="submit"
-                                                  label={translate("Submit", lang)}
+                                                  disabled={props.isSubmitting || sending}
+                                                  label={sending ? translate("Submit", lang) + "..." : translate("Submit", lang)}
                                                   className={style.submitBtn}
                                                   variant={ButtonVariant.blue}
                                     />

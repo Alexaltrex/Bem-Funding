@@ -11,47 +11,20 @@ import {ButtonCustom, ButtonVariant} from "../../../components/_common/ButtonCus
 import {Swiper as SwiperClass} from "swiper/types";
 import {Swiper, SwiperSlide} from "swiper/react";
 import Slider from '@mui/material/Slider';
-import {cardsNew, ICardNew} from "./cardsNew";
+import {
+    accountLabel,
+    bottomLabel,
+    chooseLabel,
+    data,
+    feeLabel,
+    getStartedHrefs,
+    ICardNew,
+    marks,
+    panelTitle,
+    titles
+} from "./data";
 import {ClickAwayListener, Tooltip, useMediaQuery} from "@mui/material";
 import {svgIcons} from "../../../assets/svgIcons";
-
-const titles = [
-    "Choose your trading style and",
-    "get started",
-]
-
-const panelTitle = "2 Step Evaluation";
-const chooseLabel = "Choose your trading style";
-const accountLabel = "Select account size"
-const bottomLabel = "Nevertheless, we cannot see that the solution proposed in this document is dependent on an amendment in section 1.10.3.";
-const feeLabel = "Registration fee"
-
-const marks = [
-    {
-        value: 0,
-        label: '$10k',
-        registrationFee: "110usd",
-        discountedFee: "99usd",
-    },
-    {
-        value: 1,
-        label: '$25k',
-        registrationFee: "230usd",
-        discountedFee: "207usd",
-    },
-    {
-        value: 2,
-        label: '$50k',
-        registrationFee: "350usd",
-        discountedFee: "315usd",
-    },
-    {
-        value: 3,
-        label: '$100k',
-        registrationFee: "540usd",
-        discountedFee: "486usd",
-    },
-]
 
 export const ChooseYourTradingStyle = observer(() => {
     const {appStore: {lang}} = useStore();
@@ -63,7 +36,7 @@ export const ChooseYourTradingStyle = observer(() => {
         setValue(newValue as number);
     };
 
-    console.log(value)
+    //console.log(value)
 
     const [swiper, setSwiper] = useState<SwiperClass | null>(null)
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -177,6 +150,7 @@ export const ChooseYourTradingStyle = observer(() => {
                                 <ButtonCustom label={translate("Get Started", lang)}
                                               className={style.startBtn}
                                               variant={ButtonVariant.blue}
+                                              href={getStartedHrefs[value][tradingStyle]}
                                 />
 
                             </div>
@@ -209,7 +183,7 @@ export const ChooseYourTradingStyle = observer(() => {
                     }
             >
                 {
-                    cardsNew.map((card, key) => (
+                    data.map((card, key) => (
                         <SwiperSlide key={key}
                                      className={style.slide}
 
@@ -232,7 +206,7 @@ export const ChooseYourTradingStyle = observer(() => {
             <div className={style.cardsDesktop}>
                 <div className={style.inner}>
                     {
-                        cardsNew.map((card, key) => (
+                        data.map((card, key) => (
                             <Card key={key} lang={lang} tradingStyle={tradingStyle} {...card}/>
                         ))
                     }
@@ -240,7 +214,7 @@ export const ChooseYourTradingStyle = observer(() => {
             </div>
         </div>
     )
-})
+});
 
 //========= SX =========//
 const sliderSx = {

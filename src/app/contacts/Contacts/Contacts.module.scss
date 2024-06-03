@@ -93,7 +93,7 @@
 
           @include desktop {
             width: 544px;
-            height: 602px;
+            height: 700px;
           }
 
           img {
@@ -145,7 +145,6 @@
 
           .fieldRow {
             display: flex;
-            //align-items: center;
             justify-content: space-between;
 
             &:not(:first-child) {
@@ -183,8 +182,15 @@
 
           }
 
+          .recaptureWrapper {
+            margin-top: 20px;
+            display: flex;
+            justify-content: flex-end;
+          }
+
           .submitBtn {
             margin-top: 20px;
+            width: 100%;
 
             @include tablet {
               width: 232px;
