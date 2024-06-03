@@ -190,7 +190,7 @@ export const Contacts = observer(() => {
                                         <ReCAPTCHA
                                             ref={recaptchaRef}
                                             size={matchesTabletAndMore ? "normal" : "compact"}
-                                            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                                            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
                                         />
                                     </div>
 
