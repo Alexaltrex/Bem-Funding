@@ -95,7 +95,7 @@ export const CareersPopup = observer(() => {
     }, {dependencies: [career], scope: appRef});
 
     // recapture
-    const recaptchaRef = useRef();
+    const recaptchaRef = useRef<ReCAPTCHA>(null!);
 
     const onSubmit = async (values: IValues, formikHelpers: FormikHelpers<IValues>) => {
         try {

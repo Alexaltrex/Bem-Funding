@@ -59,7 +59,7 @@ export const Contacts = observer(() => {
     const matchesTabletAndMore = useMediaQuery('(min-width:768px)');
 
     // recapture
-    const recaptchaRef = useRef();
+    const recaptchaRef = useRef<ReCAPTCHA>(null!);
 
     const onSubmit = async (values: IValues, formikHelpers: FormikHelpers<IValues>) => {
         try {
