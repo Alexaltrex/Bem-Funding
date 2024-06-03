@@ -274,7 +274,7 @@ export const CareersPopup = observer(() => {
                                         <ReCAPTCHA
                                             ref={recaptchaRef}
                                             size="normal"
-                                            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
+                                            sitekey="6LfvGPApAAAAAKiAnjTWg6WDgyWNVm1ywcefYvYC" //{process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
                                         />
                                     </div>
 
